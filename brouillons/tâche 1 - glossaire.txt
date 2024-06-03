@@ -1,0 +1,30 @@
+Tâche 1: Glossaire
+
+Enoncé:
+
+Après s'être familiarisé avec le domaine d'affaires de Robotix, produisez un glossaire composé d'une description brève des termes clés, tel qu'illustré dans la Figure 11.3 du livre (p. 322).
+Chaque terme avec son explication vaut 1 point. Chaque explication ne devra pas dépasser 50 mots. Vous aurez tous les points si vous produisez au moins 10 termes avec explications.
+
+
+
+
+
+
+Alerte : Notification générée lorsqu’une erreur se produit ou qu’un problème est détecté dans le fonctionnement d’un robot.
+Capacité : Limite technique d’une composante d’un robot, comme la charge maximale qu’un robot peut porter ou la distance maximale qu’il peut parcourir.
+Capteurs : Dispositifs utilisés pour recueillir des données sur l’état et la performance d’un robot. Cela peut inclure des capteurs de température, de pression, de proximité, etc.
+Composantes : Pièces individuelles utilisées pour construire un robot. Cela peut inclure des moteurs, des capteurs, des batteries, etc.
+Entité : Dans le contexte de l’outil Robotix, une entité se réfère à un robot individuel avec ses caractéristiques et capacités uniques.
+État : Description de ce qu’un robot est en train de faire à un moment donné, comme “en attente”, “en mouvement”, “en charge”, etc.
+Flotte : Groupe de robots travaillant ensemble, souvent contrôlés par un système centralisé.
+Mécanisme d’inventorisation : Système permettant de suivre et de gérer les robots dans une flotte, souvent en utilisant des numéros de série uniques.
+Métriques : Indicateurs quantitatifs ou qualitatifs utilisés pour évaluer la performance d’un robot. Cela peut inclure des mesures de précision, d’efficacité, de vitesse, etc.
+Numéro de série : Identifiant unique attribué à chaque robot par le fabricant, utilisé pour le suivi et l’inventaire.
+Opération : Une série de tâches effectuées par un robot pour atteindre un objectif spécifique.
+Robot : Machine programmée pour exécuter des tâches de manière autonome, souvent dans un environnement industriel ou de recherche.
+Tâches : Actions spécifiques assignées à un ou plusieurs robots. Ces tâches peuvent varier en complexité et en durée.
+Unité : Mesure standard utilisée pour quantifier un type de données, comme les secondes pour le temps ou les mètres pour la distance.
+
+
+
+
