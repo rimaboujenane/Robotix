@@ -10,34 +10,32 @@ Chaque terme avec son explication vaut 1 point. Chaque explication ne devra pas 
 
 
 
-Alerte : Notification générée lorsqu’une erreur se produit ou qu’un problème est détecté dans le fonctionnement d’un robot.
+Activité : Ensemble de tâches organisées pour atteindre un objectif spécifique, souvent collaboratif.
 
-Capacité : Limite technique d’une composante d’un robot, comme la charge maximale qu’un robot peut porter ou la distance maximale qu’il peut parcourir.
+Alerte : Une notification qui se déclenche en cas d'erreur ou de problème détecté dans le fonctionnement d'un robot.
 
-Capteurs : Dispositifs utilisés pour recueillir des données sur l’état et la performance d’un robot. Cela peut inclure des capteurs de température, de pression, de proximité, etc.
+Capacité : La limite technique d'une composante d'un robot, telle que la charge maximale qu'il peut supporter ou la distance maximale qu'il peut parcourir.
 
-Composantes : Pièces individuelles utilisées pour construire un robot. Cela peut inclure des moteurs, des capteurs, des batteries, etc.
+Capteurs : Des dispositifs utilisés pour collecter des données sur l'état et la performance d'un robot, comprenant des capteurs de température, de pression, de proximité, etc.
 
-Entité : Dans le contexte de l’outil Robotix, une entité se réfère à un robot individuel avec ses caractéristiques et capacités uniques.
+Composantes : Les pièces individuelles utilisées pour assembler un robot, incluant des moteurs, des capteurs, des batteries, etc.
 
-État : Description de ce qu’un robot est en train de faire à un moment donné, comme “en attente”, “en mouvement”, “en charge”, etc.
+Entité : Dans le contexte de l'outil Robotix, une entité représente un robot individuel avec ses caractéristiques et ses capacités uniques.
 
-Flotte : Groupe de robots travaillant ensemble, souvent contrôlés par un système centralisé.
+État : La description de l'activité actuelle d'un robot à un moment donné, comme "en attente", "en mouvement", "en charge", etc.
 
-Mécanisme d’inventorisation : Système permettant de suivre et de gérer les robots dans une flotte, souvent en utilisant des numéros de série uniques.
+Flotte : Un groupe de robots travaillant ensemble, souvent sous le contrôle d'un système centralisé.
 
-Métriques : Indicateurs quantitatifs ou qualitatifs utilisés pour évaluer la performance d’un robot. Cela peut inclure des mesures de précision, d’efficacité, de vitesse, etc.
+Mécanisme d'inventorisation : Un système qui permet de suivre et de gérer les robots dans une flotte, souvent en utilisant des numéros de série uniques.
 
-Numéro de série : Identifiant unique attribué à chaque robot par le fabricant, utilisé pour le suivi et l’inventaire.
+Métriques : Des indicateurs quantitatifs ou qualitatifs utilisés pour évaluer la performance d'un robot, incluant des mesures de précision, d'efficacité, de vitesse, etc.
 
-Opération : Une série de tâches effectuées par un robot pour atteindre un objectif spécifique.
+Numéro de série : Un identifiant unique attribué à chaque robot par le fabricant, utilisé pour le suivi et la gestion des inventaires.
 
-Robot : Machine programmée pour exécuter des tâches de manière autonome, souvent dans un environnement industriel ou de recherche.
+Opération : Une séquence de tâches exécutées par un robot pour atteindre un objectif spécifique.
 
-Tâches : Actions spécifiques assignées à un ou plusieurs robots. Ces tâches peuvent varier en complexité et en durée.
+Robot : Une machine programmée pour exécuter des tâches de manière autonome, souvent dans un environnement industriel ou de recherche.
 
-Unité : Mesure standard utilisée pour quantifier un type de données, comme les secondes pour le temps ou les mètres pour la distance.
+Tâches : Des actions spécifiques assignées à un ou plusieurs robots, variant en complexité et en durée.
 
-
-
-
+Unité : Une mesure standard utilisée pour quantifier un type de données, telle que les secondes pour le temps ou les mètres pour la distance.
