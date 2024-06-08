@@ -2,3 +2,15 @@ Tâche 4: Risques
 
 Enoncé:
 Identifiez 5 risques potentiels du projet et classez-les par ordre de sévérité (voir la page 28 dans les diapositives des exigences (Chapitre 7) des notes de cours et page 90 du livre)
+
+
+
+Panne logicielle : Il existe un risque que des erreurs de programmation ou des bugs dans le logiciel provoquent des dysfonctionnements dans les opérations des robots, affectant potentiellement leur performance et leur efficacité.
+
+Défaut matériel : Il est possible que les composants livrés présentent des défauts, entraînant des interruptions de service et affectant la continuité des opérations des robots, ce qui pourrait nécessiter des réparations ou des remplacements coûteux.
+
+Problème de sécurité : Il y a un risque d’attaques malveillantes sur le système, qui pourraient compromettre la confidentialité et l’intégrité des données des utilisateurs et perturber le contrôle des robots.
+
+Retards de livraison : Il y a un risque de retards dans la livraison des composants nécessaires pour les robots, ce qui pourrait retarder la mise en service des robots et affecter les opérations planifiées.
+
+Manque de compatibilité : Il existe un risque que certaines composantes ne soient pas compatibles avec les robots existants, ce qui pourrait limiter les fonctionnalités des robots et nécessiter des ajustements supplémentaires.
