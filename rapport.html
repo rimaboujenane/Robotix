@@ -456,5 +456,80 @@
             4a.2b. Il doit modifier l'action pour qu'elle n'ail pas besoin de la composante manquante.
             <b>Postconditions </b> L'utilisateur a programmé un ou plusieurs actions avec lesquelles il peut désigner des tâches individuelles ou collectives.<br>
         </p>
+	<h3>Cas d'utilisation:9 - Gérer les tâches</h3>
+	<p>
+		<b>But</b>:Permettre à un utilisateur de créer, assigner et planifier des tâches pour les robots.<br>
+		<b>Préconditions</b>:L'utilisateur doit être connecté au système et des actions doivent être disponibles<br>
+		<b>Acteurs:</b>: Utilisateur(principal)<br>
+	</p>
+	<p>
+		<b>Scénario principal</b>:
+	  <ol>
+                <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+                <li>2. L'utilisation crée une nouvelle tâche en sélectionnant une séquence d'actions.</li>
+                <li>3. L'utilisateur assigne la tâche à un robot disponible.</li>
+                <li>4. L'utilisateur planifie la tâche pour une exécution immédiate ou à une date/heure spécifique.</li>
+		<li>5. Le système enregistre la tâche et envoie les instructions au robot.</li>
+           </ol>
+	   <b>Scénarios alternatifs </b> : <br>
+	    3a. Si aucun robot n'est disponible , le système affiche un message d'érreur<br>
+            4a. Si les informations de planification sont invalides, le système demande de les corriger
+            <b>Postconditions </b> La tâche est créée, assignée et planifiée, prête à être exécutée par le robot.<br>
+	</p>
+	<h3>Cas d'utilisation:10 - Afficher l'état des robots</h3>
+	<p>
+		<b>But</b>:Permettre à un utilisateur de visualiser l'état actuel de ses robots.<br>
+		<b>Préconditions</b>:L'utilisateur doit être connecté au système.<br>
+		<b>Acteurs:</b>: Utilisateur(principal)<br>
+	</p>
+	<p>
+		<b>Scénario principal</b>:
+	  <ol>
+                <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+                <li>2. L'utilisation va sur l'interface de visualisation de l'état des robots.</li>
+                <li>3. Le système affiche l'état actuel des robots (position, vitesse, niveau de batterie, consommation CPU et mémoire).</li>
+           </ol>
+	   <b>Scénarios alternatifs </b> : <br>
+	    2a. Si le système ne peut pas récupérer les données, le système affiche un message d'érreur<br>
+	   <b>Postconditions </b> L'utilisateur peut voir l'état actuel des robots.<br>
+	</p>
+	<h3>Cas d'utilisation:11 - Afficher les métriques</h3>
+	<p>
+		<b>But</b>:Permettre à un utilisateur de visualiser les métriques globales des robots.<br>
+		<b>Préconditions</b>:L'utilisateur doit être connecté au système.<br>
+		<b>Acteurs:</b>: Utilisateur(principal)<br>
+	</p>
+	<p>
+		<b>Scénario principal</b>:
+	  <ol>
+                <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+                <li>2. L'utilisation accède l'interface de visualisation des métriques des robots.</li>
+                <li>3. Le système affiche les métriques agrégées par période  (disponibilité des roots, état général, utilisation globale).</li>
+           </ol>
+	   <b>Scénarios alternatifs </b> : <br>
+	    2a. Si le système ne peut pas récupérer les données, le système affiche un message d'érreur<br>
+	   <b>Postconditions</b>: L'utilisateur peut voir les métriques de performance des robots.<br>
+	</p>
+	<h3>Cas d'utilisation:12 - S'inscrire comme fournisseur</h3>
+	<p>
+		<b>But</b>:Permettre à une entreprise de s'inscrire comme fournisseur de composants des robots.<br>
+		<b>Préconditions</b>:L'utilisateur doit avoir une entreprise et un compte comme les utilisateurs.<br>
+		<b>Acteurs:</b>: Fournisseur(principal)<br>
+	</p>
+	<p>
+		<b>Scénario principal</b>:
+	  <ol>
+                <li>1. Le fournisseur accède à la plateforme Robotix.</li>
+                <li>2. Le fournisseur accède à l'interface d'inscription.</li>
+                <li>3. Le Fournisseur saisit les informations obligatoires(nom, adresse,email,téléphone, capacité de fabrication).</li>
+		<li>4. Le système vérifie que le nom(pseudo) soit unique.</li>
+                <li>5. Le système enregistre les informations du fournisseur.</li>
+		<li>6. Le fournisseur reçoit une confirmation d'inscription par courriel.</li>
+           </ol>
+	   <b>Scénarios alternatifs </b> : <br>
+	    4a. Si le nom(pseudo) n'est pas unique, le système affiche un message d'érreur et demande au fournisseur de modifier le nom(pseudo)<br>
+	    3a. Si les informations fournies sont incomplètes, le système demande de les compléter.
+	   <b>Postconditions</b>: Un nouveau compte de fournisseur est créée et l'entreprise est enregistrée dans le systàme comme fournisseur de composantes de robots.<br>
+	</p>
 </body>
 </html>
