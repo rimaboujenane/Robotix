@@ -1,0 +1,28 @@
+Peacy PC
+cpu
+micro
+ecran
+*
+Dave's Audio
+hautparleur
+*
+St. John's Sacred Parts
+cpu
+roues
+helice
+camera
+*
+Big Bad Bots
+roues
+bras
+helice
+camera
+ecran
+*
+Chimeric Cameras
+camera
+micro
+*
+Momma's 'Ponents
+bras
+*
