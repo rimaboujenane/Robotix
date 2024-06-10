@@ -81,17 +81,17 @@ Cas d'utilisation 3 : Intervenir lorsqu'il y a un problème
 - Préconditions : L'utilisateur doit être connecté à Robotix et avoir accès au robot présentant le problème.
 - Acteur principal : Utilisateur.
 - Scénario principal :
-	1. L'utilisateur reçoit une alerte ou remarque un problème avec un robot via le tableau de bord Robotix.
-	2.Il accède à la section "Intervention" pour obtenir des détails sur le problème signalé.
-	3. Le système fournit des informations détaillées sur le problème, y compris des codes d'erreur, des messages d'alerte et des diagnostics préliminaires.
-	4. L'utilisateur suit les instructions pour diagnostiquer le problème, qui peuvent inclure :
-	    - Vérification des connexions matérielles.
-	    - Réinitialisation du robot.
-	    - Mise à jour du logiciel ou du firmware.
-	5. Si le problème persiste, l'utilisateur peut accéder à une base de connaissances ou contacter le support technique pour des solutions supplémentaires.
-	6. L'utilisateur effectue les réparations nécessaires ou suit les étapes de résolution fournies par le support technique.
-	7. Une fois le problème résolu, l'utilisateur teste le robot pour s'assurer qu'il fonctionne correctement.
-	8. L'utilisateur enregistre les actions prises et les résultats dans le système pour une future référence.
+1. L'utilisateur reçoit une alerte ou remarque un problème avec un robot via le tableau de bord Robotix.
+2.Il accède à la section "Intervention" pour obtenir des détails sur le problème signalé.
+3. Le système fournit des informations détaillées sur le problème, y compris des codes d'erreur, des messages d'alerte et des diagnostics préliminaires.
+4. L'utilisateur suit les instructions pour diagnostiquer le problème, qui peuvent inclure :
+	- Vérification des connexions matérielles.
+	- Réinitialisation du robot.
+	- Mise à jour du logiciel ou du firmware.
+5. Si le problème persiste, l'utilisateur peut accéder à une base de connaissances ou contacter le support technique pour des solutions supplémentaires.
+6. L'utilisateur effectue les réparations nécessaires ou suit les étapes de résolution fournies par le support technique.
+7. Une fois le problème résolu, l'utilisateur teste le robot pour s'assurer qu'il fonctionne correctement.
+8. L'utilisateur enregistre les actions prises et les résultats dans le système pour une future référence.
 
 - Scénarios alternatifs :
 3a. Le problème n'est pas répertorié dans le système.
