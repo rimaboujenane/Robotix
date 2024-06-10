@@ -52,11 +52,11 @@
         <span style="font-weight: bold;">temps mis: </span>
     </p>
         <p>
-        <span style="font-weight: bold;">Nom: </span>
+        <span style="font-weight: bold;">Nom: </span>Cedric Guevremont
         <br />
-        <span style="font-weight: bold;">Matricule: </span>
+        <span style="font-weight: bold;">Matricule: </span>20266532
         <br />
-        <span style="font-weight: bold;">Courriel: </span>
+        <span style="font-weight: bold;">Courriel: </span>cedric.guevremont@gmail.com
         <br />
         <span style="font-weight: bold;">temps mis: </span>
     </p>
@@ -87,7 +87,7 @@
                     Rima Boujenane
                 </th>
                 <th>
-                    Nom
+                    Cedric Guevremont
                 </th>
                 <th>
                     Nom
@@ -98,6 +98,9 @@
             <tr>
                 <td class="first_col">
                     Glossaire
+                </td>
+                <td>
+                    ?
                 </td>
                 <td>
                     ?
@@ -116,10 +119,16 @@
                 <td>
                     ?
                 </td>
+                <td>
+                    ?
+                </td>
             </tr>
             <tr>
                 <td class="first_col">
                     Cas d'Utilisation
+                </td>
+                <td>
+                    ?
                 </td>
                 <td>
                     ?
@@ -138,10 +147,16 @@
                 <td>
                     ?
                 </td>
+                <td>
+                    ?
+                </td>
             </tr>
             <tr>
                 <td class="first_col">
                     Exigences Non-Foncionelles
+                </td>
+                <td>
+                    ?
                 </td>
                 <td>
                     ?
@@ -172,5 +187,103 @@
     <p>
         ...
     </p>
+
+    <h2>
+        Tâche 3</h2>
+        
+        <h3>Cas d'utilisation: 1 - S'inscrire comme utilisateur</h3>
+
+        <h3>Cas d'utilisation: 2 - Enregistrer un robot</h3>
+
+        <h3>Cas d'utilisation: 3 - Intervenir lorsqu'il a un problème </h3>
+
+        <p> <b>But</b>: Permettre à un utilisateur de diagnostiquer et de résoudre les problèmes survenant avec un robot. <br>
+            <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix et avoir accès au robot présentant le problème. <br>
+            <b>Acteur principal</b> : Utilisateur. <br>
+        </p>
+        <p><b>Scénario principal</b> :
+            <ol>
+                <li>L'utilisateur reçoit une alerte ou remarque un problème avec un robot via le tableau de bord Robotix.</li>
+            	<li>Il accède à la section "Intervention" pour obtenir des détails sur le problème signalé.</li>
+            	<li>Le système fournit des informations détaillées sur le problème, y compris des codes d'erreur, des messages d'alerte et des diagnostics préliminaires.</li>
+            	<li>L'utilisateur suit les instructions pour diagnostiquer le problème, qui peuvent inclure :
+                    <ul>
+                    <li>Vérification des connexions matérielles.</li>
+                    <li>Réinitialisation du robot.</li>
+                    <li>Mise à jour du logiciel ou du firmware.</li>
+                </ul></li>
+                <li>Si le problème persiste, l'utilisateur peut accéder à une base de connaissances ou contacter le support technique pour des solutions supplémentaires.</li>
+                <li>L'utilisateur effectue les réparations nécessaires ou suit les étapes de résolution fournies par le support technique.</li>
+                <li>Une fois le problème résolu, l'utilisateur teste le robot pour s'assurer qu'il fonctionne correctement.</li>
+                <li>L'utilisateur enregistre les actions prises et les résultats dans le système pour une future référence.</li>
+            </ol>
+            <b>Scénarios alternatifs </b> : <br
+            3a. Le problème n'est pas répertorié dans le système. <br>
+	        3a.1. L'utilisateur contacte directement le support technique pour obtenir une assistance personnalisée. <br>
+            6a. Le robot nécessite des pièces de rechange. <br>
+	        6a.1. L'utilisateur commande les pièces nécessaires via la section "Acheter des composants" et procède à la réparation une fois les pièces reçues. <br>
+            <b>Postconditions </b>: Le problème est diagnostiqué et résolu, et le robot est remis en service. <br>
+        </p>
+
+        
+
+        <h3>Cas d'utilisation: 4 - Construire un robot</h3>
+
+        <h3>Cas d'utilisation: 5 - Acheter des composants </h3>
+
+        <p><b>But </b> : Permettre à un utilisateur d'acheter les composants nécessaires pour construire ou réparer des robots.<br/>
+            <b>Préconditions</b> :  L'utilisateur doit être connecté à Robotix et disposer de moyens de paiement valides.<br/>
+            <b>Acteur principal</b> : Utilisateur.<br/>
+        </p>
+        <p>
+            <b>Scénario principal </b> :
+            <ol>
+                	<li>L'utilisateur accède à la section "Boutique" ou "Composants" de Robotix.</li>
+                	<li>Il navigue à travers les différentes catégories de composants disponibles (CPU, roues, bras, capteurs, batteries, etc.).</li>
+                	<li>L'utilisateur sélectionne les composants nécessaires et les ajoute à son panier.</li>
+                	<li>Il vérifie la compatibilité des composants avec les robots qu'il possède déjà ou qu'il souhaite construire.</li>
+                	<li>L'utilisateur passe à la caisse et vérifie son panier pour s'assurer que tous les articles souhaités y sont.</li>
+                	<li>Il saisit les informations de livraison et de paiement.</li>
+                	<li>L'utilisateur confirme la commande.</li>
+                	<li>Le système traite le paiement et envoie une confirmation de commande par courriel à l'utilisateur.</li>
+                	<li>Le fournisseur prépare et expédie les composants à l'adresse de livraison indiquée.</li>
+            </ol>
+            <b>Scénarios alternatifs </b> : <br/>
+            3a. Un composant est en rupture de stock.<br/>
+            3a.1. Le système affiche un message d'indisponibilité et suggère des alternatives ou propose de notifier l'utilisateur lorsque l'article sera de nouveau disponible.<br/>
+            6a. Les informations de paiement sont incorrectes ou insuffisantes.<br/>
+            6a.1. Le système affiche un message d'erreur et demande à l'utilisateur de corriger les informations de paiement.<br/>
+            8a. Le paiement est refusé par la banque.<br/>
+            8a.1. Le système affiche un message d'erreur et propose à l'utilisateur de réessayer avec un autre mode de paiement.<br/>
+            <b>Postconditions</b> : La commande est passée, les composants sont expédiés et l'utilisateur reçoit une confirmation de commande.
+        </p>
+
+        <h3>Cas d'utilisation: 6 - Chercher un fournisseur</h3>
+        <p>
+            <b>But</b> : Permettre à un utilisateur de rechercher et de sélectionner des fournisseurs pour acheter des composants ou des services liés aux robots.<br>
+            <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix.<br>
+            <b> Acteur principal </b> : Utilisateur.<br>
+        </p>
+        <p>
+        <b>Scénario principal</b> :
+            <ol>
+                <li>L'utilisateur accède à la section "Fournisseurs" sur la plateforme Robotix.</li>
+                <li>Il entre des critères de recherche tels que le type de composants, les services proposés, la localisation, la réputation, etc.</li>
+                <li> Le système affiche une liste de fournisseurs correspondant aux critères de recherche de l'utilisateur.</li>
+                <li>L'utilisateur consulte les profils des fournisseurs pour obtenir des informations détaillées, y compris : <ul>
+                    <li>Types de produits/services offerts.</li>
+                    <li>Avis et évaluations d'autres utilisateurs.</li>
+                    <li>Historique de la performance et de la fiabilité.</li> </ul></li>
+                <li>L'utilisateur compare les fournisseurs en fonction de divers facteurs, tels que les prix, les délais de livraison, et la qualité des produits/services.</li>
+                <li>Une fois qu'un fournisseur répond aux besoins de l'utilisateur, ce dernier peut sélectionner ce fournisseur pour passer une commande ou demander des devis.</li>
+                <li>Le système enregistre la sélection du fournisseur et permet à l'utilisateur de suivre les communications et les transactions futures avec ce fournisseur.</li>
+            </ol>
+            <b>Scénarios alternatifs </b> : <br>
+            3a. Aucun fournisseur ne correspond aux critères de recherche.<br>
+            3a.1. Le système suggère d'élargir les critères de recherche ou de vérifier à nouveau plus tard.<br>
+            5a. L'utilisateur souhaite contacter plusieurs fournisseurs pour des devis.<br>
+            5a.1. Le système permet à l'utilisateur d'envoyer des demandes de devis à plusieurs fournisseurs simultanément.<br>
+            <b>Postconditions </b> L'utilisateur a trouvé un fournisseur qui correspond à ses besoins et peut engager des transactions ou des communications avec celui-ci.<br>
+        </p>
 </body>
 </html>
