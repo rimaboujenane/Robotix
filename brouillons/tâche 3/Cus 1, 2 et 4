@@ -74,6 +74,34 @@ Cas d'utilisation 2 : Enregistrer un robot
 
 
 
+Cas d'utilisation 3 : Intervenir lorsqu'il y a un problème
+
+
+- But : Permettre à un utilisateur de diagnostiquer et de résoudre les problèmes survenant avec un robot.
+- Préconditions : L'utilisateur doit être connecté à Robotix et avoir accès au robot présentant le problème.
+- Acteur principal : Utilisateur.
+- Scénario principal :
+	1. L'utilisateur reçoit une alerte ou remarque un problème avec un robot via le tableau de bord Robotix.
+	2.Il accède à la section "Intervention" pour obtenir des détails sur le problème signalé.
+	3. Le système fournit des informations détaillées sur le problème, y compris des codes d'erreur, des messages d'alerte et des diagnostics préliminaires.
+	4. L'utilisateur suit les instructions pour diagnostiquer le problème, qui peuvent inclure :
+	    - Vérification des connexions matérielles.
+	    - Réinitialisation du robot.
+	    - Mise à jour du logiciel ou du firmware.
+	5. Si le problème persiste, l'utilisateur peut accéder à une base de connaissances ou contacter le support technique pour des solutions supplémentaires.
+	6. L'utilisateur effectue les réparations nécessaires ou suit les étapes de résolution fournies par le support technique.
+	7. Une fois le problème résolu, l'utilisateur teste le robot pour s'assurer qu'il fonctionne correctement.
+	8. L'utilisateur enregistre les actions prises et les résultats dans le système pour une future référence.
+
+- Scénarios alternatifs :
+3a. Le problème n'est pas répertorié dans le système.
+3a.1. L'utilisateur contacte directement le support technique pour obtenir une assistance personnalisée.
+
+6a. Le robot nécessite des pièces de rechange.
+6a.1. L'utilisateur commande les pièces nécessaires via la section "Acheter des composants" et procède à la réparation une fois les pièces reçues.
+
+- Postconditions : Le problème est diagnostiqué et résolu, et le robot est remis en service.
+
 
 Cas d'utilisation 4 : Construire un robot
 
@@ -112,3 +140,67 @@ Cas d'utilisation 4 : Construire un robot
 12a.3. L'utilisateur reçoit une notification de confirmation d'annulation et est redirigé vers la page d'accueil de Robotix.
 
 - Postconditions : Le robot est construit virtuellement, le plan d'assemblage est généré, et le robot est prêt à être assemblé physiquement.
+
+
+
+Cas d'utilisation 5 : Acheter des composants
+
+
+- But : Permettre à un utilisateur d'acheter les composants nécessaires pour construire ou réparer des robots.
+- Préconditions : L'utilisateur doit être connecté à Robotix et disposer de moyens de paiement valides.
+- Acteur principal : Utilisateur.
+
+- Scénario principal :
+1. L’utilisateur accède à la section "Boutique" ou "Composants" de Robotix.
+2. Il navigue à travers les différentes catégories de composants disponibles (CPU, roues, bras, capteurs, batteries, etc.).
+3. L’utilisateur sélectionne les composants nécessaires et les ajoute à son panier.
+4. Il vérifie la compatibilité des composants avec les robots qu'il possède déjà ou qu'il souhaite construire.
+5. L’utilisateur passe à la caisse et vérifie son panier pour s'assurer que tous les articles souhaités y sont.
+6. Il saisit les informations de livraison et de paiement.
+7. L’utilisateur confirme la commande.
+8. Le système traite le paiement et envoie une confirmation de commande par courriel à l'utilisateur.
+9. Le fournisseur prépare et expédie les composants à l'adresse de livraison indiquée.
+- Scénarios alternatifs :
+3a. Un composant est en rupture de stock.
+3a.1. Le système affiche un message d'indisponibilité et suggère des alternatives ou propose de notifier l'utilisateur lorsque l'article sera de nouveau disponible.
+
+6a. Les informations de paiement sont incorrectes ou insuffisantes.
+6a.1. Le système affiche un message d'erreur et demande à l'utilisateur de corriger les informations de paiement.
+
+8a. Le paiement est refusé par la banque.
+8a.1. Le système affiche un message d'erreur et propose à l'utilisateur de réessayer avec un autre mode de paiement.
+
+- Postconditions : La commande est passée, les composants sont expédiés et l'utilisateur reçoit une confirmation de commande.
+
+
+Cas d'utilisation 6 : Chercher un fournisseur
+
+
+- But : Permettre à un utilisateur de rechercher et de sélectionner des fournisseurs pour acheter des composants ou des services liés aux robots.
+- Préconditions : L'utilisateur doit être connecté à Robotix.
+- Acteur principal : Utilisateur.
+
+- Scénario principal :
+1. L’utilisateur accède à la section "Fournisseurs" sur la plateforme Robotix.
+2. Il entre des critères de recherche tels que le type de composants, les services proposés, la localisation, la réputation, etc.
+3. Le système affiche une liste de fournisseurs correspondant aux critères de recherche de l'utilisateur.
+4. L’utilisateur consulte les profils des fournisseurs pour obtenir des informations détaillées, y compris :
+    - Types de produits/services offerts.
+    - Avis et évaluations d'autres utilisateurs.
+    - Historique de la performance et de la fiabilité.
+5. L’utilisateur compare les fournisseurs en fonction de divers facteurs, tels que les prix, les délais de livraison, et la qualité des produits/services.
+6. Une fois qu'un fournisseur répond aux besoins de l'utilisateur, ce dernier peut sélectionner ce fournisseur pour passer une commande ou demander des devis.
+7. Le système enregistre la sélection du fournisseur et permet à l'utilisateur de suivre les communications et les transactions futures avec ce fournisseur.
+
+- Scénarios alternatifs :
+3a. Aucun fournisseur ne correspond aux critères de recherche.
+3a.1. Le système suggère d'élargir les critères de recherche ou de vérifier à nouveau plus tard.
+
+5a. L'utilisateur souhaite contacter plusieurs fournisseurs pour des devis.
+5a.1. Le système permet à l'utilisateur d'envoyer des demandes de devis à plusieurs fournisseurs simultanément.
+
+- Postconditions : L'utilisateur a trouvé un fournisseur qui correspond à ses besoins et peut engager des transactions ou des communications avec celui-ci.
+
+
+
+
