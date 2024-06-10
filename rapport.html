@@ -402,5 +402,59 @@
             5a.1. Le système permet à l'utilisateur d'envoyer des demandes de devis à plusieurs fournisseurs simultanément.<br>
             <b>Postconditions </b> L'utilisateur a trouvé un fournisseur qui correspond à ses besoins et peut engager des transactions ou des communications avec celui-ci.<br>
         </p>
+
+        <h3>Cas d'utilisation: 7 - Controler les Mouvements du Robot</h3>
+        <p>
+            <b>But</b> : Permettre à un utilisateur de spécifier des mouvements d'une composante, selon les capacités de celle-ci.<br>
+            <b>Préconditions</b> : L'utilisateur doit avoir la composante qu'il veut programmer dans son inventoire.<br>
+            <b> Acteur principal </b> : Utilisateur.<br>
+        </p>
+        <p>
+        <b>Scénario principal</b> :
+            <ol>
+                <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+                <li>2. Il ouvre son inventoire pour voir quelles composantes il possède déjà.</li>
+                <li>3.</li>
+                    <ul>
+                    <li>3.1. L'utilisateur choisit parmi les composantes dans son inventoire pour programmer un mouvement.</li>
+                    <li>3.2. Ensuite, il doit nommer le mouvement et préciser les détails du mouvement.</li>
+                    <li>3.3. Par exemple, pour un bras, il crée le mouvement "gauche" et fournit les instructions pour que le bras se déplace 10cm à gauche.</li>
+                    <li>3.4. Il répète se procedure pour plusieurs composantes, pour qu'il puisse passer éventuellement à la prochaine étape: la programmation des opérations, qui se composent de plusieurs mouvements.</li>
+                    </ul>
+                <li>4. Les mouvements restent inutiles jusqu'au moment où ils sont chargés dans le CPU d'un robot qui possède la composante en question.</li>
+            </ol>
+            <b>Scénarios alternatifs </b> : <br>
+            2a.1. L'utilisateur ne possède aucune composante. <br>
+            2a.2. Il procède alors au cas d'utilisation 5 ou 6 pour acheter des composantes. <br>
+            4a.1. L'utilisateur n'a pas encore contruit un robot pour charger avec les commandes qu'il a créées. <br>
+            4a.2. Il doit passer avant au cas d'utilisation 4 pour en construire avec ces composantes. <br>
+            <b>Postconditions </b> L'utilisateur a programmé un ou plusieurs mouvements qu'il peut assembler pour créer des opérations plus complexes.<br>
+        </p>
+
+        <h3>Cas d'utilisation: 8 - Créer les Actions du Robot</h3>
+        <p>
+            <b>But</b> : Permettre à un utilisateur de spécifier une série de mouvements pour définir un ou plusieurs actions plus complexes.<br>
+            <b>Préconditions</b> : L'utilisateur doit avoir les composantes qu'il veut programmer dans son inventoire, et il doit déjà avoir programmé les mouvements avec lesquels il va composer les actions.<br>
+            <b> Acteur principal </b> : Utilisateur.<br>
+        </p>
+        <p>
+        <b>Scénario principal</b> :
+            <ol>
+                <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+                <li>2. Il crée une action en spécifiant</li>
+                    <ul>
+                    <li>2.1. Un nom</li>
+                    <li>2.2. Une série de mouvements d'une composante ou plusieurs.</li>
+                    <li>2.3. Par exemple, il pourrait créer l'action "photo panorama" en spécifiant une série de "rotations 45 degrés" suivi par "prendre photo".</li>
+                    </ul>
+                <li>3. Avec ces opérations, on peut construire des tâches encore plus complexes qui se composent non seulement de plusieurs actions, mais de différents robots.</li>
+                <li>4. Similaires aux mouvements, les actions sont inutiles avant d'être chargées dans le CPU d'un robot qui possède toutes les composantes nécéssaires pour l'action.</li>
+            </ol>
+            <b>Scénarios alternatifs </b> : <br>
+            4a.1. L'utilisateur ne peut pas charger l'action désirée parce que l'action inclu une composante que le robot cible ne possède pas.<br>
+            4a.2. Il doit acheter la composante manquante (cas d'utilisation 5/6) pour que le robot soit compatible avec l'action <br>
+            4a.2b. Il doit modifier l'action pour qu'elle n'ail pas besoin de la composante manquante.
+            <b>Postconditions </b> L'utilisateur a programmé un ou plusieurs actions avec lesquelles il peut désigner des tâches individuelles ou collectives.<br>
+        </p>
 </body>
 </html>
