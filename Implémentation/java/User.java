@@ -1,9 +1,13 @@
+import java.util.ArrayList;
+
 class User {
 
     private static PartDatabase db = new PartDatabase();
     private static int user_index;
     private int user_id;
     private String username;
+    private ArrayList<Mouvement> mouvements;
+    private ArrayList<Operation> operations;
     protected boolean fournisseur;
     
     public User(String name) {
@@ -15,6 +19,8 @@ class User {
         
         userInfo();
     }
+
+    
     public void userInfo() {
 
         System.out.println(
@@ -35,6 +41,12 @@ class User {
         d.purchase(f, c);
     }
     public boolean isFournisseur() {return fournisseur;}
+    public void addMouv(Mouvement mouvement){
+        mouvements.add(mouvement);
+    }
+    public void addOps(Operation operation){
+        operations.add(operation);
+    }
     public static void main(String[] args) {
 
         //User newUser = new User("David");
