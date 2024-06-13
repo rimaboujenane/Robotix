@@ -1,0 +1,748 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFT2255 E24 DM1</title>
+    <style type="text/css">
+        table {
+            border: outset 2px black;
+            border-collapse: collapse;
+        }
+
+        th {
+            border-bottom: double 2px black;
+        }
+
+        td {
+            border-bottom: solid 1px black;
+        }
+
+        .first_col {
+            border-right: double 2px black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">
+        IFT 2255 - Été 2024- Devoir 1</h1>
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom de l'équipe: </span>Équipe Chomagique
+    </p>
+    <p>
+        <a href="https://github.com/rimaboujenane/Devoir1-2255">Lien vers dépôt GitHub</a><br>
+        <a href="example.vpp">Lien vers fichiers Visual Paradigm</a>
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>David Shorten
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20233475
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>david.shorten@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Rima Boujenane
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20235550
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rima.boujenane@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Cedric Guevremont
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20266532
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>cedric.guevremont@gmail.com
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom:Dean Johan Bell </span>
+        <br />
+        <span style="font-weight: bold;">Matricule:20087490 </span>
+        <br />
+        <span style="font-weight: bold;">Courriel: dean.johan.bell@umontreal.ca </span>
+        <br />
+        <span style="font-weight: bold;">temps mis: </span>
+    </p>
+    <h2>
+        Distribution des tâches</h2>
+    <p>
+        <span style="font-weight: bold;">Soumissionaire: </span>Chomagique
+    </p>
+    <table cellpadding="7px">
+        <thead>
+            <tr>
+                <th class="first_col">
+                    Tâche
+                </th>
+                <th>
+                    David Shorten
+                </th>
+                <th>
+                    Rima Boujenane
+                </th>
+                <th>
+                    Cedric Guevremont
+                </th>
+                <th>
+                    Dean Bell
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="first_col">
+                    Glossaire
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Diagrame de Cas d'Utilisation
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Cas d'Utilisation
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Risques
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Exigences Non-Foncionelles
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    Oui
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Prototypage rapide
+                </td>
+                <td>
+                    Oui
+                </td>
+                <td>
+                    ?
+                </td>
+                <td>
+                    ?
+                </td>
+                <td>
+                    Non
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>
+        Hypothèses</h2>
+    <p>
+        J'ai supposé que...
+    </p>
+    <br><br>
+    <h2>
+        Tâche 1</h2>
+    <p> <b>Activité</b> : Ensemble de tâches organisées pour atteindre un objectif spécifique, souvent collaboratif.</p>
+
+    <p> <b>Alerte</b> : Une notification qui se déclenche en cas d'erreur ou de problème détecté dans le fonctionnement
+        d'un
+        robot.</p>
+
+    <p> <b>Capacité</b> : La limite technique d'une composante d'un robot, telle que la charge maximale qu'il peut
+        supporter ou
+        la distance maximale qu'il peut parcourir.</p>
+
+    <p> <b>Capteurs</b> : Des dispositifs utilisés pour collecter des données sur l'état et la performance d'un robot,
+        comprenant des capteurs de température, de pression, de proximité, etc.</p>
+
+    <p> <b>Composantes</b> : Les pièces individuelles utilisées pour assembler un robot, incluant des moteurs, des
+        capteurs,
+        des batteries, etc.</p>
+
+    <p> <b>Entité</b> : Dans le contexte de l'outil Robotix, une entité représente un robot individuel avec ses
+        caractéristiques et ses capacités uniques.</p>
+
+    <p> <b>État</b> : La description de l'activité actuelle d'un robot à un moment donné, comme "en attente", "en
+        mouvement",
+        "en charge", etc.</p>
+
+    <p> <b>Flotte</b> : Un groupe de robots travaillant ensemble, souvent sous le contrôle d'un système centralisé.</p>
+
+    <p> <b>Mécanisme d'inventorisation</b> : Un système qui permet de suivre et de gérer les robots dans une flotte,
+        souvent en
+        utilisant des numéros de série uniques.</p>
+
+    <p> <b>Métriques</b> : Des indicateurs quantitatifs ou qualitatifs utilisés pour évaluer la performance d'un robot,
+        incluant des mesures de précision, d'efficacité, de vitesse, etc.</p>
+
+    <p> <b>Numéro de série</b> : Un identifiant unique attribué à chaque robot par le fabricant, utilisé pour le suivi
+        et la
+        gestion des inventaires.</p>
+
+    <p> <b>Opération</b> : Une séquence de tâches exécutées par un robot pour atteindre un objectif spécifique.</p>
+
+    <p> <b>Robot</b> : Une machine programmée pour exécuter des tâches de manière autonome, souvent dans un
+        environnement
+        industriel ou de recherche.</p>
+
+    <p> <b>Tâches</b> : Des actions spécifiques assignées à un ou plusieurs robots, variant en complexité et en durée.
+    </p>
+
+    <p> <b>Unité</b> : Une mesure standard utilisée pour quantifier un type de données, telle que les secondes pour le
+        temps ou
+        les mètres pour la distance.</p>
+
+    </p>
+    <ul>
+        <li>Voici un <a href="file1.txt">lien</a> vers les fichiers.</li>
+        <li>Images affichées directement.</li>
+    </ul>
+    <br><br>
+    <h2>
+        Tâche 2</h2>
+    <p>
+        Pour la deuxième tâche, nous avons convenu que le digramme suivant était approprié pour le cas présent.
+    </p>
+    <p>
+        <a href="https://github.com/rimaboujenane/Devoir1-2255/blob/main/brouillons/tache2/tache2-1.svg">Lien vers le diagramme github</a>
+    </p>
+    <img src="brouillons/tache2/tache2-1.svg" alt="diagramme UML"/>
+    
+    
+    <br><br>
+    <h2>
+        Tâche 3</h2>
+
+    <h3>Cas d'utilisation: 1 - S'inscrire comme utilisateur</h3>
+    <p> <b>But</b>: Permettre à un nouvel utilisateur de s'enregistrer sur la plateforme Robotix. <br>
+        <b>Préconditions</b> : L'utilisateur doit avoir accès à une connexion Internet et une adresse email valide. <br>
+        <b>Acteur principal</b> : Utilisateur. <br>
+    </p>
+    <p><b>Scénario principal</b> :
+    <ol>
+        <li>L'utilisateur accède à la page d'accueil de Robotix et clique sur "S'inscrire". </li>
+        <li>Il est redirigé vers le formulaire d'inscription.</li>
+        <li>L'utilisateur saisit les informations requises : </li>
+        <ul>
+            <li>Prénom</li>
+            <li>Nom</li>
+            <li>Pseudo (doit être unique)</li>
+            <li>Adresse email</li>
+            <li>Numéro de téléphone</li>
+            <li>Nom de la compagnie (facultatif)</li>
+        </ul>
+        <li>Il crée un mot de passe sécurisé et le confirme.</li>
+        <li>L'utilisateur accepte les conditions d'utilisation et la politique de confidentialité.</li>
+        <li>L'utilisateur soumet le formulaire.</li>
+        <li>Le système vérifie que toutes les informations sont complètes et valides.</li>
+        <li>Le système enregistre l'utilisateur et envoie un courriel de confirmation à l'adresse fournie.</li>
+        <li>L'utilisateur clique sur le lien de confirmation dans le courriel pour activer son compte.</li>
+        <li>Le système active le compte utilisateur et l'utilisateur reçoit une confirmation de création de compte.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    <br>7a. Les informations fournies sont incorrectes, incomplètes, ou déjà prises (comme le pseudo).
+    <br>7a.1. Le système affiche un message d'erreur indiquant les champs à corriger.
+    <br>7a.2. L'utilisateur corrige les informations incorrectes ou incomplètes et soumet à nouveau le formulaire.
+    <br>7a.3. Si le pseudo est déjà pris, l'utilisateur doit choisir un autre pseudo et soumettre à nouveau le
+    formulaire.
+    <br>
+    <br>8a. L'adresse courriel est déjà utilisée.
+    <br>8a.1. Le système affiche un message d'erreur indiquant que l'adresse courriel est déjà utilisée.
+    <br>8a.2. L'utilisateur peut choisir de récupérer son compte existant via le lien "Mot de passe oublié”.
+    <br>8a.3. Si l'utilisateur souhaite utiliser une autre adresse courriel, il la saisit et soumet à nouveau le
+    formulaire.
+    <br>8a.4. Le système envoie un courriel de confirmation à la nouvelle adresse courriel si elle est valide et non
+    utilisée.
+    <br>
+    <b>Postconditions </b>:L'utilisateur est inscrit, son compte est activé, et il peut se connecter à Robotix. <br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 2 - Enregistrer un robot</h3>
+
+    <p> <b>But</b>: Permettre à un utilisateur d'ajouter un nouveau robot à sa flotte en l'enregistrant dans le système
+        Robotix.<br>
+        <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix et avoir un robot physique prêt à être
+        enregistré et doit disposer du numéro de série unique du robot fourni par le fabricant.<br>
+        <b>Acteur principal</b> : Utilisateur. <br>
+    </p>
+    <p><b>Scénario principal</b> :
+    <ol>
+        <li>L'utilisateur accède à la section "Mes robots" dans son compte Robotix.</li>
+        <li>Il clique sur "Ajouter un nouveau robot”.</li>
+        <li>Le système affiche un formulaire d'enregistrement de robot.</li>
+        <li>L'utilisateur saisit les informations requises :
+            <ul>
+                <li>Numéro de série du robot</li>
+                <li>Nom du robot</li>
+                <li>Type de robot (par exemple, robot de service, robot industriel, etc.)</li>
+            </ul>
+        </li>
+        <li>Il peut ajouter des informations supplémentaires, comme les capacités spécifiques du robot ou son
+            emplacement.</li>
+        <li>L'utilisateur soumet le formulaire./li>
+        <li>Le système vérifie la validité et l'unicité du numéro de série.</li>
+        <li>Le système enregistre le robot dans la flotte de l'utilisateur.</li>
+        <li>Une confirmation d'enregistrement s'affiche et un courriel de confirmation est envoyé à l’utilisateur.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> :<br>
+    <br> 3a. Le numéro de série est déjà utilisé ou invalide.
+    <br>3a.1. Le système affiche un message d'erreur et demande à l'utilisateur de vérifier et de corriger les
+    informations.
+    <br>3a.2. L'utilisateur corrige le numéro de série et soumet à nouveau le formulaire.
+    <br>
+    <br>8a. Le système rencontre une erreur lors de l'enregistrement du robot.
+    <br> 8a.1. Le système affiche un message d'erreur général.
+    <br>8a.2. L'utilisateur réessaye de soumettre le formulaire après un certain temps ou contacte le support technique.
+    <br>
+    <b>Postconditions </b>: Le robot est enregistré et apparaît dans la liste des robots de l’utilisateur. <br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 3 - Intervenir lorsqu'il a un problème </h3>
+
+    <p> <b>But</b>: Permettre à un utilisateur de diagnostiquer et de résoudre les problèmes survenant avec un robot.
+        <br>
+        <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix et avoir accès au robot présentant le
+        problème. <br>
+        <b>Acteur principal</b> : Utilisateur. <br>
+    </p>
+    <p><b>Scénario principal</b> :
+    <ol>
+        <li>L'utilisateur reçoit une alerte ou remarque un problème avec un robot via le tableau de bord Robotix.</li>
+        <li>Il accède à la section "Intervention" pour obtenir des détails sur le problème signalé.</li>
+        <li>Le système fournit des informations détaillées sur le problème, y compris des codes d'erreur, des messages
+            d'alerte et des diagnostics préliminaires.</li>
+        <li>L'utilisateur suit les instructions pour diagnostiquer le problème, qui peuvent inclure :
+            <ul>
+                <li>Vérification des connexions matérielles.</li>
+                <li>Réinitialisation du robot.</li>
+                <li>Mise à jour du logiciel ou du firmware.</li>
+            </ul>
+        </li>
+        <li>Si le problème persiste, l'utilisateur peut accéder à une base de connaissances ou contacter le support
+            technique pour des solutions supplémentaires.</li>
+        <li>L'utilisateur effectue les réparations nécessaires ou suit les étapes de résolution fournies par le support
+            technique.</li>
+        <li>Une fois le problème résolu, l'utilisateur teste le robot pour s'assurer qu'il fonctionne correctement.</li>
+        <li>L'utilisateur enregistre les actions prises et les résultats dans le système pour une future référence.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> :<br><br>
+    3a. Le problème n'est pas répertorié dans le système. <br>
+    3a.1. L'utilisateur contacte directement le support technique pour obtenir une assistance personnalisée. <br>
+    <br>6a. Le robot nécessite des pièces de rechange. <br>
+    6a.1. L'utilisateur commande les pièces nécessaires via la section "Acheter des composants" et procède à la
+    réparation une fois les pièces reçues. <br>
+    <b>Postconditions </b>: Le problème est diagnostiqué et résolu, et le robot est remis en service. <br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 4 - Construire un robot</h3>
+
+    <p> <b>But</b>: Permettre à un utilisateur de construire un robot en assemblant diverses composantes.<br>
+        <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix et avoir les composants nécessaires
+        disponibles. <br>
+        <b>Acteur principal</b> : Utilisateur. <br>
+    </p>
+    <p><b>Scénario principal</b> :
+    <ol>
+        <li>L'utilisateur accède à la section "Construire un robot" sur la plateforme Robotix.</li>
+        <li>L'utilisateur sélectionne l'option pour créer un nouveau robot.</li>
+        <li>Le système demande à l'utilisateur de saisir les informations de base du robot, telles que le nom et le
+            type.</li>
+        <li>L'utilisateur entre les informations requises et valide.</li>
+        <li>Le système affiche une liste de composants disponibles dans l'inventaire de l'utilisateur.</li>
+        <li>L'utilisateur sélectionne les composants nécessaires pour construire le robot parmi ceux disponibles, y
+            compris au minimum un CPU et au moins une autre composante (par exemple, roues, bras, hélice, etc.)</li>
+        <li>L'utilisateur ajoute chaque composant au panier virtuel.</li>
+        <li>Le système vérifie que toutes les composantes essentielles sont sélectionnées et compatibles entre elles.
+        </li>
+        <li>L'utilisateur reçoit des suggestions pour des composants complémentaires ou nécessaires.</li>
+        <li>L'utilisateur assemble virtuellement le robot en suivant les instructions fournies par le système.</li>
+        <li>Le système confirme que le robot a été construit avec succès, enregistre les détails du robot dans
+            l'inventaire de l'utilisateur, et fournit des recommandations pour les tests initiaux après assemblage.</li>
+        <li>L'utilisateur reçoit ensuite une confirmation que le robot est prêt à être utilisé et peut maintenant être
+            contrôlé via la plateforme.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> :<br><br>
+    <br>6a. L'utilisateur n'a pas tous les composants nécessaires en stock.
+    <br>6a.1. Le système affiche un message demandant à l'utilisateur de commander les composants manquants.
+    <br>6a.2. L'utilisateur passe une commande pour les composants manquants via la plateforme.
+    <br> 6a.3. Une fois les composants reçus, l'utilisateur reprend le processus de construction du robot.
+    <br>
+    <br>8a. Certains composants sélectionnés ne sont pas compatibles.
+    <br>8a.1. Le système affiche un message d'erreur indiquant les composants incompatibles et propose des alternatives.
+    <br>8a.2. L'utilisateur ajuste la sélection des composants pour résoudre les incompatibilités.
+    <br>
+    <br>12a. L'utilisateur souhaite annuler l'assemblage.
+    <br>12a.1. Le système confirme la demande d'annulation et demande à l'utilisateur de confirmer.
+    <br>12a.2. Une fois la confirmation reçue, le système annule l'assemblage du robot en cours et supprime les données
+    associées de l'inventaire de l'utilisateur.
+    <br>12a.3. L'utilisateur reçoit une notification de confirmation d'annulation et est redirigé vers la page d'accueil
+    de Robotix.
+    <br>
+    <b>Postconditions </b>: Le robot est construit virtuellement, le plan d'assemblage est généré, et le robot est prêt
+    à être assemblé physiquement. <br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 5 - Acheter des composants </h3>
+
+    <p><b>But </b> : Permettre à un utilisateur d'acheter les composants nécessaires pour construire ou réparer des
+        robots.<br />
+        <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix et disposer de moyens de paiement
+        valides.<br />
+        <b>Acteur principal</b> : Utilisateur.<br />
+    </p>
+    <p>
+        <b>Scénario principal </b> :
+    <ol>
+        <li>L'utilisateur accède à la section "Boutique" ou "Composants" de Robotix.</li>
+        <li>Il navigue à travers les différentes catégories de composants disponibles (CPU, roues, bras, capteurs,
+            batteries, etc.).</li>
+        <li>L'utilisateur sélectionne les composants nécessaires et les ajoute à son panier.</li>
+        <li>Il vérifie la compatibilité des composants avec les robots qu'il possède déjà ou qu'il souhaite construire.
+        </li>
+        <li>L'utilisateur passe à la caisse et vérifie son panier pour s'assurer que tous les articles souhaités y sont.
+        </li>
+        <li>Il saisit les informations de livraison et de paiement.</li>
+        <li>L'utilisateur confirme la commande.</li>
+        <li>Le système traite le paiement et envoie une confirmation de commande par courriel à l'utilisateur.</li>
+        <li>Le fournisseur prépare et expédie les composants à l'adresse de livraison indiquée.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br><br>
+    3a. Un composant est en rupture de stock.<br />
+    3a.1. Le système affiche un message d'indisponibilité et suggère des alternatives ou propose de notifier
+    l'utilisateur lorsque l'article sera de nouveau disponible.<br />
+    <br>6a. Les informations de paiement sont incorrectes ou insuffisantes.<br />
+    6a.1. Le système affiche un message d'erreur et demande à l'utilisateur de corriger les informations de
+    paiement.<br />
+    <br>8a. Le paiement est refusé par la banque.<br />
+    8a.1. Le système affiche un message d'erreur et propose à l'utilisateur de réessayer avec un autre mode de
+    paiement.<br />
+    <b>Postconditions</b> : La commande est passée, les composants sont expédiés et l'utilisateur reçoit une
+    confirmation de commande.
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 6 - Chercher un fournisseur</h3>
+    <p>
+        <b>But</b> : Permettre à un utilisateur de rechercher et de sélectionner des fournisseurs pour acheter des
+        composants ou des services liés aux robots.<br>
+        <b>Préconditions</b> : L'utilisateur doit être connecté à Robotix.<br>
+        <b> Acteur principal </b> : Utilisateur.<br>
+    </p>
+    <p>
+        <b>Scénario principal</b> :
+    <ol>
+        <li>L'utilisateur accède à la section "Fournisseurs" sur la plateforme Robotix.</li>
+        <li>Il entre des critères de recherche tels que le type de composants, les services proposés, la localisation,
+            la réputation, etc.</li>
+        <li> Le système affiche une liste de fournisseurs correspondant aux critères de recherche de l'utilisateur.</li>
+        <li>L'utilisateur consulte les profils des fournisseurs pour obtenir des informations détaillées, y compris :
+            <ul>
+                <li>Types de produits/services offerts.</li>
+                <li>Avis et évaluations d'autres utilisateurs.</li>
+                <li>Historique de la performance et de la fiabilité.</li>
+            </ul>
+        </li>
+        <li>L'utilisateur compare les fournisseurs en fonction de divers facteurs, tels que les prix, les délais de
+            livraison, et la qualité des produits/services.</li>
+        <li>Une fois qu'un fournisseur répond aux besoins de l'utilisateur, ce dernier peut sélectionner ce fournisseur
+            pour passer une commande ou demander des devis.</li>
+        <li>Le système enregistre la sélection du fournisseur et permet à l'utilisateur de suivre les communications et
+            les transactions futures avec ce fournisseur.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br> <br>
+    3a. Aucun fournisseur ne correspond aux critères de recherche.<br>
+    3a.1. Le système suggère d'élargir les critères de recherche ou de vérifier à nouveau plus tard.<br>
+    <br>5a. L'utilisateur souhaite contacter plusieurs fournisseurs pour des devis.<br>
+    5a.1. Le système permet à l'utilisateur d'envoyer des demandes de devis à plusieurs fournisseurs simultanément.<br>
+    <b>Postconditions </b> L'utilisateur a trouvé un fournisseur qui correspond à ses besoins et peut engager des
+    transactions ou des communications avec celui-ci.<br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 7 - Controler les Mouvements du Robot</h3>
+    <p>
+        <b>But</b> : Permettre à un utilisateur de spécifier des mouvements d'une composante, selon les capacités de
+        celle-ci.<br>
+        <b>Préconditions</b> : L'utilisateur doit avoir la composante qu'il veut programmer dans son inventoire.<br>
+        <b> Acteur principal </b> : Utilisateur.<br>
+    </p>
+    <p>
+        <b>Scénario principal</b> :
+    <ol>
+        <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+        <li>2. Il ouvre son inventoire pour voir quelles composantes il possède déjà.</li>
+        <li>3.</li>
+        <ul>
+            <li>3.1. L'utilisateur choisit parmi les composantes dans son inventoire pour programmer un mouvement.</li>
+            <li>3.2. Ensuite, il doit nommer le mouvement et préciser les détails du mouvement.</li>
+            <li>3.3. Par exemple, pour un bras, il crée le mouvement "gauche" et fournit les instructions pour que le
+                bras se déplace 10cm à gauche.</li>
+            <li>3.4. Il répète se procedure pour plusieurs composantes, pour qu'il puisse passer éventuellement à la
+                prochaine étape: la programmation des opérations, qui se composent de plusieurs mouvements.</li>
+        </ul>
+        <li>4. Les mouvements restent inutiles jusqu'au moment où ils sont chargés dans le CPU d'un robot qui possède la
+            composante en question.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    2a.1. L'utilisateur ne possède aucune composante. <br>
+    2a.2. Il procède alors au cas d'utilisation 5 ou 6 pour acheter des composantes. <br>
+    4a.1. L'utilisateur n'a pas encore contruit un robot pour charger avec les commandes qu'il a créées. <br>
+    4a.2. Il doit passer avant au cas d'utilisation 4 pour en construire avec ces composantes. <br>
+    <b>Postconditions </b> L'utilisateur a programmé un ou plusieurs mouvements qu'il peut assembler pour créer des
+    opérations plus complexes.<br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation: 8 - Créer les Actions du Robot</h3>
+    <p>
+        <b>But</b> : Permettre à un utilisateur de spécifier une série de mouvements pour définir un ou plusieurs
+        actions plus complexes.<br>
+        <b>Préconditions</b> : L'utilisateur doit avoir les composantes qu'il veut programmer dans son inventoire, et il
+        doit déjà avoir programmé les mouvements avec lesquels il va composer les actions.<br>
+        <b> Acteur principal </b> : Utilisateur.<br>
+    </p>
+    <p>
+        <b>Scénario principal</b> :
+    <ol>
+        <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+        <li>2. Il crée une action en spécifiant</li>
+        <ul>
+            <li>2.1. Un nom</li>
+            <li>2.2. Une série de mouvements d'une composante ou plusieurs.</li>
+            <li>2.3. Par exemple, il pourrait créer l'action "photo panorama" en spécifiant une série de "rotations 45
+                degrés" suivi par "prendre photo".</li>
+        </ul>
+        <li>3. Avec ces opérations, on peut construire des tâches encore plus complexes qui se composent non seulement
+            de plusieurs actions, mais de différents robots.</li>
+        <li>4. Similaires aux mouvements, les actions sont inutiles avant d'être chargées dans le CPU d'un robot qui
+            possède toutes les composantes nécéssaires pour l'action.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    4a.1. L'utilisateur ne peut pas charger l'action désirée parce que l'action inclu une composante que le robot cible
+    ne possède pas.<br>
+    4a.2. Il doit acheter la composante manquante (cas d'utilisation 5/6) pour que le robot soit compatible avec
+    l'action <br>
+    4a.2b. Il doit modifier l'action pour qu'elle n'ail pas besoin de la composante manquante.<br>
+    <b>Postconditions </b> L'utilisateur a programmé un ou plusieurs actions avec lesquelles il peut désigner des tâches
+    individuelles ou collectives.<br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation:9 - Gérer les tâches</h3>
+    <p>
+        <b>But</b>:Permettre à un utilisateur de créer, assigner et planifier des tâches pour les robots.<br>
+        <b>Préconditions</b>:L'utilisateur doit être connecté au système et des actions doivent être disponibles<br>
+        <b>Acteurs:</b>: Utilisateur(principal)<br>
+    </p>
+    <p>
+        <b>Scénario principal</b>:
+    <ol>
+        <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+        <li>2. L'utilisation crée une nouvelle tâche en sélectionnant une séquence d'actions.</li>
+        <li>3. L'utilisateur assigne la tâche à un robot disponible.</li>
+        <li>4. L'utilisateur planifie la tâche pour une exécution immédiate ou à une date/heure spécifique.</li>
+        <li>5. Le système enregistre la tâche et envoie les instructions au robot.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    3a. Si aucun robot n'est disponible , le système affiche un message d'erreur.<br>
+    4a. Si les informations de planification sont invalides, le système demande de les corriger.<br>
+    <b>Postconditions </b> La tâche est créée, assignée et planifiée, prête à être exécutée par le robot.<br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation:10 - Afficher l'état des robots</h3>
+    <p>
+        <b>But</b>:Permettre à un utilisateur de visualiser l'état actuel de ses robots.<br>
+        <b>Préconditions</b>:L'utilisateur doit être connecté au système.<br>
+        <b>Acteurs:</b>: Utilisateur(principal)<br>
+    </p>
+    <p>
+        <b>Scénario principal</b>:
+    <ol>
+        <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+        <li>2. L'utilisation va sur l'interface de visualisation de l'état des robots.</li>
+        <li>3. Le système affiche l'état actuel des robots (position, vitesse, niveau de batterie, consommation CPU et
+            mémoire).</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    2a. Si le système ne peut pas récupérer les données, le système affiche un message d'érreur<br>
+    <b>Postconditions </b> L'utilisateur peut voir l'état actuel des robots.<br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation:11 - Afficher les métriques</h3>
+    <p>
+        <b>But</b>:Permettre à un utilisateur de visualiser les métriques globales des robots.<br>
+        <b>Préconditions</b>:L'utilisateur doit être connecté au système.<br>
+        <b>Acteurs:</b>: Utilisateur(principal)<br>
+    </p>
+    <p>
+        <b>Scénario principal</b>:
+    <ol>
+        <li>1. L'utilisateur accède à la plateforme Robotix.</li>
+        <li>2. L'utilisation accède l'interface de visualisation des métriques des robots.</li>
+        <li>3. Le système affiche les métriques agrégées par période (disponibilité des roots, état général, utilisation
+            globale).</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    2a. Si le système ne peut pas récupérer les données, le système affiche un message d'érreur<br>
+    <b>Postconditions</b>: L'utilisateur peut voir les métriques de performance des robots.<br>
+    </p>
+
+
+    <br><br>
+    <h3>Cas d'utilisation:12 - S'inscrire comme fournisseur</h3>
+    <p>
+        <b>But</b>:Permettre à une entreprise de s'inscrire comme fournisseur de composants des robots.<br>
+        <b>Préconditions</b>:L'utilisateur doit avoir une entreprise et un compte comme les utilisateurs.<br>
+        <b>Acteurs:</b>: Fournisseur(principal)<br>
+    </p>
+    <p>
+        <b>Scénario principal</b>:
+    <ol>
+        <li>1. Le fournisseur accède à la plateforme Robotix.</li>
+        <li>2. Le fournisseur accède à l'interface d'inscription.</li>
+        <li>3. Le Fournisseur saisit les informations obligatoires(nom, adresse,email,téléphone, capacité de
+            fabrication).</li>
+        <li>4. Le système vérifie que le nom(pseudo) soit unique.</li>
+        <li>5. Le système enregistre les informations du fournisseur.</li>
+        <li>6. Le fournisseur reçoit une confirmation d'inscription par courriel.</li>
+    </ol>
+    <b>Scénarios alternatifs </b> : <br>
+    4a. Si le nom(pseudo) n'est pas unique, le système affiche un message d'érreur et demande au fournisseur de modifier
+    le nom(pseudo)<br>
+    3a. Si les informations fournies sont incomplètes, le système demande de les compléter.<br>
+    <b>Postconditions</b>: Un nouveau compte de fournisseur est créée et l'entreprise est enregistrée dans le systàme
+    comme fournisseur de composantes de robots.<br>
+    </p>
+
+    <br><br>
+
+    <h2>
+        Tâche 4</h2>
+
+    <p><b>Panne logicielle </b>: Il existe un risque que des erreurs de programmation ou des bugs dans le logiciel
+        provoquent des dysfonctionnements dans les opérations des robots, affectant potentiellement leur performance et
+        leur efficacité.
+    </p>
+    <p><b>Défaut matériel </b>: Il est possible que les composants livrés présentent des défauts, entraînant des
+        interruptions de service et affectant la continuité des opérations des robots, ce qui pourrait nécessiter des
+        réparations ou des remplacements coûteux.
+    </p>
+    <p><b>Problème de sécurité </b>: Il y a un risque d’attaques malveillantes sur le système, qui pourraient
+        compromettre la confidentialité et l’intégrité des données des utilisateurs et perturber le contrôle des robots.
+    </p>
+    <p><b>Retards de livraison </b>: Il y a un risque de retards dans la livraison des composants nécessaires pour les
+        robots, ce qui pourrait retarder la mise en service des robots et affecter les opérations planifiées.
+    </p>
+    <p><b>Manque de compatibilité </b>: Il existe un risque que certaines composantes ne soient pas compatibles avec les
+        robots existants, ce qui pourrait limiter les fonctionnalités des robots et nécessiter des ajustements
+        supplémentaires.
+    </p>
+    <br><br>
+
+    <h2>
+        Tâche 5</h2>
+    <p><b>Sécurité </b>: Le système doit garantir la confidentialité et l'intégrité des données des utilisateurs et des
+        robots, en utilisant des techniques de chiffrement avancées et des méthodes d'authentification robustes pour
+        prévenir les accès non autorisés. </p>
+
+    <p><b>Disponibilité </b>: Le système doit offrir une fiabilité et une accessibilité de 99,9% du temps, en s’appuyant
+        sur des stratégies de sauvegarde et de redondance pour garantir un service continu. </p>
+
+    <p><b>Performance </b>: Même en période de forte demande, le système doit être capable de traiter les requêtes des
+        utilisateurs en moins de 2 secondes et de gérer simultanément un grand nombre de robots sans ralentir. </p>
+
+    <p><b>Facilité d’utilisation </b>: L’interface de Robotix doit être conçue de manière à être conviviale et
+        intuitive, permettant à des utilisateurs de tous niveaux de compétence d’utiliser le système sans nécessiter une
+        formation extensive. </p>
+
+    <p><b>Maintenabilité </b>: Le système doit être structuré de manière modulaire pour faciliter les mises à jour et la
+        correction des bugs, permettant des interventions efficaces et rapides, minimisant les interruptions de service
+        et facilitant l’évolution constante du système en réponse aux besoins changeants. </p>
+
+</body>
+
+</html>
