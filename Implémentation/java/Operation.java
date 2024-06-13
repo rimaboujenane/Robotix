@@ -10,6 +10,7 @@ class Operation {
         op = mouv;
         //this.owner = owner;
     }
+    public String getName(){return name;}
     public void go() {
 
         System.out.println("Performing Operation: " + name);
