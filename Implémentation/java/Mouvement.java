@@ -10,6 +10,7 @@ class Mouvement {
         this.name = name;
         this.desc = desc;
     }
+    public String getName(){return name;}
     public void go() {
 
         owner.compInfo();
