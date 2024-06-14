@@ -6,18 +6,18 @@ class CPU extends Composante {
     public CPU() {
 
         super();
-        setType("CPU");
+        setType("cpu");
     }
     public CPU(Mouvement[] mouv) {
 
         super();
-        setType("CPU");
+        setType("cpu");
         this.mouv = mouv;
     }
     public CPU(Mouvement[] mouv, Operation[] ops) {
 
         super();
-        setType("CPU");
+        setType("cpu");
         this.mouv = mouv;
         this.ops = ops;
     }

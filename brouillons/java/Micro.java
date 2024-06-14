@@ -3,6 +3,6 @@ class Micro extends Composante {
     public Micro() {
 
         super();
-        setType("Micro");
+        setType("micro");
     }
 }

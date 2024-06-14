@@ -15,6 +15,7 @@ class Operation {
         System.out.println("Performing Operation: " + name);
         for (Mouvement m : op) {m.go();}
     }
+    public String getName() {return name;}
     public static void main(String[] args) {
 
         Composante arm1 = new Bras();

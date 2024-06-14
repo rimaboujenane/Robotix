@@ -41,12 +41,18 @@ class Robot {
             }
             comps_copy[comps_copy.length-1] = comp;
             comps = comps_copy;
+            System.out.println("Added " + comp.getType() + ".");
         } catch (NoStockException e) {System.out.println("No parts available.");
-        } catch (InvalidPartException e) {System.out.print("Part not available.");}
+        } catch (InvalidPartException e) {System.out.print("Part not available.");
+        } catch (NullPointerException e) {
+            comps = new Composante[1]; comps[0] = comp;
+            System.out.println("Added " + comp.getType() + ".");
+        }
     }
     public void programCPU(Mouvement[] mouv, Operation[] ops) {
         cpu.loadMouv(mouv); cpu.loadOps(ops);
     }
     public void programCPU(Mouvement[] mouv) {cpu.loadMouv(mouv);}
     public void programCPU(Operation[] ops) {cpu.loadOps(ops);}
+    public String getName() {return name;}
 }

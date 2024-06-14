@@ -129,6 +129,38 @@ class Inventaire {
                 throw new InvalidPartException();
         }
     }
+    public void incInv(String part) throws InvalidPartException {
+
+        switch(part) {
+
+            case "cpu":
+                cpu++;
+                break;
+            case "roues":
+                roues++;
+                break;
+            case "bras":
+                bras++;
+                break;
+            case "helice":
+                helice++;
+                break;
+            case "camera":
+                camera++;
+                break;
+            case "hautparleur":
+                hautparleur++;
+                break;
+            case "micro":
+                micro++;
+                break;
+            case "ecran":
+                ecran++;
+                break;
+            default:
+                throw new InvalidPartException();
+        }
+    }
     public void printInv() {
 
         System.out.println("CPU: " + cpu);

@@ -172,6 +172,7 @@ class PartDatabase {
                 }
                 current_fourn = f;
                 parseData(c);
+                System.out.println("Added " + c);
                 updateDatabase();
             }
         } catch (Exception e) {e.printStackTrace();}
