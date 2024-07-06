@@ -4,5 +4,6 @@ class Helice extends Composante {
 
         super();
         setType("helice");
+        setBatterie(100);
     }
 }

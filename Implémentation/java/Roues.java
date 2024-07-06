@@ -4,5 +4,6 @@ class Roues extends Composante {
 
         super();
         setType("roues");
+        setBatterie(40);
     }
 }

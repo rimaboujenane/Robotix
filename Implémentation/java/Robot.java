@@ -7,7 +7,10 @@ class Robot {
     private Composante[] comps;
     private Mouvement[] mouv;
     private Operation[] ops;
+    private Tache[] t;
     private Inventaire inv = new Inventaire();
+    private int[] pos = {0, 0, 0};
+    private double batterie = 10000;
 
     public Robot(String name) {
 
@@ -49,10 +52,16 @@ class Robot {
             System.out.println("Added " + comp.getType() + ".");
         }
     }
-    public void programCPU(Mouvement[] mouv, Operation[] ops) {
-        cpu.loadMouv(mouv); cpu.loadOps(ops);
+    public void programCPU(Mouvement[] mouv, Operation[] ops, Tache[] t) {
+        cpu.loadMouv(mouv); cpu.loadOps(ops); cpu.loadTache(t);
     }
+    public void performTache(Tache t) {batterie -= t.go();}
+    
     public void programCPU(Mouvement[] mouv) {cpu.loadMouv(mouv);}
     public void programCPU(Operation[] ops) {cpu.loadOps(ops);}
+    public void programCPU(Tache[] t) {cpu.loadTache(t);}
     public String getName() {return name;}
+    public void incX(int x) {pos[0] += x;}
+    public void incY(int y) {pos[1] += y;}
+    public void incZ(int z) {pos[2] += z;}
 }

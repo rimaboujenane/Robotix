@@ -4,5 +4,6 @@ class HautParleur extends Composante {
 
         super();
         setType("hautparleur");
+        setBatterie(5);
     }
 }

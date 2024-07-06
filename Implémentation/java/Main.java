@@ -40,6 +40,8 @@ class Main {
         String username = s.nextLine();
 
         user = new User(username);
+        user.setInterets();
+        
     }
     public void setFournisseur() {
 
@@ -64,9 +66,10 @@ class Main {
         System.out.println("[2] -> Voir base de données de fournisseurs et composantes.");
         System.out.println("[3] -> Définir mouvement.");
         System.out.println("[4] -> Définir opération.");
-        System.out.println("[5] -> Construire un robot.");
-        System.out.println("[6] -> Acheter composante.");
-        System.out.println("[7] -> Quitter.");
+        System.out.println("[5] -> Définir tâche.");
+        System.out.println("[6] -> Construire un robot.");
+        System.out.println("[7] -> Acheter composante.");
+        System.out.println("[8] -> Quitter.");
 
         switch(s.nextInt()) {
 
@@ -85,12 +88,15 @@ class Main {
                 defOp();
                 break;
             case 5:
-                defRobot();
+                defTache();
                 break;
             case 6:
-                buyComposante();
+                defRobot();
                 break;
             case 7:
+                buyComposante();
+                break;
+            case 8:
                 quit();
                 break;
             default:
@@ -108,24 +114,24 @@ class Main {
         System.out.println("[2] -> Fournir composante.");
         System.out.println("[3] -> Quitter.");
 
-        try {int i = System.in.read();
-             
-            switch(i) {
-                    
-                case 49:
-                    user.getDatabase().displayData();
-                    break;
-                case 50:
-                    addComposante();
-                    break;
-                case 51:
-                    quit();
-                    break;
-                default:
-                    System.out.println("Entrée invalide.1");
-                    break;
-            }
-        } catch (IOException e) {e.printStackTrace();}
+        Scanner s = new Scanner(System.in);
+            
+        switch(s.nextInt()) {
+
+            case 1:
+                user.getDatabase().displayData();
+                menuFournisseur();
+                break;
+            case 2:
+                addComposante();
+                break;
+            case 3:
+                quit();
+                break;
+            default:
+                System.out.println("Entrée invalide.1");
+                break;
+        }
     }
     public void addComposante() {
 
@@ -172,8 +178,20 @@ class Main {
         System.out.println("Veuillez ajouter une description pour le mouvement.");
         String d = s.nextLine();
         System.out.println();
+        System.out.println("Veuillez spécifier la distance du mouvement.");
+        int dist = s.nextInt();
+        System.out.println(); s.nextLine();
+        System.out.println("Veuillez spécifier l'unité pour la distance.");
+        String u = s.nextLine();
+        System.out.println();
+        System.out.println("Veuillez spécifier l'axe (x, y, z) du mouvement.");
+        char a = s.next().charAt(0);
+        System.out.println(); s.nextLine();
+        System.out.println("Veuillez spécifier la duree du mouvement en secondes.");
+        double dur = s.nextDouble();
+        System.out.println(); s.nextLine();
 
-        Mouvement m = new Mouvement(parseData(c), n, d);
+        Mouvement m = new Mouvement(parseData(c), n, d, dist, u, a, dur);
         user.addMouv(m);
 
         menuUtilisateur();
@@ -219,6 +237,45 @@ class Main {
         menuUtilisateur();
         
     }
+    public void defTache() {
+
+        Scanner s = new Scanner(System.in);
+        boolean done = false;
+        Operation[] liste = new Operation[100];
+        
+        System.out.println("Liste d'opérations définis:");
+        System.out.println();
+        Operation[] o = user.getOps();
+        for (int i = 0; i < o.length; i++) {
+            System.out.println("[" + i + "] -> " + o[i].getName());
+        }
+        s.nextLine();
+        System.out.println("Veuillez nommer la tâche.");
+        String n = s.nextLine();
+        System.out.println();
+
+        int i = 0;
+        System.out.println("Veuillez entrer les opérations en ordre, puis entrer '*' pour terminer.");
+        while (!done) {
+            String c = s.nextLine();
+            if (c.equals("*")) {done = true; break;}
+            int ind = Integer.parseInt(c);
+            try {
+                System.out.println(o[ind].getName() + " ajouté.");
+                liste[i] = o[ind]; i++;
+            } catch (Exception e) {
+                System.out.println("Entrée invalide.");
+            }
+        }
+            
+        System.out.println();
+
+        Tache t = new Tache(n, liste);
+        System.out.println("Tâche [" + t.getName() + "] créée.");
+        user.addTache(t);
+
+        menuUtilisateur();
+    }
     public void defRobot() {
 
         Scanner s = new Scanner(System.in);
@@ -254,10 +311,16 @@ class Main {
             System.out.println("Veuillez entrer les composantes que vous voulez inclure (en miniscules et sans accents), puis entrer '*' pour terminer.");
             while (!done) {
                 String c = s.nextLine();
-                if (c.equals("*")) {done = true; break;}
-                inv.decInv(c);
-                robot.addComposante(parseData(c));
+                if (c.equals("*")) {
+                    if (i == 0) {System.out.println("Il faut au moins une autre composante. Veuillez choisir parmis celles dans ton inventaire.");}
+                    else {done = true; break;}
+                } else {
+                    i++;
+                    inv.decInv(c);
+                    robot.addComposante(parseData(c));
+                }
             }
+            menuUtilisateur();
         } catch (InvalidPartException e) {
             System.out.println("Composante invalide.");
         } catch (NoStockException e) {

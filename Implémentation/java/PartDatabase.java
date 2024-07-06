@@ -47,6 +47,8 @@ class PartDatabase {
             s.close();
         } catch (FileNotFoundException e) {System.out.print("Database unavailable");}
     }
+    public String[] getFournisseurs() {return fournisseurs;}
+    
     public void parseData(String line) {
         
         switch(line) {

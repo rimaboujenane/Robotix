@@ -4,5 +4,6 @@ class Camera extends Composante {
 
         super();
         setType("camera");
+        setBatterie(15);
     }
 }

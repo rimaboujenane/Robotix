@@ -4,5 +4,6 @@ class Ecran extends Composante {
 
         super();
         setType("ecran");
+        setBatterie(10);
     }
 }

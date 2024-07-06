@@ -4,5 +4,6 @@ class Micro extends Composante {
 
         super();
         setType("micro");
+        setBatterie(1);
     }
 }

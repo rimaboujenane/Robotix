@@ -4,5 +4,6 @@ class Bras extends Composante {
 
         super();
         setType("bras");
+        setBatterie(50);
     }
 }

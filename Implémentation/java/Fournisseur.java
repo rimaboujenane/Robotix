@@ -7,6 +7,7 @@ class Fournisseur extends User {
     public Fournisseur(String name) {
 
         super(name);
+        setName(name);
         registrer(name);
         
     }
@@ -15,6 +16,24 @@ class Fournisseur extends User {
 
         fournisseur = true;
     }
+    public void setName(String name) {
+
+        String[] fournisseurs = getDatabase().getFournisseurs();
+        boolean unique = false;
+        
+        while (!unique) {
+            for (String f : fournisseurs) {
+                if (name == f) {
+                    System.out.println("\nCe nom existe déjà.");
+                    System.out.println("Entrer nom de l'entreprise.");
+                    Scanner n = new Scanner(System.in);
+                    name = n.nextLine();
+                }
+                else {unique = true;}
+            }
+        }
+    }
+    
     public void registrer(String user) {getDatabase().addFournisseur(user);}
     public void fournir(String... composante) {
 
