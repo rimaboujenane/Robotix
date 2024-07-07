@@ -36,7 +36,7 @@ class Mouvement {
         System.out.println(desc);
         System.out.println("Distance: " + dist + unit);
         System.out.println("Axe: " + a);
-        System.out.println("Durée: " + duree);
+        System.out.println("Durée: " + duree + " secondes");
         System.out.println("Battérie requis: " + battery_cost);
     }
     public String getName() {return name;}

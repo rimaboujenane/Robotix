@@ -5,11 +5,14 @@ class User {
     private static PartDatabase db = new PartDatabase();
     private static int user_index;
     private int user_id;
-    private String[] interets = new String[100];
+    private String[] interets;
+    private Notification[] notifs;
     private String username;
     private Mouvement[] mouv;
     private Operation[] ops;
     private Tache[] t;
+    private User[] following;
+    private User[] followers;
     protected boolean fournisseur;
     
     public User(String name) {
@@ -21,25 +24,6 @@ class User {
         
         userInfo();
     }
-    public void setInterets() {
-
-        System.out.println("Entrer au moins 10 interets. Quand vous avez fini, entrer un '*'.");
-
-        Scanner s = new Scanner(System.in);
-        String interet;
-        int i = 0;
-
-        while (i < 10) {
-
-            interet = s.nextLine(); //System.out.println(interet);
-            if (interet.equals("*")) {
-                if (i > 9) {break;}
-                else {System.out.println("Il faut au moins 10 interets.");}
-            }
-            else {i++; interets[i] = interet;}
-        }
-    }
-    
     public void addMouv(Mouvement mouv) {
 
         if (this.mouv == null) {this.mouv = new Mouvement[1]; this.mouv[0] = mouv;}
@@ -68,6 +52,18 @@ class User {
             this.ops = ops_copy;
         }
     }
+    public void removeOp(int ind) {
+
+        Operation[] o_copy = new Operation[ops.length-1];
+        for (int i = 0; i < ind; i++) {o_copy[i] = ops[i];}
+        for (int i = ind+1; i < o_copy.length; i++) {o_copy[i] = ops[i];}
+        ops = o_copy;
+    }
+    public void modifyOp(int ind, String n, Mouvement... mouv) {
+
+        ops[ind].setName(n);
+        for (Mouvement m: mouv) {ops[ind].addMouv(m);}
+    }
     public void addTache(Tache t) {
 
         if (this.t == null) {this.t = new Tache[1]; this.t[0] = t;}
@@ -82,6 +78,78 @@ class User {
             this.t = t_copy;
         }
     }
+    public void removeTache(int ind) {
+
+        Tache[] t_copy = new Tache[t.length-1];
+        for (int i = 0; i < ind; i++) {t_copy[i] = t[i];}
+        for (int i = ind+1; i < t_copy.length; i++) {t_copy[i] = t[i];}
+        t = t_copy;
+    }
+    public void modifyTache(int ind, String n, Operation... op) {
+
+        t[ind].setName(n);
+        for (Operation o: op) {t[ind].addOp(o);}
+    }
+    public void followUser(User u) {
+
+        if (this.following == null) {this.following = new User[1]; this.following[0] = u;}
+        else {
+
+            User[] f_copy = new User[this.following.length + 1];
+            for (int i = 0; i < this.following.length; i++) {
+    
+                f_copy[i] = this.following[i];
+            }
+            f_copy[f_copy.length - 1] = u;
+            this.following = f_copy;
+        }
+        u.addFollower(this);
+        String message = getUser() + " has followed you.";
+        u.addNotification(new Notification(message));
+    }
+    public void addFollower(User u) {
+
+        if (this.followers == null) {this.followers = new User[1]; this.followers[0] = u;}
+        else {
+
+            User[] f_copy = new User[this.followers.length + 1];
+            for (int i = 0; i < this.followers.length; i++) {
+    
+                f_copy[i] = this.followers[i];
+            }
+            f_copy[f_copy.length - 1] = u;
+            this.followers = f_copy;
+        }
+    }
+    public void addInteret(String in) {
+
+        if (this.interets == null) {this.interets = new String[1]; this.interets[0] = in;}
+        else {
+
+            String[] i_copy = new String[this.interets.length + 1];
+            for (int i = 0; i < this.interets.length; i++) {
+    
+                i_copy[i] = this.interets[i];
+            }
+            i_copy[i_copy.length - 1] = in;
+            this.interets = i_copy;
+        }
+    }
+    public void addNotification(Notification n) {
+
+
+        if (this.notifs == null) {this.notifs = new Notification[1]; this.notifs[0] = n;}
+        else {
+
+            Notification[] n_copy = new Notification[this.notifs.length + 1];
+            for (int i = 0; i < this.notifs.length; i++) {
+    
+                n_copy[i] = this.notifs[i];
+            }
+            n_copy[n_copy.length - 1] = n;
+            this.notifs = n_copy;
+        }
+    }
     public void userInfo() {
 
         System.out.println("Réussite de création de compte.");
@@ -92,10 +160,26 @@ class User {
             "\nFournisseur: " + fournisseur
         );
     }
+    public void userProfile() {
+
+        System.out.println(
+            
+            "Username: " + username +
+            "\nFournisseur: " + fournisseur
+        );
+        System.out.println("Interets:");
+        for (String i: interets) {if (i != null) {System.out.println("\t" + i);}}
+        System.out.println("Suit:");
+        for (User f: following) {System.out.println("\t" + f.getUser());}
+        System.out.println("Suiveurs:");
+        for (User f: followers) {System.out.println("\t" + f.getUser());}
+    }
     public String getUser() {return username;}
     public PartDatabase getDatabase() {return db;}
     public Mouvement[] getMouv() {return mouv;}
     public Operation[] getOps() {return ops;}
+    public Tache[] getTaches() {return t;}
+    public void getNotifs() {for (Notification n: notifs) {n.announce();}}
     public void setFournisseur() {
 
         fournisseur = false;

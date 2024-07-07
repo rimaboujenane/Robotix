@@ -1,13 +1,28 @@
 import java.util.Scanner;
+import java.util.Random;
 import java.io.IOException;
+
 
 class Main {
 
     private User user;
+    private User[] users = new User[20];
+    private String[] names = {"David", "John", "Jeff", "Jill", "Thomas", "Augustine", "Hildegard Von Bingen", "St Francis of Assisi", "Mary", "Charlotte", "Sarah", "Don", "Tifa", "Zelda", "Frank", "Logan", "Judas", "Mark", "Albertus Magnus", "Fred"};
+    private String[] interests = {"Battle Robots", "Service Robots", "Racing Robots", "Social Robots", "Construction Robots", "Vintage Robots", "Nano Robots", "Drone Robots", "Vehicular Robots", "Repair Robots", "Entertainment Robots", "Robots for Film", "Mech Warriors", "Remote Control Bots", "Autonomous Robots", "Machine Learning Robots"};
     private Inventaire inv = new Inventaire();
     
     public Main() {
 
+        Random rand = new Random();
+        
+        for (int i = 0; i < 20; i++) {users[i] = new User(names[i]);
+            for (int j = 0; j < rand.nextInt(10, 15); j++) {users[i].addInteret(interests[rand.nextInt(interests.length)]);}
+        }
+        for (User u: users) {
+            for (int j = 0; j < rand.nextInt(12); j++) {
+                u.followUser(users[rand.nextInt(users.length)]);
+            }
+        }
         login();
     }
     public void login() {
@@ -40,7 +55,7 @@ class Main {
         String username = s.nextLine();
 
         user = new User(username);
-        user.setInterets();
+        setInterets(user);
         
     }
     public void setFournisseur() {
@@ -54,9 +69,28 @@ class Main {
 
         user = new Fournisseur(username);
     }
+    public void setInterets(User u) {
+
+        System.out.println("Entrer au moins 10 interets. Quand vous avez fini, entrer un '*'.");
+
+        Scanner s = new Scanner(System.in);
+        String interet;
+        int i = 0;
+
+        while (true) {
+
+            interet = s.nextLine(); //System.out.println(interet);
+            if (interet.equals("*")) {
+                if (i > 9) {break;}
+                else {System.out.println("Il faut au moins 10 interets.");}
+            }
+            else {i++; user.addInteret(interet);}
+        }
+    }
     public void menuUtilisateur() {
 
         Scanner s = new Scanner(System.in);
+        Random rand = new Random();
         
         System.out.println();
         System.out.println("Choisir parmi les options suivantes:");
@@ -69,7 +103,11 @@ class Main {
         System.out.println("[5] -> Définir tâche.");
         System.out.println("[6] -> Construire un robot.");
         System.out.println("[7] -> Acheter composante.");
-        System.out.println("[8] -> Quitter.");
+        System.out.println("[8] -> Consulter utilisateurs.");
+        System.out.println("[9] -> Voir notifications.");
+        System.out.println("[10] -> Gérer opérations.");
+        System.out.println("[11] -> Gérer tâches.");
+        System.out.println("[12] -> Quitter.");
 
         switch(s.nextInt()) {
 
@@ -97,6 +135,20 @@ class Main {
                 buyComposante();
                 break;
             case 8:
+                listUsers();
+                break;
+            case 9:
+                for (int i = 0; i < rand.nextInt(3, 8); i++) {users[rand.nextInt(20)].followUser(user);}
+                //user.getNotifs();
+                menuUtilisateur();
+                break;
+            case 10:
+                listOps();
+                break;
+            case 11:
+                listTaches();
+                break;
+            case 12:
                 quit();
                 break;
             default:
@@ -167,33 +219,34 @@ class Main {
         System.out.println();
         inv.printInv();
 
-        s.nextLine();
         System.out.println();
         System.out.println("Veuillez entrer le nom de la composante pour laquelle vous voulez créer un mouvement.");
         String c = s.nextLine();
-        System.out.println();
-        System.out.println("Veuillez nommer le mouvement.");
-        String n = s.nextLine();
-        System.out.println();
-        System.out.println("Veuillez ajouter une description pour le mouvement.");
-        String d = s.nextLine();
-        System.out.println();
-        System.out.println("Veuillez spécifier la distance du mouvement.");
-        int dist = s.nextInt();
-        System.out.println(); s.nextLine();
-        System.out.println("Veuillez spécifier l'unité pour la distance.");
-        String u = s.nextLine();
-        System.out.println();
-        System.out.println("Veuillez spécifier l'axe (x, y, z) du mouvement.");
-        char a = s.next().charAt(0);
-        System.out.println(); s.nextLine();
-        System.out.println("Veuillez spécifier la duree du mouvement en secondes.");
-        double dur = s.nextDouble();
-        System.out.println(); s.nextLine();
-
-        Mouvement m = new Mouvement(parseData(c), n, d, dist, u, a, dur);
-        user.addMouv(m);
-
+        if (parseData(c) == null) {System.out.println("Composante invalide.");}
+        else {
+            System.out.println();
+            System.out.println("Veuillez nommer le mouvement.");
+            String n = s.nextLine();
+            System.out.println();
+            System.out.println("Veuillez ajouter une description pour le mouvement.");
+            String d = s.nextLine();
+            System.out.println();
+            System.out.println("Veuillez spécifier la distance du mouvement.");
+            int dist = s.nextInt();
+            System.out.println(); s.nextLine();
+            System.out.println("Veuillez spécifier l'unité pour la distance.");
+            String u = s.nextLine();
+            System.out.println();
+            System.out.println("Veuillez spécifier l'axe (x, y, z) du mouvement.");
+            char a = s.next().charAt(0);
+            System.out.println(); s.nextLine();
+            System.out.println("Veuillez spécifier la duree du mouvement en secondes.");
+            double dur = s.nextDouble();
+            System.out.println(); s.nextLine();
+        
+            Mouvement m = new Mouvement(parseData(c), n, d, dist, u, a, dur);
+            user.addMouv(m);
+        }
         menuUtilisateur();
 
     }
@@ -209,7 +262,6 @@ class Main {
         for (int i = 0; i < m.length; i++) {
             System.out.println("[" + i + "] -> " + m[i].getName());
         }
-        s.nextLine();
         System.out.println("Veuillez nommer l'opération.");
         String n = s.nextLine();
         System.out.println();
@@ -225,15 +277,17 @@ class Main {
                 liste[i] = m[ind]; i++;
             } catch (Exception e) {
                 System.out.println("Entrée invalide.");
+                break;
             }
         }
             
         System.out.println();
 
-        Operation o = new Operation(n, liste);
-        System.out.println("Opération [" + o.getName() + "] créée.");
-        user.addOps(o);
-
+        if (done) {
+            Operation o = new Operation(n, liste);
+            System.out.println("Opération [" + o.getName() + "] créée.");
+            user.addOps(o);
+        }
         menuUtilisateur();
         
     }
@@ -249,7 +303,6 @@ class Main {
         for (int i = 0; i < o.length; i++) {
             System.out.println("[" + i + "] -> " + o[i].getName());
         }
-        s.nextLine();
         System.out.println("Veuillez nommer la tâche.");
         String n = s.nextLine();
         System.out.println();
@@ -265,15 +318,17 @@ class Main {
                 liste[i] = o[ind]; i++;
             } catch (Exception e) {
                 System.out.println("Entrée invalide.");
+                break;
             }
         }
             
         System.out.println();
 
-        Tache t = new Tache(n, liste);
-        System.out.println("Tâche [" + t.getName() + "] créée.");
-        user.addTache(t);
-
+        if (done) {
+            Tache t = new Tache(n, liste);
+            System.out.println("Tâche [" + t.getName() + "] créée.");
+            user.addTache(t);
+        }
         menuUtilisateur();
     }
     public void defRobot() {
@@ -326,6 +381,161 @@ class Main {
         } catch (NoStockException e) {
             System.out.println("La composante n'est pas dans votre inventaire. Achetez les composantes nécéssaires, puis essayez de nouveau.");
             menuUtilisateur();
+        }
+    }
+    public void listUsers() {
+
+        System.out.println("Utilisateurs Robotix:");
+        System.out.println();
+        
+        for (int i = 0; i < users.length; i++) {System.out.println("[" + (i+1) + "] " + users[i].getUser());}
+        
+        Scanner s = new Scanner(System.in);
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.println("Entrer le numéro correspondant pour voir un profil.");
+            int choice = s.nextInt();
+            valid = ((choice <= users.length) & (choice > 0));
+            if (!valid) {System.out.println("Entrée invalide.");}
+            else {users[choice-1].userProfile(); queryFollow(users[choice-1]);}
+        }
+        menuUtilisateur();   
+    }
+    public void queryFollow(User u) {
+
+        System.out.println("[1] -> Suivre " + u.getUser());
+        System.out.println("[2] -> Retour");
+
+        Scanner s = new Scanner(System.in);
+
+        while (true) {
+            int choice = s.nextInt();
+            if (choice == 1) {user.followUser(u); break;}
+            else if (choice == 2) {menuUtilisateur(); break;}
+            else {System.out.println("Entrée invalide.");}
+        }
+    }
+    public void listOps() {
+
+        System.out.println("Opérations définies:");
+        System.out.println();
+        Operation[] ops = user.getOps();
+        for (int i = 0; i < ops.length; i++) {System.out.println("[" + (i+1) + "] " + ops[i].getName());}
+        
+        Scanner s = new Scanner(System.in);
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.println("Entrer le numéro correspondant pour voir une opération en détail.");
+            int choice = s.nextInt();
+            valid = ((choice <= ops.length) & (choice > 0));
+            if (!valid) {System.out.println("Entrée invalide.");}
+            else {ops[choice-1].go(); gererOp(ops[choice-1], choice-1);}
+        }
+        menuUtilisateur();   
+    }
+    public void gererOp(Operation o, int i) {
+
+        System.out.println("[1] -> Supprimer " + o.getName());
+        System.out.println("[2] -> Modifier " + o.getName());
+
+        Scanner s = new Scanner(System.in);
+
+        while (true) {
+            int choice = s.nextInt();
+            if (choice == 1) {user.removeOp(i-1); break;}
+            else if (choice == 2) {modifyOp(i-1); break;}
+            else {System.out.println("Entrée invalide.");}
+        }
+    }
+    public void modifyOp(int i) {
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("Entrer nouveau nom pour l'opération.");
+        String nom = s.nextLine();
+
+        System.out.println("Liste de mouvements définis:");
+        System.out.println();
+        Mouvement[] m = user.getMouv();
+        for (int j = 0; j < m.length; j++) {
+            System.out.println("[" + (j+1) + "] -> " + m[j].getName());
+        }
+
+        System.out.println("Veuillez entrer les mouvements que vous voulez ajouter, puis entrer '*' pour terminer.");
+        while (true) {
+            String c = s.nextLine();
+            if (c.equals("*")) {break;}
+            int ind = Integer.parseInt(c)-1;
+            try {
+                System.out.println(m[ind].getName() + " ajouté.");
+                user.addMouv(m[ind]);
+            } catch (Exception e) {
+                System.out.println("Entrée invalide.");
+            }
+        }
+    }
+    public void listTaches() {
+
+        System.out.println("Tâches définies:");
+        System.out.println();
+        Tache[] ta = user.getTaches();
+        for (int i = 0; i < ta.length; i++) {System.out.println("[" + (i+1) + "] " + ta[i].getName());}
+        
+        Scanner s = new Scanner(System.in);
+        boolean valid = false;
+
+        while (!valid) {
+            System.out.println("Entrer le numéro correspondant pour voir une tâche en détail.");
+            int choice = s.nextInt();
+            valid = ((choice <= ta.length) & (choice > 0));
+            if (!valid) {System.out.println("Entrée invalide.");}
+            else {ta[choice-1].go(); gererTache(ta[choice-1], choice-1);}
+        }
+        menuUtilisateur();   
+    }
+    public void gererTache(Tache t, int i) {
+
+        System.out.println("[1] -> Supprimer " + t.getName());
+        System.out.println("[2] -> Modifier " + t.getName());
+
+        Scanner s = new Scanner(System.in);
+
+        while (true) {
+            int choice = s.nextInt();
+            if (choice == 1) {user.removeTache(i-1); break;}
+            else if (choice == 2) {modifyTache(i-1); break;}
+            else {System.out.println("Entrée invalide.");}
+        }
+    }
+    public void modifyTache(int i) {
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.println();
+        System.out.println("Entrer nouveau nom pour la tâche.");
+        String nom = s.nextLine();
+
+        System.out.println("Liste d'opérations définis:");
+        System.out.println();
+        Operation[] o = user.getOps();
+        for (int j = 0; j < o.length; i++) {
+            System.out.println("[" + (j+1) + "] -> " + o[j].getName());
+        }
+
+        System.out.println("Veuillez entrer les opérations que vous voulez ajouter, puis entrer '*' pour terminer.");
+        while (true) {
+            String c = s.nextLine();
+            if (c.equals("*")) {break;}
+            int ind = Integer.parseInt(c)-1;
+            try {
+                System.out.println(o[ind].getName() + " ajouté.");
+                user.addOps(o[ind]);
+            } catch (Exception e) {
+                System.out.println("Entrée invalide.");
+            }
         }
     }
     public Composante parseData(String line) {
