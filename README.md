@@ -65,6 +65,7 @@ Le projet est origanisé selon la structure suivante
 └── README.md
 ```
 
+## Manuel d'utilisation
 
 ### Connexion
 Pour se connecter à l’application, vous pouvez créer un compte utilisateur ou fournisseur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
@@ -74,8 +75,8 @@ Pour se connecter à l’application, vous pouvez créer un compte utilisateur o
 
 
 ### Création d’un compte Utilisateur
-Entrez votre nom.
-Votre compte est donc créé, votre username et ID sont affichés.
+- Entrez votre nom.
+  - Votre compte est donc créé, votre username et ID sont affichés.
 - Entrer au moins 10 intérêts.
 
 
@@ -125,9 +126,8 @@ Cette section n’a pas encore été implementée.
 #### Gérer opérations.
 #### Gérer tâches.
 #### Quitter.
---------------------------
 
 
 ### Création d’un compte Fournisseur
-Entrez le nom d'entrepris.
-Votre compte est donc créé, votre username et ID sont affichés.
+- Entrez le nom d'entrepris.
+  - Votre compte est donc créé, votre username et ID sont affichés.
