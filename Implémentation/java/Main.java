@@ -7,8 +7,15 @@ class Main {
 
     private User user;
     private User[] users = new User[20];
+    private Activite[] activ = new Activite[5];
+    
     private String[] names = {"David", "John", "Jeff", "Jill", "Thomas", "Augustine", "Hildegard Von Bingen", "St Francis of Assisi", "Mary", "Charlotte", "Sarah", "Don", "Tifa", "Zelda", "Frank", "Logan", "Judas", "Mark", "Albertus Magnus", "Fred"};
     private String[] interests = {"Battle Robots", "Service Robots", "Racing Robots", "Social Robots", "Construction Robots", "Vintage Robots", "Nano Robots", "Drone Robots", "Vehicular Robots", "Repair Robots", "Entertainment Robots", "Robots for Film", "Mech Warriors", "Remote Control Bots", "Autonomous Robots", "Machine Learning Robots"};
+
+    private String[] activites = {"Rock Paper Scissors", "Thumb War", "Arm Wrestle", "Pat-a-Cake", "Cup Stacking"};
+    private String[] descrips = {"Paper beats rock, rock beats scissors, scissors beats paper.", "Strongest thumb wins.", "Strongest arm wins.", "Pat-a-cake, pat-a-cake, baker's man; Bake me a cake as fast as you can; Roll it, pat it, and mark it with a B; Put it in the oven for Baby and me.", "That cup-stacking thing that everyone lears and feels so cool that they can do it even though it's the most useless skill of life."};
+    private int[] maxes = {50, 2, 2, 2, 50};
+    
     private Inventaire inv = new Inventaire();
     
     public Main() {
@@ -23,6 +30,8 @@ class Main {
                 u.followUser(users[rand.nextInt(users.length)]);
             }
         }
+        for (int i = 0; i < 5; i++) {activ[i] = new Activite(activites[i], descrips[i], maxes[i]);}
+        
         login();
     }
     public void login() {
@@ -99,15 +108,16 @@ class Main {
         System.out.println("[1] -> Voir inventaire.");
         System.out.println("[2] -> Voir base de données de fournisseurs et composantes.");
         System.out.println("[3] -> Définir mouvement.");
-        System.out.println("[4] -> Définir opération.");
+        System.out.println("[4] -> Définir action.");
         System.out.println("[5] -> Définir tâche.");
         System.out.println("[6] -> Construire un robot.");
-        System.out.println("[7] -> Acheter composante.");
-        System.out.println("[8] -> Consulter utilisateurs.");
-        System.out.println("[9] -> Voir notifications.");
-        System.out.println("[10] -> Gérer opérations.");
-        System.out.println("[11] -> Gérer tâches.");
-        System.out.println("[12] -> Quitter.");
+        System.out.println("[7] -> Inscrire robot à une activité.");
+        System.out.println("[8] -> Acheter composante.");
+        System.out.println("[9] -> Consulter utilisateurs.");
+        System.out.println("[10] -> Voir notifications.");
+        System.out.println("[11] -> Gérer actions.");
+        System.out.println("[12] -> Gérer tâches.");
+        System.out.println("[13] -> Quitter.");
 
         switch(s.nextInt()) {
 
@@ -132,23 +142,26 @@ class Main {
                 defRobot();
                 break;
             case 7:
-                buyComposante();
+                listActivites();
                 break;
             case 8:
-                listUsers();
+                buyComposante();
                 break;
             case 9:
+                listUsers();
+                break;
+            case 10:
                 for (int i = 0; i < rand.nextInt(3, 8); i++) {users[rand.nextInt(20)].followUser(user);}
                 //user.getNotifs();
                 menuUtilisateur();
                 break;
-            case 10:
+            case 11:
                 listOps();
                 break;
-            case 11:
+            case 12:
                 listTaches();
                 break;
-            case 12:
+            case 13:
                 quit();
                 break;
             default:
@@ -262,12 +275,12 @@ class Main {
         for (int i = 0; i < m.length; i++) {
             System.out.println("[" + i + "] -> " + m[i].getName());
         }
-        System.out.println("Veuillez nommer l'opération.");
+        System.out.println("Veuillez nommer l'action.");
         String n = s.nextLine();
         System.out.println();
 
         int i = 0;
-        System.out.println("Veuillez entrer les mouvements de l'opération en ordre, puis entrer '*' pour terminer.");
+        System.out.println("Veuillez entrer les mouvements de l'action en ordre, puis entrer '*' pour terminer.");
         while (!done) {
             String c = s.nextLine();
             if (c.equals("*")) {done = true; break;}
@@ -285,7 +298,7 @@ class Main {
 
         if (done) {
             Operation o = new Operation(n, liste);
-            System.out.println("Opération [" + o.getName() + "] créée.");
+            System.out.println("Action [" + o.getName() + "] créée.");
             user.addOps(o);
         }
         menuUtilisateur();
@@ -297,7 +310,7 @@ class Main {
         boolean done = false;
         Operation[] liste = new Operation[100];
         
-        System.out.println("Liste d'opérations définis:");
+        System.out.println("Liste d'actions définis:");
         System.out.println();
         Operation[] o = user.getOps();
         for (int i = 0; i < o.length; i++) {
@@ -308,7 +321,7 @@ class Main {
         System.out.println();
 
         int i = 0;
-        System.out.println("Veuillez entrer les opérations en ordre, puis entrer '*' pour terminer.");
+        System.out.println("Veuillez entrer les actions en ordre, puis entrer '*' pour terminer.");
         while (!done) {
             String c = s.nextLine();
             if (c.equals("*")) {done = true; break;}
@@ -375,6 +388,7 @@ class Main {
                     robot.addComposante(parseData(c));
                 }
             }
+            user.addBot(robot);
             menuUtilisateur();
         } catch (InvalidPartException e) {
             System.out.println("Composante invalide.");
@@ -418,7 +432,7 @@ class Main {
     }
     public void listOps() {
 
-        System.out.println("Opérations définies:");
+        System.out.println("Actions définies:");
         System.out.println();
         Operation[] ops = user.getOps();
         for (int i = 0; i < ops.length; i++) {System.out.println("[" + (i+1) + "] " + ops[i].getName());}
@@ -427,7 +441,7 @@ class Main {
         boolean valid = false;
 
         while (!valid) {
-            System.out.println("Entrer le numéro correspondant pour voir une opération en détail.");
+            System.out.println("Entrer le numéro correspondant pour voir une action en détail.");
             int choice = s.nextInt();
             valid = ((choice <= ops.length) & (choice > 0));
             if (!valid) {System.out.println("Entrée invalide.");}
@@ -454,7 +468,7 @@ class Main {
         Scanner s = new Scanner(System.in);
 
         System.out.println();
-        System.out.println("Entrer nouveau nom pour l'opération.");
+        System.out.println("Entrer nouveau nom pour l'action.");
         String nom = s.nextLine();
 
         System.out.println("Liste de mouvements définis:");
@@ -518,14 +532,14 @@ class Main {
         System.out.println("Entrer nouveau nom pour la tâche.");
         String nom = s.nextLine();
 
-        System.out.println("Liste d'opérations définis:");
+        System.out.println("Liste d'actions définis:");
         System.out.println();
         Operation[] o = user.getOps();
         for (int j = 0; j < o.length; i++) {
             System.out.println("[" + (j+1) + "] -> " + o[j].getName());
         }
 
-        System.out.println("Veuillez entrer les opérations que vous voulez ajouter, puis entrer '*' pour terminer.");
+        System.out.println("Veuillez entrer les actions que vous voulez ajouter, puis entrer '*' pour terminer.");
         while (true) {
             String c = s.nextLine();
             if (c.equals("*")) {break;}
@@ -537,6 +551,56 @@ class Main {
                 System.out.println("Entrée invalide.");
             }
         }
+    }
+    public void listActivites() {
+
+        Scanner s = new Scanner(System.in);
+        boolean done = false;
+        Robot[] bots = user.getBots();
+
+        System.out.println("Liste d'activités:");
+        for (int i = 0; i < activ.length; i++) {
+            System.out.println("[" + (i+1) + "] " + activ[i].getName());
+        }
+        System.out.println("Veuillez entrer l'activité à laquelle vous voulez assigner.");
+        while (!done) {
+            try {
+                int ind = s.nextInt();
+                inscrireRobot(activ[ind-1], bots);
+                done = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Entrée invalide.");
+            }
+        }
+    }
+    
+    public void inscrireRobot(Activite a, Robot[] bots) {
+
+        Scanner s = new Scanner(System.in);
+        if (bots != null) {
+            System.out.println("Liste de vos robots:");
+            for (int i = 0; i < bots.length; i++) {
+                System.out.println("[" + (i+1) + "] " + bots[i].getName());
+            }
+            System.out.println();
+            System.out.println("Veuillez entrer les robots que vous voulez ajouter, puis entrer '*' pour terminer.");
+            while (true) {
+                String c = s.nextLine();
+                if (c.equals("*")) {break;}
+                int ind = Integer.parseInt(c)-1;
+                try {
+                    System.out.println(bots[ind].getName() + " ajouté.");
+                    a.addBot(bots[ind]);
+                } catch (Exception e) {
+                    System.out.println("Entrée invalide.");
+                }
+            }
+        } else {
+            System.out.println("Vous n'avez pas construit des robots. Veuillez en construire pour pouvoir les assigner.");
+        }
+        menuUtilisateur();
+        
     }
     public Composante parseData(String line) {
 

@@ -11,6 +11,7 @@ class User {
     private Mouvement[] mouv;
     private Operation[] ops;
     private Tache[] t;
+    private Robot[] bots;
     private User[] following;
     private User[] followers;
     protected boolean fournisseur;
@@ -89,6 +90,20 @@ class User {
 
         t[ind].setName(n);
         for (Operation o: op) {t[ind].addOp(o);}
+    }
+    public void addBot(Robot r) {
+
+        if (this.bots == null) {this.bots = new Robot[1]; this.bots[0] = r;}
+        else {
+
+            Robot[] r_copy = new Robot[this.bots.length + 1];
+            for (int i = 0; i < this.bots.length; i++) {
+    
+                r_copy[i] = this.bots[i];
+            }
+            r_copy[r_copy.length - 1] = r;
+            this.bots = r_copy;
+        }
     }
     public void followUser(User u) {
 
@@ -179,6 +194,7 @@ class User {
     public Mouvement[] getMouv() {return mouv;}
     public Operation[] getOps() {return ops;}
     public Tache[] getTaches() {return t;}
+    public Robot[] getBots() {return bots;}
     public void getNotifs() {for (Notification n: notifs) {n.announce();}}
     public void setFournisseur() {
 
