@@ -82,18 +82,19 @@ Pour se connecter à l’application, vous pouvez créer un compte utilisateur o
 
 ### Menu principal Utilisateur
 À partir du menu principal, dans le rôle d’utilisateur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
-- [1] -> Voir inventaire.
-- [2] -> Voir base de données de fournisseurs et composantes.
-- [3] -> Définir mouvement.
-- [4] -> Définir opération.
-- [5] -> Définir tâche.
-- [6] -> Construire un robot.
-- [7] -> Acheter composante.
-- [8] -> Consulter utilisateurs.
-- [9] -> Voir notifications.
-- [10] -> Gérer opérations.
-- [11] -> Gérer tâches.
-- [12] -> Quitter.
+[1] -> Voir inventaire.
+[2] -> Voir base de données de fournisseurs et composantes.
+[3] -> Définir mouvement.
+[4] -> Définir action.
+[5] -> Définir tâche.
+[6] -> Construire un robot.
+[7] -> Inscrire robot à une activité.
+[8] -> Acheter composante.
+[9] -> Consulter utilisateurs.
+[10] -> Voir notifications.
+[11] -> Gérer actions.
+[12] -> Gérer tâches.
+[13] -> Quitter.
 
   
 #### Voir inventaire
@@ -137,6 +138,9 @@ La tâche sera donc ajoutée.
 Dans cette section, vous pouvez construire un robot. Vous devez suivre les commande suivantes:
 - Vous devez nommer le robot.
 - Ensuite, vous devez ajouter les composantes qui vont faire partie du robot.
+
+#### Inscrire robot à une activité.
+Dans cette section, vous pouvez inscrire robot à une activité. Vous pouvez consulter la liste d'activités et puis choisir le robot auquel vous voulez assigner l'activité.
 
 #### Acheter composante.
 Dans cette section, vous pouvez acheter une composante. 
