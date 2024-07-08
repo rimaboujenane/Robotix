@@ -110,20 +110,33 @@ Dans cette section, vous pouvez accéder à votre inventaire et vérifier la qua
 #### Voir base de données de fournisseurs et composantes
 Dans cette section, vous pouvez accéder à la base de données des fournisseurs et les composantes qu’ils fournissent.
 
-
-------- TO DO ----------
 #### Définir mouvement
-#### Définir opération
+Dans cette section, vous pouvez définir un mouvement. Vous êtes invité à choisir la composante qui doit effectuer le mouvement et ensuite celui-ci peut définir le mouvement envisagé.
+*[1] Choisissez la composante dans laquelle vous voulez créer un mouvement.
+*[2] Nommez le mouvement .
+*[3] Ajoutez une description.
+*[4] Spécifiez la distance du mouvement.
+*[5] Spécifiez l'unité de distance. 
+*[6] Spécifiez l'axe 3D.
+*[7] Spécifiez la durée du mouvement en secondes. 
+Le mouvement sera donc ajouté.
+
+#### Définir opération/action
+Dans cette section, vous pouvez définir une opération/action.
+- Vous devez nommer l'action/opération.
+- Ensuite, vous devez entrer les mouvements en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
+L’opération/action sera donc ajoutée.
 
 #### Définir tâche.
 Dans cette section, vous pouvez définir une tâche. Vous pourrez d’abord consulter la liste d’opérations/actions que vous avez déjà définies auparavant. 
 Vous devez nommer la tâche.
-Ensuite, vous devez entre les opérations/actions en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
-L’opération/action sera donc ajoutée.
-
+Ensuite, vous devez entrer les opérations/actions en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
+La tâche sera donc ajoutée.
 
 #### Construire un robot.
-
+Dans cette section, vous pouvez construire un robot. Vous devez suivre les commande suivantes:
+- Vous devez nommer le robot.
+- Ensuite, vous devez ajouter les composantes qui vont faire partie du robot.
 
 #### Acheter composante.
 Dans cette section, vous pouvez acheter une composante. 
