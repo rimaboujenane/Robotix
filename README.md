@@ -94,7 +94,7 @@ Pour se connecter à l’application, vous pouvez créer un compte utilisateur o
 - [7] -> Acheter composante.
 - [8] -> Consulter utilisateurs.
 - [9] -> Voir notifications.
-- [1] -> Gérer opérations.
+- [10] -> Gérer opérations.
 - [11] -> Gérer tâches.
 - [12] -> Quitter.
 
