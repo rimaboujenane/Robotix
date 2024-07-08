@@ -66,21 +66,18 @@ Le projet est origanisé selon la structure suivante
 ```
 
 ## Manuel d'utilisation
-Pour l'utilisation du prototype, il faut exécuter la commande suivante dans le terminal : `java -jar robotix.jar`. 
-Étant un prototype, le jeu de donnée est dynamique, ceci veut dire nous n'avons pas une base de donnée prédéfinie, à chaque connexion et inscription le système enregistre les noms de fournisseurs, d'utilisateur, ce qui forment notre base de données.
+Étant un prototype, le jeu de donnée est dynamique, ceci veut dire nous n'avons pas une base de donnée prédéfinie, à chaque connexion et inscription le système enregistre les noms de fournisseurs, d'utilisateur, ce qui forment notre base de données. Il faudra donc créer des comptes Fournisseurs en premier avant de tester quelques sections dans le compte Utilisateur. 
+
 
 ### Connexion
 Pour se connecter à l’application, vous pouvez créer un compte utilisateur ou fournisseur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
 - [1] Utilisateur
 - [2] Fournisseur
 
-
-
 ### Création d’un compte Utilisateur
 - Entrez votre nom.
   - Votre compte est donc créé, votre username et ID sont affichés.
 - Entrer au moins 10 intérêts.
-
 
 
 ### Menu principal Utilisateur
@@ -97,8 +94,7 @@ Pour se connecter à l’application, vous pouvez créer un compte utilisateur o
 - [10] -> Gérer opérations.
 - [11] -> Gérer tâches.
 - [12] -> Quitter.
-
-
+- 
 
 #### Voir inventaire
 Dans cette section, vous pouvez accéder à votre inventaire et vérifier la quantité existante de chaque composant.
@@ -111,10 +107,8 @@ Dans cette section, vous pouvez accéder à votre inventaire et vérifier la qua
 - Micros 
 - Ecrans 
 
-
-
 #### Voir base de données de fournisseurs et composantes
-Cette section n’a pas encore été implementée.
+Dans cette section, vous pouvez accéder à la base de données des fournisseurs et les composantes qu’ils fournissent.
 
 
 ------- TO DO ----------
@@ -122,12 +116,32 @@ Cette section n’a pas encore été implementée.
 #### Définir opération
 #### Définir tâche.
 #### Construire un robot.
+
+
 #### Acheter composante.
+Dans cette section, vous pouvez acheter une composante. 
+Vous devez entrer le nom du fournisseur de la composante que vous voulez acheter, il faut que ce fournisseur se trouve dans la base de données. 
+Vous devez ensuite entrer le nom de la composante que vous voulez acheter, il faut que le fournisseur que vous avez choisit ait cette composante dans son inventaire.
+
 #### Consulter utilisateurs.
+Dans cette section, vous pouvez consulter des profils d’utilisateurs Robotix. Entrez le numéro correspondant pour voir un profil. Vous pouvez alors suivre l’utilisateur ou retourner au menu principal.
+
 #### Voir notifications.
-#### Gérer opérations.
+Dans cette section, vous pouvez consulter vos notifications. Vous trouverez des exemples de notifications d’utilisateurs qui ont commencé à vous suivre.
+
+#### Gérer opérations/actions.
+Dans cette section, vous pouvez consulter les opérations/actions que vous avez crées, il faut en avoir créer pour pouvoir consulter cette section.
+- Vous devez entrer le numéro correspondant pour voir une opération/action en détail. Ceci affichera tous les détails de cette opération/action.
+- Vous pouvez ensuite soit supprimer l'opération/action ou la modifier selon le chiffre que vous tapez.
+
 #### Gérer tâches.
+Dans cette section, vous pouvez consulter les tâches que vous avez crées, il faut en avoir créer pour pouvoir consulter cette section.
+- Vous devez entrer le numéro correspondant pour voir une tâche en détail. Ceci affichera tous les détails de cette tâche.
+- Vous pouvez ensuite soit supprimer la tâche ou la modifier selon le chiffre que vous tapez.
+
 #### Quitter.
+Vous quittez l’application dans cette section.
+
 
 
 ### Création d’un compte Fournisseur
