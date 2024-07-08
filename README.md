@@ -112,13 +112,13 @@ Dans cette section, vous pouvez accéder à la base de données des fournisseurs
 
 #### Définir mouvement
 Dans cette section, vous pouvez définir un mouvement. Vous êtes invité à choisir la composante qui doit effectuer le mouvement et ensuite celui-ci peut définir le mouvement envisagé.
-*[1] Choisissez la composante dans laquelle vous voulez créer un mouvement.
-*[2] Nommez le mouvement .
-*[3] Ajoutez une description.
-*[4] Spécifiez la distance du mouvement.
-*[5] Spécifiez l'unité de distance. 
-*[6] Spécifiez l'axe 3D.
-*[7] Spécifiez la durée du mouvement en secondes. 
+- [1] Choisissez la composante dans laquelle vous voulez créer un mouvement.
+- [2] Nommez le mouvement .
+- [3] Ajoutez une description.
+- [4] Spécifiez la distance du mouvement.
+- [5] Spécifiez l'unité de distance. 
+- [6] Spécifiez l'axe 3D.
+- [7] Spécifiez la durée du mouvement en secondes. 
 Le mouvement sera donc ajouté.
 
 #### Définir opération/action
@@ -129,8 +129,8 @@ L’opération/action sera donc ajoutée.
 
 #### Définir tâche.
 Dans cette section, vous pouvez définir une tâche. Vous pourrez d’abord consulter la liste d’opérations/actions que vous avez déjà définies auparavant. 
-Vous devez nommer la tâche.
-Ensuite, vous devez entrer les opérations/actions en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
+- Vous devez nommer la tâche.
+- Ensuite, vous devez entrer les opérations/actions en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
 La tâche sera donc ajoutée.
 
 #### Construire un robot.
@@ -140,8 +140,8 @@ Dans cette section, vous pouvez construire un robot. Vous devez suivre les comma
 
 #### Acheter composante.
 Dans cette section, vous pouvez acheter une composante. 
-Vous devez entrer le nom du fournisseur de la composante que vous voulez acheter, il faut que ce fournisseur se trouve dans la base de données. 
-Vous devez ensuite entrer le nom de la composante que vous voulez acheter, il faut que le fournisseur que vous avez choisit ait cette composante dans son inventaire.
+- Vous devez entrer le nom du fournisseur de la composante que vous voulez acheter, il faut que ce fournisseur se trouve dans la base de données. 
+- Vous devez ensuite entrer le nom de la composante que vous voulez acheter, il faut que le fournisseur que vous avez choisit ait cette composante dans son inventaire.
 
 #### Consulter utilisateurs.
 Dans cette section, vous pouvez consulter des profils d’utilisateurs Robotix. Entrez le numéro correspondant pour voir un profil. Vous pouvez alors suivre l’utilisateur ou retourner au menu principal.
