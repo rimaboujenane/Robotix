@@ -66,6 +66,8 @@ Le projet est origanisé selon la structure suivante
 ```
 
 ## Manuel d'utilisation
+Pour l'utilisation du prototype, il faut exécuter la commande suivante dans le terminal : `java -jar robotix.jar`. 
+Étant un prototype, le jeu de donnée est dynamique, ceci veut dire nous n'avons pas une base de donnée prédéfinie, à chaque connexion et inscription le système enregistre les noms de fournisseurs, d'utilisateur, ce qui forment notre base de données.
 
 ### Connexion
 Pour se connecter à l’application, vous pouvez créer un compte utilisateur ou fournisseur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
