@@ -131,5 +131,18 @@ Cette section n’a pas encore été implementée.
 
 
 ### Création d’un compte Fournisseur
-- Entrez le nom d'entrepris.
-  - Votre compte est donc créé, votre username et ID sont affichés.
+Entrez le nom d'entreprise.
+Votre compte est donc créé, votre username et ID sont affichés.
+Vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
+[1] -> Voir base de données de fournisseurs et composantes.
+[2] -> Fournir composante.
+[3] -> Quitter.
+
+#### Voir base de données de fournisseurs et composantes
+Dans cette section, vous pouvez accéder à la base de données des fournisseurs et les composantes qu’ils fournissent.
+
+#### Fournir composante
+Dans cette section, il faut entrer le nom de la composante que vous voulez fournir.
+
+#### Quitter
+Vous quittez l’application dans cette section.
