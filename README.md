@@ -64,3 +64,70 @@ Le projet est origanisé selon la structure suivante
 │   ├── Code source de l'application/ -- code source
 └── README.md
 ```
+
+
+### Connexion
+Pour se connecter à l’application, vous pouvez créer un compte utilisateur ou fournisseur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
+- [1] Utilisateur
+- [2] Fournisseur
+
+
+
+### Création d’un compte Utilisateur
+Entrez votre nom.
+Votre compte est donc créé, votre username et ID sont affichés.
+- Entrer au moins 10 intérêts.
+
+
+
+### Menu principal Utilisateur
+À partir du menu principal, dans le rôle d’utilisateur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
+- [1] -> Voir inventaire.
+- [2] -> Voir base de données de fournisseurs et composantes.
+- [3] -> Définir mouvement.
+- [4] -> Définir opération.
+- [5] -> Définir tâche.
+- [6] -> Construire un robot.
+- [7] -> Acheter composante.
+- [8] -> Consulter utilisateurs.
+- [9] -> Voir notifications.
+- [1] -> Gérer opérations.
+- [11] -> Gérer tâches.
+- [12] -> Quitter.
+
+
+
+#### Voir inventaire
+Dans cette section, vous pouvez accéder à votre inventaire et vérifier la quantité existante de chaque composant.
+- CPU
+- Roues 
+- Bras 
+- Helices 
+- Cameras 
+- Haut-Parleurs 
+- Micros 
+- Ecrans 
+
+
+
+#### Voir base de données de fournisseurs et composantes
+Cette section n’a pas encore été implementée.
+
+
+------- TO DO ----------
+#### Définir mouvement
+#### Définir opération
+#### Définir tâche.
+#### Construire un robot.
+#### Acheter composante.
+#### Consulter utilisateurs.
+#### Voir notifications.
+#### Gérer opérations.
+#### Gérer tâches.
+#### Quitter.
+--------------------------
+
+
+### Création d’un compte Fournisseur
+Entrez le nom d'entrepris.
+Votre compte est donc créé, votre username et ID sont affichés.
