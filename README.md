@@ -94,8 +94,8 @@ Pour se connecter à l’application, vous pouvez créer un compte utilisateur o
 - [10] -> Gérer opérations.
 - [11] -> Gérer tâches.
 - [12] -> Quitter.
-- 
 
+  
 #### Voir inventaire
 Dans cette section, vous pouvez accéder à votre inventaire et vérifier la quantité existante de chaque composant.
 - CPU
