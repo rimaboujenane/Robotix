@@ -114,7 +114,14 @@ Dans cette section, vous pouvez accéder à la base de données des fournisseurs
 ------- TO DO ----------
 #### Définir mouvement
 #### Définir opération
+
 #### Définir tâche.
+Dans cette section, vous pouvez définir une tâche. Vous pourrez d’abord consulter la liste d’opérations/actions que vous avez déjà définies auparavant. 
+Vous devez nommer la tâche.
+Ensuite, vous devez entre les opérations/actions en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
+L’opération/action sera donc ajoutée.
+
+
 #### Construire un robot.
 
 
