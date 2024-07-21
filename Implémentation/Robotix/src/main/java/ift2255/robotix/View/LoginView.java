@@ -4,16 +4,34 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+/**
+ * La vue de connexion pour l'application Robotix.
+ *
+ * Cette classe étend `VBox` et fournit une interface utilisateur pour la connexion avec des champs pour l'email,
+ * le mot de passe, le type de compte, ainsi que des boutons et des labels pour l'interaction de l'utilisateur.
+ *
+ * @see javafx.scene.control.TextField
+ * @see javafx.scene.control.PasswordField
+ * @see javafx.scene.control.ComboBox
+ * @see javafx.scene.control.Button
+ * @see javafx.scene.control.Label
+ * @see javafx.scene.layout.VBox
+ */
 public class LoginView extends VBox {
+
     private TextField usernameField;
     private PasswordField passwordField;
     private ComboBox<String> loginTypeComboBox;
     private Button loginButton;
     private Label registerLabel;
 
+    /**
+     * Constructeur de la vue de connexion.
+     * Initialise les éléments de l'interface utilisateur et les styles associés.
+     */
     public LoginView() {
 
-        // Titre principale
+        // Titre principal
         Label titleLabel = new Label("Bienvenue sur Robotix!");
         titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;");
 
@@ -60,22 +78,47 @@ public class LoginView extends VBox {
         this.setAlignment(Pos.CENTER);
     }
 
+    /**
+     * Retourne le champ de texte pour le nom d'utilisateur (email).
+     *
+     * @return Le champ de texte pour le nom d'utilisateur.
+     */
     public TextField getUsernameField() {
         return usernameField;
     }
 
+    /**
+     * Retourne le champ de texte pour le mot de passe.
+     *
+     * @return Le champ de texte pour le mot de passe.
+     */
     public PasswordField getPasswordField() {
         return passwordField;
     }
 
+    /**
+     * Retourne la ComboBox pour le type de compte.
+     *
+     * @return La ComboBox pour le type de compte.
+     */
     public ComboBox<String> getLoginTypeComboBox() {
         return loginTypeComboBox;
     }
 
+    /**
+     * Retourne le bouton de connexion.
+     *
+     * @return Le bouton de connexion.
+     */
     public Button getLoginButton() {
         return loginButton;
     }
 
+    /**
+     * Retourne le label d'inscription.
+     *
+     * @return Le label d'inscription.
+     */
     public Label getRegisterLabel() {
         return registerLabel;
     }

@@ -13,20 +13,70 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Gère les activités dans le système, y compris l'inscription et la désinscription des utilisateurs.
+ */
 public class GestionActivites {
+
+    // Liste des toutes les activités
     private List<Activite> activites = new ArrayList<>();
+
+    // Liste des activités auxquelles l'utilisateur est inscrit
     private List<Activite> mesActivites = new ArrayList<>();
+
+    // Liste des activités auxquelles l'utilisateur n'est pas inscrit
     private List<Activite> activitesNonInscrites = new ArrayList<>();
+
+    // Utilisateur pour lequel les activités sont gérées
     private Utilisateur utilisateur;
 
+    /**
+     * Constructeur pour initialiser la gestion des activités avec un utilisateur spécifique.
+     *
+     * @param utilisateur L'utilisateur dont les activités sont gérées
+     */
     public GestionActivites(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
         chargerActivite("src/main/resources/data/activites.csv");
         mesActivites(utilisateur.getEmail());
     }
 
+    /**
+     * Charge les activités à partir d'un fichier CSV.
+     *
+     * @param csvFileName Chemin du fichier CSV contenant les activités
+     */
+    private void chargerActivite(String csvFileName) {
+        try (CSVReader reader = new CSVReader(new FileReader(csvFileName))) {
+            reader.skip(1); // Ignore l'en-tête du fichier CSV
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                // Vérifie que la ligne contient suffisamment de champs
+                if (nextLine.length >= 5) {
+                    int ID = Integer.parseInt(nextLine[0]);
+                    String nom = nextLine[1];
+                    LocalDate dateDebut = LocalDate.parse(nextLine[2]);
+                    LocalDate dateFin = LocalDate.parse(nextLine[3]);
+                    List<String> utilisateursInscrits = Arrays.asList(nextLine[4].trim().split(";"));
+
+                    Activite activite = new Activite(ID, nom, dateDebut, dateFin, utilisateursInscrits);
+                    activites.add(activite);
+                } else {
+                    System.err.println("La ligne ne contient pas assez de champs : " + String.join(",", nextLine));
+                }
+            }
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Met à jour les listes d'activités en fonction des inscriptions de l'utilisateur.
+     *
+     * @param email L'email de l'utilisateur pour vérifier les inscriptions
+     */
     private void mesActivites(String email) {
-        // Listes temporaires pour éviter des doublons
+        // Listes temporaires pour éviter les doublons
         List<Activite> activitesInscritesTemp = new ArrayList<>();
         List<Activite> activitesNonInscritesTemp = new ArrayList<>();
 
@@ -49,81 +99,60 @@ public class GestionActivites {
         activitesNonInscrites.addAll(activitesNonInscritesTemp);
     }
 
-
-    private void chargerActivite(String csvFileName){
-        try (CSVReader reader = new CSVReader(new FileReader(csvFileName))) {
-            reader.skip(1);
-            String[] nextLine;
-            while ((nextLine = reader.readNext()) != null) {
-                // Vérifie que la ligne a au moins 4 champs (nom, prénom, mot de passe, email)
-                if (nextLine.length >= 5) {
-                    int ID = Integer.parseInt(nextLine[0]);
-                    String nom = nextLine[1];
-                    LocalDate dateDebut = LocalDate.parse(nextLine[2]);
-                    LocalDate dateFin = LocalDate.parse(nextLine[3]);
-                    List<String> utilisateursInscrits = Arrays.asList(nextLine[4].trim().split(";"));
-
-
-                    Activite activite = new Activite(ID, nom, dateDebut, dateFin, utilisateursInscrits);
-                    activites.add(activite);
-                } else {
-                    System.err.println("La ligne ne contient pas assez de champs : " + String.join(",", nextLine));
-                }
-            }
-        } catch (IOException | CsvValidationException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void desinscription(Activite activite) {
-        // Vérifier si l'utilisateur est inscrit à l'activité
-        List<String> utilisateursInscrits = new ArrayList<>(activite.getUtilisateursInscrits());
-        boolean removed = utilisateursInscrits.remove(utilisateur.getEmail());
-
-        if (removed) {
-            activite.setUtilisateursInscrits(utilisateursInscrits); // Mettre à jour la liste dans l'activité
-            // Mettre à jour la liste activites si nécessaire
-            for (Activite act : activites) {
-                if (act.getId() == activite.getId()) { // Supposant qu'ID est un identifiant unique pour chaque activité
-                    act.setUtilisateursInscrits(utilisateursInscrits); // Mettre à jour dans la liste activites
-                    break;
-                }
-            }
-            // Mettre à jour le fichier CSV si nécessaire
-            sauvegarderActivitesDansCSV("src/main/resources/data/activites.csv");
-
-            // Afficher un message ou effectuer d'autres actions nécessaires
-            System.out.println("Désinscription réussie pour l'utilisateur : " + utilisateur.getEmail());
-        } else {
-            System.out.println("L'utilisateur n'est pas inscrit à cette activité.");
-            // Afficher un message à l'utilisateur ou gérer l'erreur selon vos besoins
-        }
-    }
-
+    /**
+     * Inscrit l'utilisateur à une activité et met à jour le fichier CSV.
+     *
+     * @param activite L'activité à laquelle l'utilisateur s'inscrit
+     * @param utilisateurInscrit L'utilisateur qui s'inscrit à l'activité
+     */
     public void inscription(Activite activite, Utilisateur utilisateurInscrit) {
-        // Vérifier si l'utilisateur est inscrit à l'activité
         List<String> utilisateursInscrits = new ArrayList<>(activite.getUtilisateursInscrits());
         boolean add = utilisateursInscrits.add(utilisateur.getEmail());
 
         if (add) {
-            activite.setUtilisateursInscrits(utilisateursInscrits); // Mettre à jour la liste dans l'activité
-            // Mettre à jour la liste activites si nécessaire
+            activite.setUtilisateursInscrits(utilisateursInscrits);
             for (Activite act : activites) {
-                if (act.getId() == activite.getId()) { // Supposant qu'ID est un identifiant unique pour chaque activité
-                    act.setUtilisateursInscrits(utilisateursInscrits); // Mettre à jour dans la liste activites
+                if (act.getId() == activite.getId()) {
+                    act.setUtilisateursInscrits(utilisateursInscrits);
                     break;
                 }
             }
-            // Mettre à jour le fichier CSV si nécessaire
             sauvegarderActivitesDansCSV("src/main/resources/data/activites.csv");
-
-            // Afficher un message ou effectuer d'autres actions nécessaires
             System.out.println("Inscription réussie pour l'utilisateur : " + utilisateur.getEmail());
         } else {
-            System.out.println("L'utilisateur n'est pas inscrit à cette activité.");
-            // Afficher un message à l'utilisateur ou gérer l'erreur selon vos besoins
+            System.out.println("L'utilisateur est déjà inscrit à cette activité.");
         }
     }
+
+    /**
+     * Désinscrit l'utilisateur d'une activité et met à jour le fichier CSV.
+     *
+     * @param activite L'activité de laquelle l'utilisateur se désinscrit
+     */
+    public void desinscription(Activite activite) {
+        List<String> utilisateursInscrits = new ArrayList<>(activite.getUtilisateursInscrits());
+        boolean removed = utilisateursInscrits.remove(utilisateur.getEmail());
+
+        if (removed) {
+            activite.setUtilisateursInscrits(utilisateursInscrits);
+            for (Activite act : activites) {
+                if (act.getId() == activite.getId()) {
+                    act.setUtilisateursInscrits(utilisateursInscrits);
+                    break;
+                }
+            }
+            sauvegarderActivitesDansCSV("src/main/resources/data/activites.csv");
+            System.out.println("Désinscription réussie pour l'utilisateur : " + utilisateur.getEmail());
+        } else {
+            System.out.println("L'utilisateur n'est pas inscrit à cette activité.");
+        }
+    }
+
+    /**
+     * Sauvegarde les activités dans un fichier CSV.
+     *
+     * @param csvFileName Chemin du fichier CSV où les activités seront sauvegardées
+     */
     public void sauvegarderActivitesDansCSV(String csvFileName) {
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFileName))) {
             String[] headers = {"ID", "Nom", "DateDebut", "DateFin", "UtilisateursInscrits"};
@@ -151,8 +180,8 @@ public class GestionActivites {
     public List<Activite> getMesActivites() {
         return mesActivites;
     }
+
     public List<Activite> getActivitesNonInscrites() {
         return activitesNonInscrites;
     }
-
 }
