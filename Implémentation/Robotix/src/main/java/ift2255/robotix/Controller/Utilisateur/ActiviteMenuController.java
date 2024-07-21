@@ -23,24 +23,23 @@ public class ActiviteMenuController {
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
 
         // Définir l'action pour "Se désinscrire"
-        this.activiteMenuView.setDesinscriptionButtonAction(event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
-
-        this.activiteMenuView.setInscriptionButtonAction(event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
+        this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
+        this.activiteMenuView.setButtonAction("Se désinscrire", event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
 
     }
     public void handleDesinscription(Activite activite){
         GestionActivites activites = new GestionActivites(utilisateur);
         activites.desinscription(activite);
-        activiteMenuView.rafraichirVue(utilisateur);
-        this.activiteMenuView.setDesinscriptionButtonAction(event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
-        this.activiteMenuView.setInscriptionButtonAction(event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
+        activiteMenuView.afficherVue(utilisateur);
+        this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
+        this.activiteMenuView.setButtonAction("Se désinscrire", event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
     }
     public void handleInscription(Activite activite){
         GestionActivites activites = new GestionActivites(utilisateur);
         activites.inscription(activite, utilisateur);
-        activiteMenuView.rafraichirVue(utilisateur);
-        this.activiteMenuView.setInscriptionButtonAction(event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
-        this.activiteMenuView.setDesinscriptionButtonAction(event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
+        activiteMenuView.afficherVue(utilisateur);
+        this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
+        this.activiteMenuView.setButtonAction("Se désinscrire", event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
     }
 
     public void goBackMenu() {

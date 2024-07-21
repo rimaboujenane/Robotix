@@ -12,7 +12,7 @@ public class InscriptionView extends VBox {
     private PasswordField registerPasswordField;
     private ComboBox<String> registerTypeComboBox;
     private Button registerButton;
-    private Button loginButton;
+    private Label loginLabel;
 
     public InscriptionView(){
         // Titre pour la section d'inscription
@@ -51,14 +51,18 @@ public class InscriptionView extends VBox {
 
         registerButton = new Button("S'incrire");
         registerButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
+        registerButton.prefWidthProperty().bind(registerNomField.widthProperty());
 
-        loginButton = new Button("Se connecter");
-        loginButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
+        loginLabel = new Label("Déjà un Compte? Connectez-vous!");
+        loginLabel.setStyle("-fx-text-fill: white;");
+        // Souligné le texte quand on passe dessus
+        loginLabel.setOnMouseEntered(event -> loginLabel.setStyle("-fx-text-fill: white; -fx-underline: true;"));
+        loginLabel.setOnMouseExited(event -> loginLabel.setStyle("-fx-text-fill: white;"));
 
 
         VBox registerSection = new VBox(10, registerTitle, registerNomLabel, registerNomField, registerPrenomLabel,
                 registerPrenomField, registerEmailLabel, registerEmailField, registerPhoneLabel, registerPhoneField,
-                registerPasswordLabel, registerPasswordField, registerTypeLabel, registerTypeComboBox, registerButton, loginButton);
+                registerPasswordLabel, registerPasswordField, registerTypeLabel, registerTypeComboBox, registerButton, loginLabel);
         registerSection.setStyle("-fx-padding: 20; -fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         registerSection.setSpacing(10);
         registerSection.setPrefWidth(400);
@@ -96,7 +100,7 @@ public class InscriptionView extends VBox {
     public Button getRegisterButton() {
         return registerButton;
     }
-    public Button getLoginButton() {
-        return loginButton;
+    public Label getLoginLabel() {
+        return loginLabel;
     }
 }

@@ -26,7 +26,7 @@ public class LoginController {
         this.view = view;
 
         this.view.getLoginButton().setOnAction(e -> handleLogin(view.getLoginTypeComboBox()));
-        this.view.getRegisterButton().setOnAction(e -> inscription());
+        this.view.getRegisterLabel().setOnMouseClicked(e -> inscription());
     }
 
     // Verification des identifiants

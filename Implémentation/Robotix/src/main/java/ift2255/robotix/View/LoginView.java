@@ -9,7 +9,7 @@ public class LoginView extends VBox {
     private PasswordField passwordField;
     private ComboBox<String> loginTypeComboBox;
     private Button loginButton;
-    private Button registerButton;
+    private Label registerLabel;
 
     public LoginView() {
 
@@ -18,7 +18,7 @@ public class LoginView extends VBox {
         titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;");
 
         // Titre pour la section de connexion
-        Label loginTitle = new Label("Se Connecter");
+        Label loginTitle = new Label("Se connecter");
         loginTitle.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
 
         // Section de connexion
@@ -37,14 +37,18 @@ public class LoginView extends VBox {
         loginTypeComboBox.getItems().addAll("Utilisateur", "Fournisseur");
         loginTypeComboBox.getSelectionModel().selectFirst(); // Sélectionne par défaut le premier élément
 
-        loginButton = new Button("Login");
-        loginButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
+        loginButton = new Button("Connexion");
+        loginButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white; ");
+        loginButton.prefWidthProperty().bind(usernameField.widthProperty());
 
-        registerButton = new Button("S'inscrire");
-        registerButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
+        registerLabel = new Label("Première fois sur Robotix? Créé un compte dès maintenant!");
+        registerLabel.setStyle("-fx-text-fill: white;");
+        // Souligné le texte quand on passe dessus
+        registerLabel.setOnMouseEntered(event -> registerLabel.setStyle("-fx-text-fill: white; -fx-underline: true;"));
+        registerLabel.setOnMouseExited(event -> registerLabel.setStyle("-fx-text-fill: white;"));
 
         VBox loginSection = new VBox(10, loginTitle, usernameLabel, usernameField, passwordLabel, passwordField,
-                loginTypeLabel, loginTypeComboBox, loginButton, registerButton);
+                loginTypeLabel, loginTypeComboBox, loginButton, registerLabel);
         loginSection.setStyle("-fx-padding: 20; -fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         loginSection.setSpacing(10);
         loginSection.setPrefWidth(400);
@@ -72,7 +76,7 @@ public class LoginView extends VBox {
         return loginButton;
     }
 
-    public Button getRegisterButton() {
-        return registerButton;
+    public Label getRegisterLabel() {
+        return registerLabel;
     }
 }

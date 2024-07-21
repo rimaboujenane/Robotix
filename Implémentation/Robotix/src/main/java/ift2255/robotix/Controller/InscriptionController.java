@@ -25,7 +25,7 @@ public class InscriptionController {
         this.view = view;
 
         this.view.getRegisterButton().setOnAction(e -> handleUtilisateurRegister());
-        this.view.getLoginButton().setOnAction(e -> login());
+        this.view.getLoginLabel().setOnMouseClicked(e -> login());
     }
 
     // Inscrit la personne
