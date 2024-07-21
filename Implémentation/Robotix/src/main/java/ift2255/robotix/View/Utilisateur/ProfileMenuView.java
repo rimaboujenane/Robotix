@@ -1,6 +1,7 @@
 package ift2255.robotix.View.Utilisateur;
 
 import ift2255.robotix.Modeles.Utilisateur;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -58,10 +59,12 @@ public class ProfileMenuView extends VBox {
         profileSection.setPrefWidth(600);
         profileSection.setMaxWidth(600);
 
+
         backButton = new Button("Retour");
         backButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
 
         this.setSpacing(40);
+        this.setAlignment(Pos.CENTER);
         this.getChildren().addAll(titleLabel, profileSection, backButton);
         this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
