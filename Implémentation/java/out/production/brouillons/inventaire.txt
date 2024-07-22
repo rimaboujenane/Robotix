@@ -1,8 +1,0 @@
-cpu 100
-roues 100
-bras 0
-helice 100
-camera 100
-hautparleur 100
-micro 100
-ecran 100
