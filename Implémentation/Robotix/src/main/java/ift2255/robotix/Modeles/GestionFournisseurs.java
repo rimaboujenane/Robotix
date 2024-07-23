@@ -7,7 +7,7 @@ public class GestionFournisseurs extends GestionUser{
 
     public GestionFournisseurs() {
         fournisseurMap = new HashMap<String, Fournisseur>();
-        chargerFournisseurDepuisCSV("src/main/resources/data/fournisseur.csv");
+        chargerDepuisCSV("src/main/resources/data/fournisseur.csv", false);
     }
 
     public boolean isValidUser(String email, String password) {
@@ -29,7 +29,7 @@ public class GestionFournisseurs extends GestionUser{
             fournisseurMap.put(email, fournisseurModifie);
 
             // Réécrire tous les utilisateurs dans le fichier CSV après la mise à jour
-            writeFournisseursToCSV("src/main/resources/data/fournisseur.csv");
+            writeToCSV("src/main/resources/data/fournisseur.csv", false);
         } else {
             System.err.println("L'utilisateur avec l'email " + email + " n'existe pas dans la liste.");
             // Vous pouvez gérer ce cas comme nécessaire, par exemple, lever une exception ou afficher un message d'erreur
@@ -39,7 +39,7 @@ public class GestionFournisseurs extends GestionUser{
     public void addFournisseur(Fournisseur fournisseur) {
         String email = fournisseur.getEmail();
         fournisseurMap.put(email, fournisseur);
-        writeFournisseursToCSV("src/main/resources/data/fournisseur.csv");
+        writeToCSV("src/main/resources/data/fournisseur.csv", false);
     }
 
 

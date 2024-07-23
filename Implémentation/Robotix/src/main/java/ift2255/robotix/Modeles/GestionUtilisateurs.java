@@ -7,7 +7,7 @@ public class GestionUtilisateurs extends GestionUser{
 
     public GestionUtilisateurs() {
         utilisateursMap = new HashMap<>();
-        chargerUserDepuisCSV("src/main/resources/data/utilisateur.csv");
+        chargerDepuisCSV("src/main/resources/data/utilisateur.csv", true);
     }
 
     /**
@@ -42,7 +42,7 @@ public class GestionUtilisateurs extends GestionUser{
             utilisateursMap.put(email, utilisateurModifie);
 
             // Réécrire tous les utilisateurs dans le fichier CSV après la mise à jour
-            writeUtilisateursToCSV("src/main/resources/data/utilisateur.csv");
+            writeToCSV("src/main/resources/data/utilisateur.csv", true);
         } else {
             System.err.println("L'utilisateur avec l'email " + email + " n'existe pas dans la liste.");
             // Vous pouvez gérer ce cas comme nécessaire, par exemple, lever une exception ou afficher un message d'erreur
@@ -51,6 +51,6 @@ public class GestionUtilisateurs extends GestionUser{
     public void addUtilisateur(Utilisateur utilisateur) {
         String email = utilisateur.getEmail();
         utilisateursMap.put(email, utilisateur);
-        writeUtilisateursToCSV("src/main/resources/data/utilisateur.csv");
+        writeToCSV("src/main/resources/data/utilisateur.csv", true);
     }
 }

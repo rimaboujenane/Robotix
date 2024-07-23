@@ -128,15 +128,14 @@ public class MenuView extends VBox {
         vbox6.setAlignment(Pos.CENTER);
 
         // Organisation des sections en lignes
-        HBox row1 = new HBox(100, vbox1, vbox2);
+        HBox row1 = new HBox(100, vbox1, vbox2, vbox3);
         row1.setAlignment(Pos.CENTER);
-        HBox row2 = new HBox(100, vbox3, vbox4);
+        HBox row2 = new HBox(100, vbox4, vbox5, vbox6);
         row2.setAlignment(Pos.CENTER);
-        HBox row3 = new HBox(100, vbox5, vbox6);
-        row3.setAlignment(Pos.CENTER);
+
 
         // Organisation des lignes dans la vue principale
-        VBox appVbox = new VBox(75, row1, row2, row3);
+        VBox appVbox = new VBox(75, row1, row2);
 
         // Définir les marges et le style de la vue principale
         this.setSpacing(30);
