@@ -47,6 +47,8 @@ public class ActiviteMenuController {
         activites.inscription(activite, utilisateur);
         activiteMenuView.afficherVue(utilisateur);
 
+        this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
+
         // Réinitialiser les actions des boutons après l'inscription
         this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
         this.activiteMenuView.setButtonAction("Se désinscrire", event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
@@ -61,6 +63,8 @@ public class ActiviteMenuController {
         GestionActivites activites = new GestionActivites(utilisateur);
         activites.desinscription(activite);
         activiteMenuView.afficherVue(utilisateur);
+
+        this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
 
         // Réinitialiser les actions des boutons après la désinscription
         this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
