@@ -1,6 +1,7 @@
 package ift2255.robotix.View.Fournisseur;
 
 import ift2255.robotix.Modeles.Fournisseur;
+import ift2255.robotix.Modeles.RegisterFournisseur;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,9 +16,9 @@ public class MenuFournisseurView extends VBox {
     private Button logoutMenuButton;
     private Button exitMenuButton;
 
-    public MenuFournisseurView(Fournisseur fournisseur){
+    public MenuFournisseurView(){
         // Titre principale
-        Label titleLabel = new Label("Bienvenue " + fournisseur.getPrenom() + " !");
+        Label titleLabel = new Label("Bienvenue " +  RegisterFournisseur.getInstance().getFournisseur().getPrenom() + " !");
         titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;");
 
         profilMenuButton = new Button("Profil");

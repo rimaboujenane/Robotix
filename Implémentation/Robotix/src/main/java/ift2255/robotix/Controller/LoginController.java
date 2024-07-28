@@ -2,10 +2,7 @@ package ift2255.robotix.Controller;
 
 import ift2255.robotix.Controller.Fournisseur.MenuFournisseurController;
 import ift2255.robotix.Controller.Utilisateur.MenuController;
-import ift2255.robotix.Modeles.Fournisseur;
-import ift2255.robotix.Modeles.GestionFournisseurs;
-import ift2255.robotix.Modeles.GestionUtilisateurs;
-import ift2255.robotix.Modeles.Utilisateur;
+import ift2255.robotix.Modeles.*;
 import ift2255.robotix.View.Fournisseur.MenuFournisseurView;
 import ift2255.robotix.View.InscriptionView;
 import ift2255.robotix.View.LoginView;
@@ -56,11 +53,13 @@ public class LoginController {
         // Vérifier les informations de connexion pour un utilisateur
         if ("Utilisateur".equals(type.getValue()) && utilisateurs.isValidUser(username, password)) {
             this.utilisateur = utilisateurs.getUtilisateur();
+            RegisterUtilisateur.getInstance().setUtilisateur(this.utilisateur);
             navigateToMenu(); // Naviguer vers le menu utilisateur
         }
         // Vérifier les informations de connexion pour un fournisseur
         else if ("Fournisseur".equals(type.getValue()) && fournisseurs.isValidUser(username, password)) {
             this.fournisseur = fournisseurs.getFournisseur();
+            RegisterFournisseur.getInstance().setFournisseur(this.fournisseur);
             navigateToMenuFournisseur(); // Naviguer vers le menu fournisseur
         }
         // Afficher un message d'erreur en cas d'échec de connexion
@@ -86,8 +85,8 @@ public class LoginController {
      * Navigue vers le menu principal pour l'utilisateur connecté.
      */
     public void navigateToMenu() {
-        MenuView menuView = new MenuView(utilisateur);
-        MenuController menuController = new MenuController(stage, menuView, utilisateur);
+        MenuView menuView = new MenuView();
+        MenuController menuController = new MenuController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 
@@ -95,8 +94,8 @@ public class LoginController {
      * Navigue vers le menu principal pour le fournisseur connecté.
      */
     public void navigateToMenuFournisseur() {
-        MenuFournisseurView menuView = new MenuFournisseurView(fournisseur);
-        MenuFournisseurController menuController = new MenuFournisseurController(stage, menuView, fournisseur);
+        MenuFournisseurView menuView = new MenuFournisseurView();
+        MenuFournisseurController menuController = new MenuFournisseurController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 }

@@ -9,19 +9,17 @@ import javafx.stage.Stage;
 public class RobotMenuController {
     private RobotMenuView robotMenuView;
     private Stage stage;
-    private Utilisateur utilisateur;
 
-    public RobotMenuController(Stage stage,RobotMenuView robotMenuView, Utilisateur utilisateur) {
+    public RobotMenuController(Stage stage,RobotMenuView robotMenuView) {
         this.robotMenuView = robotMenuView;
         this.stage = stage;
-        this.utilisateur = utilisateur;
 
         this.robotMenuView.getBackButton().setOnAction(e -> goBackMenu());
     }
 
     private void goBackMenu() {
-        MenuView menuView = new MenuView(utilisateur);
-        MenuController menuController = new MenuController(stage, menuView, utilisateur);
+        MenuView menuView = new MenuView();
+        MenuController menuController = new MenuController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 }

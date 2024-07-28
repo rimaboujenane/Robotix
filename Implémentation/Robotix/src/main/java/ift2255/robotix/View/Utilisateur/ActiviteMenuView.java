@@ -3,6 +3,7 @@ package ift2255.robotix.View.Utilisateur;
 import ift2255.robotix.Modeles.Activite;
 import ift2255.robotix.Modeles.GestionActivites;
 import ift2255.robotix.Modeles.Utilisateur;
+import ift2255.robotix.Modeles.RegisterUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -20,8 +21,8 @@ public class ActiviteMenuView extends VBox {
     private Button backButton;
     private GestionActivites activites;
 
-    public ActiviteMenuView(Utilisateur utilisateur) {
-        afficherVue(utilisateur);
+    public ActiviteMenuView() {
+        afficherVue(RegisterUtilisateur.getInstance().getUtilisateur());
     }
     public Button getBackButton() {
         return backButton;
