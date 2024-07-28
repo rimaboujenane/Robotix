@@ -1,5 +1,6 @@
 package ift2255.robotix.View.Utilisateur;
 
+import ift2255.robotix.Modeles.RegisterUtilisateur;
 import ift2255.robotix.Modeles.Utilisateur;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -30,14 +31,14 @@ public class ProfileMenuView extends VBox {
     private TextField emailField;
     private TextField phoneField;
     private PasswordField passwordField;
+    private Utilisateur utilisateur = RegisterUtilisateur.getInstance().getUtilisateur();
 
     /**
      * Constructeur de la vue du menu de profil.
      * Initialise les éléments de l'interface utilisateur avec les informations de l'utilisateur spécifié.
      *
-     * @param utilisateur L'utilisateur dont les informations seront affichées dans la vue.
      */
-    public ProfileMenuView(Utilisateur utilisateur) {
+    public ProfileMenuView() {
         // Titre de la vue
         Label titleLabel = new Label("Mon profil");
         titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;");

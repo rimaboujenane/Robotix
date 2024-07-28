@@ -1,6 +1,7 @@
 package ift2255.robotix.Controller.Utilisateur;
 
 import ift2255.robotix.Modeles.GestionUtilisateurs;
+import ift2255.robotix.Modeles.RegisterUtilisateur;
 import ift2255.robotix.Modeles.Utilisateur;
 import ift2255.robotix.View.Utilisateur.MenuView;
 import ift2255.robotix.View.Utilisateur.ProfileMenuView;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 public class ProfileMenuController {
     private ProfileMenuView profileMenuView; // Vue associée au contrôleur
     private Stage stage; // Fenêtre principale de l'application
-    private Utilisateur utilisateur; // Utilisateur actuel
+    private Utilisateur utilisateur = RegisterUtilisateur.getInstance().getUtilisateur(); // Utilisateur actuel
     private Utilisateur utilisateurModifie; // Utilisateur avec les informations modifiées
 
     /**
@@ -22,12 +23,10 @@ public class ProfileMenuController {
      *
      * @param stage La fenêtre principale de l'application
      * @param profileMenuView La vue du menu de profil
-     * @param utilisateur L'utilisateur actuel dont le profil est affiché
      */
-    public ProfileMenuController(Stage stage, ProfileMenuView profileMenuView, Utilisateur utilisateur) {
+    public ProfileMenuController(Stage stage, ProfileMenuView profileMenuView) {
         this.stage = stage;
         this.profileMenuView = profileMenuView;
-        this.utilisateur = utilisateur;
 
         // Définir l'action pour le bouton de sauvegarde
         this.profileMenuView.getSaveButton().setOnAction(e -> updateProfile());
@@ -40,8 +39,8 @@ public class ProfileMenuController {
      * Navigue vers le menu principal de l'utilisateur.
      */
     private void goBackMenu() {
-        MenuView menuView = new MenuView(utilisateur);
-        MenuController menuController = new MenuController(stage, menuView, utilisateur);
+        MenuView menuView = new MenuView();
+        MenuController menuController = new MenuController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 
@@ -70,6 +69,8 @@ public class ProfileMenuController {
 
         // Mettre à jour l'utilisateur actuel avec les nouvelles informations
         this.utilisateur = utilisateurModifie;
+
+        RegisterUtilisateur.getInstance().setUtilisateur(utilisateur);
 
         // Afficher une confirmation de la modification
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

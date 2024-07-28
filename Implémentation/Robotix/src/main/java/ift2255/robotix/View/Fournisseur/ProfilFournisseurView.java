@@ -1,6 +1,7 @@
 package ift2255.robotix.View.Fournisseur;
 
 import ift2255.robotix.Modeles.Fournisseur;
+import ift2255.robotix.Modeles.RegisterFournisseur;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -15,8 +16,9 @@ public class ProfilFournisseurView extends VBox{
     private TextField emailField;
     private TextField phoneField;
     private PasswordField passwordField;
+    private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
 
-    public ProfilFournisseurView(Fournisseur fournisseur) {
+    public ProfilFournisseurView() {
         Label titleLabel = new Label("Mon profil");
         titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;");
 

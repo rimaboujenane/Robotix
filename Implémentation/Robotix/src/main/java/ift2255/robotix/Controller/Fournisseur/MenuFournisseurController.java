@@ -11,12 +11,11 @@ import javafx.stage.Stage;
 public class MenuFournisseurController {
     private MenuFournisseurView view;
     private Stage stage;
-    private Fournisseur fournisseur;
 
-    public MenuFournisseurController(Stage stage, MenuFournisseurView view, Fournisseur fournisseur){
+
+    public MenuFournisseurController(Stage stage, MenuFournisseurView view){
         this.view = view;
         this.stage = stage;
-        this.fournisseur = fournisseur;
 
         this.view.getProfilMenuButton().setOnAction(e -> navigateToProfil());
         this.view.getMesComposantsMenuButton().setOnAction(e -> navigateToMesComposants());
@@ -27,8 +26,8 @@ public class MenuFournisseurController {
     }
 
     private void navigateToProfil(){
-        ProfilFournisseurView profilFournisseurView = new ProfilFournisseurView(fournisseur);
-        ProfilFournisseurController profilFournisseurController = new ProfilFournisseurController(stage, profilFournisseurView, fournisseur);
+        ProfilFournisseurView profilFournisseurView = new ProfilFournisseurView();
+        ProfilFournisseurController profilFournisseurController = new ProfilFournisseurController(stage, profilFournisseurView);
         stage.setScene(new Scene(profilFournisseurView, 900, 700));
     }
     private void navigateToMesComposants(){

@@ -2,6 +2,7 @@ package ift2255.robotix.Controller.Fournisseur;
 
 import ift2255.robotix.Modeles.Fournisseur;
 import ift2255.robotix.Modeles.GestionFournisseurs;
+import ift2255.robotix.Modeles.RegisterFournisseur;
 import ift2255.robotix.View.Fournisseur.MenuFournisseurView;
 import ift2255.robotix.View.Fournisseur.ProfilFournisseurView;
 import javafx.scene.Scene;
@@ -11,10 +12,10 @@ import javafx.stage.Stage;
 public class ProfilFournisseurController {
     private ProfilFournisseurView profilFournisseurView;
     private Stage stage;
-    private Fournisseur fournisseur;
+    private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
     private Fournisseur fournisseurModifie;
 
-    public ProfilFournisseurController(Stage stage, ProfilFournisseurView profilFournisseurView, Fournisseur fournisseur) {
+    public ProfilFournisseurController(Stage stage, ProfilFournisseurView profilFournisseurView) {
         this.stage = stage;
         this.profilFournisseurView = profilFournisseurView;
         this.fournisseur = fournisseur;
@@ -25,8 +26,8 @@ public class ProfilFournisseurController {
     }
 
     private void goBackMenu() {
-        MenuFournisseurView menuFournisseurView = new MenuFournisseurView(fournisseur);
-        MenuFournisseurController menuFournisseurController = new MenuFournisseurController(stage, menuFournisseurView,fournisseur);
+        MenuFournisseurView menuFournisseurView = new MenuFournisseurView();
+        MenuFournisseurController menuFournisseurController = new MenuFournisseurController(stage, menuFournisseurView);
         stage.setScene(new Scene(menuFournisseurView, 900, 700));
     }
 
@@ -49,6 +50,8 @@ public class ProfilFournisseurController {
         gestionFournisseurs.updateFournisseur(fournisseurModifie);
 
         this.fournisseur = fournisseurModifie;
+
+        RegisterFournisseur.getInstance().setFournisseur(fournisseur);
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Modification");

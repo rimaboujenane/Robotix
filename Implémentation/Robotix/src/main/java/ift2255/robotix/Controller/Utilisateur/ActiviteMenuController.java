@@ -2,6 +2,7 @@ package ift2255.robotix.Controller.Utilisateur;
 
 import ift2255.robotix.Modeles.Activite;
 import ift2255.robotix.Modeles.GestionActivites;
+import ift2255.robotix.Modeles.RegisterUtilisateur;
 import ift2255.robotix.Modeles.Utilisateur;
 import ift2255.robotix.View.Utilisateur.ActiviteMenuView;
 import ift2255.robotix.View.Utilisateur.MenuView;
@@ -15,19 +16,17 @@ import javafx.stage.Stage;
 public class ActiviteMenuController {
     private ActiviteMenuView activiteMenuView; // Vue associée au contrôleur
     private Stage stage; // Fenêtre principale de l'application
-    private Utilisateur utilisateur; // Utilisateur actuel
+    private Utilisateur utilisateur = RegisterUtilisateur.getInstance().getUtilisateur();
 
     /**
      * Constructeur pour initialiser le contrôleur avec la vue, la fenêtre principale et l'utilisateur.
      *
      * @param stage La fenêtre principale de l'application
      * @param activiteMenuView La vue du menu des activités
-     * @param utilisateur L'utilisateur actuel
      */
-    public ActiviteMenuController(Stage stage, ActiviteMenuView activiteMenuView, Utilisateur utilisateur) {
+    public ActiviteMenuController(Stage stage, ActiviteMenuView activiteMenuView) {
         this.stage = stage;
         this.activiteMenuView = activiteMenuView;
-        this.utilisateur = utilisateur;
 
         // Définir l'action pour le bouton "Retour"
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
@@ -75,8 +74,8 @@ public class ActiviteMenuController {
      * Retourne au menu principal.
      */
     public void goBackMenu() {
-        MenuView menuView = new MenuView(utilisateur);
-        MenuController menuController = new MenuController(stage, menuView, utilisateur);
+        MenuView menuView = new MenuView();
+        MenuController menuController = new MenuController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 }

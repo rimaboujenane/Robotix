@@ -9,19 +9,17 @@ import javafx.stage.Stage;
 public class NotifMenuController {
     private NotifMenuView notifMenuView;
     private Stage stage;
-    private Utilisateur utilisateur;
 
-    public NotifMenuController(Stage stage, NotifMenuView notifMenuView, Utilisateur utilisateur) {
+    public NotifMenuController(Stage stage, NotifMenuView notifMenuView) {
         this.notifMenuView = notifMenuView;
         this.stage = stage;
-        this.utilisateur = utilisateur;
 
         this.notifMenuView.getBackButton().setOnAction(e -> goBackMenu());
     }
 
     private void goBackMenu() {
-        MenuView menuView = new MenuView(utilisateur);
-        MenuController menuController = new MenuController(stage, menuView, utilisateur);
+        MenuView menuView = new MenuView();
+        MenuController menuController = new MenuController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 }

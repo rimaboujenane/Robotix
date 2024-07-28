@@ -13,19 +13,16 @@ import javafx.stage.Stage;
 public class MenuController {
     private MenuView view; // Vue associée au contrôleur
     private Stage stage; // Fenêtre principale de l'application
-    private Utilisateur utilisateur; // Utilisateur actuel
 
     /**
      * Constructeur pour initialiser le contrôleur avec la vue, la fenêtre principale et l'utilisateur.
      *
      * @param stage La fenêtre principale de l'application
      * @param view La vue du menu principal
-     * @param utilisateur L'utilisateur actuel
      */
-    public MenuController(Stage stage, MenuView view, Utilisateur utilisateur) {
+    public MenuController(Stage stage, MenuView view) {
         this.stage = stage;
         this.view = view;
-        this.utilisateur = utilisateur;
 
         // Définir l'action pour chaque bouton du menu
         this.view.getRobotMenuButton().setOnAction(e -> navigateToRobotMenu());
@@ -41,7 +38,7 @@ public class MenuController {
      */
     private void navigateToRobotMenu() {
         RobotMenuView robotMenuView = new RobotMenuView();
-        RobotMenuController robotMenuController = new RobotMenuController(stage, robotMenuView, utilisateur);
+        RobotMenuController robotMenuController = new RobotMenuController(stage, robotMenuView);
         stage.setScene(new Scene(robotMenuView, 900, 700));
     }
 
@@ -50,7 +47,7 @@ public class MenuController {
      */
     private void navigateToNotifMenu() {
         NotifMenuView notifMenuView = new NotifMenuView();
-        NotifMenuController notifMenuController = new NotifMenuController(stage, notifMenuView, utilisateur);
+        NotifMenuController notifMenuController = new NotifMenuController(stage, notifMenuView);
         stage.setScene(new Scene(notifMenuView, 900, 700));
     }
 
@@ -58,8 +55,8 @@ public class MenuController {
      * Navigue vers le menu de profil utilisateur.
      */
     private void navigateToProfileMenu() {
-        ProfileMenuView profileMenuView = new ProfileMenuView(utilisateur);
-        ProfileMenuController profileMenuController = new ProfileMenuController(stage, profileMenuView, utilisateur);
+        ProfileMenuView profileMenuView = new ProfileMenuView();
+        ProfileMenuController profileMenuController = new ProfileMenuController(stage, profileMenuView);
         stage.setScene(new Scene(profileMenuView, 900, 700));
     }
 
@@ -76,8 +73,8 @@ public class MenuController {
      * Navigue vers le menu des activités.
      */
     private void navigateToActiviteMenu() {
-        ActiviteMenuView activiteMenuView = new ActiviteMenuView(utilisateur);
-        ActiviteMenuController activiteMenuController = new ActiviteMenuController(stage, activiteMenuView, utilisateur);
+        ActiviteMenuView activiteMenuView = new ActiviteMenuView();
+        ActiviteMenuController activiteMenuController = new ActiviteMenuController(stage, activiteMenuView);
         stage.setScene(new Scene(activiteMenuView, 900, 700));
     }
 }

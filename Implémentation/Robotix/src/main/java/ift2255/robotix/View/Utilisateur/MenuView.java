@@ -1,11 +1,11 @@
 package ift2255.robotix.View.Utilisateur;
 
 import ift2255.robotix.Modeles.Utilisateur;
+import ift2255.robotix.Modeles.RegisterUtilisateur;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -36,11 +36,10 @@ public class MenuView extends VBox {
      * Constructeur de la vue du menu principal.
      * Initialise les éléments de l'interface utilisateur avec les icônes et les étiquettes appropriées.
      *
-     * @param utilisateur L'utilisateur dont le prénom sera affiché dans le titre de la vue.
      */
-    public MenuView(Utilisateur utilisateur) {
+    public MenuView() {
         // Titre principal affichant le prénom de l'utilisateur
-        Label titleLabel = new Label("Bienvenue " + utilisateur.getPrenom() + " !");
+        Label titleLabel = new Label("Bienvenue " + RegisterUtilisateur.getInstance().getUtilisateur().getPrenom() + " !");
         titleLabel.setStyle("-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;");
 
         // Création des images pour les boutons du menu

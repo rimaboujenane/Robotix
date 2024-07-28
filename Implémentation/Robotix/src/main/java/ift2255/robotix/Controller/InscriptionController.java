@@ -87,8 +87,8 @@ public class InscriptionController {
      * Navigue vers le menu principal de l'utilisateur inscrit.
      */
     public void navigateToMenu() {
-        MenuView menuView = new MenuView(utilisateur);
-        MenuController menuController = new MenuController(stage, menuView, utilisateur);
+        MenuView menuView = new MenuView();
+        MenuController menuController = new MenuController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 
@@ -96,8 +96,8 @@ public class InscriptionController {
      * Navigue vers le menu principal du fournisseur inscrit.
      */
     public void navigateToMenuFournisseur() {
-        MenuFournisseurView menuView = new MenuFournisseurView(fournisseur);
-        MenuFournisseurController menuController = new MenuFournisseurController(stage, menuView, fournisseur);
+        MenuFournisseurView menuView = new MenuFournisseurView();
+        MenuFournisseurController menuController = new MenuFournisseurController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
     }
 }
