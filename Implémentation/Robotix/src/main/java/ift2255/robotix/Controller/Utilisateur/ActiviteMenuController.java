@@ -42,9 +42,9 @@ public class ActiviteMenuController {
      * @param activite L'activité à laquelle l'utilisateur souhaite s'inscrire
      */
     public void handleInscription(Activite activite) {
-        GestionActivites activites = new GestionActivites(utilisateur);
-        activites.inscription(activite, utilisateur);
-        activiteMenuView.afficherVue(utilisateur);
+        GestionActivites activites = new GestionActivites();
+        activites.inscription(activite);
+        activiteMenuView.afficherVue();
 
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
 
@@ -59,9 +59,9 @@ public class ActiviteMenuController {
      * @param activite L'activité dont l'utilisateur souhaite se désinscrire
      */
     public void handleDesinscription(Activite activite) {
-        GestionActivites activites = new GestionActivites(utilisateur);
+        GestionActivites activites = new GestionActivites();
         activites.desinscription(activite);
-        activiteMenuView.afficherVue(utilisateur);
+        activiteMenuView.afficherVue();
 
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
 
