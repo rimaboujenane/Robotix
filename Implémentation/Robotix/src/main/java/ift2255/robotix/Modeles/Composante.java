@@ -53,7 +53,7 @@ public class Composante {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getPrice() {
+    public int getPrix() {
         return prix;
     }
 
@@ -67,5 +67,17 @@ public class Composante {
 
     public void setFournisseurEmail(String fournisseurEmail) {
         this.fournisseurEmail = fournisseurEmail;
+    }
+
+    @Override
+    public String toString() {
+        return "Composante{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", type='" + type + '\'' +
+                ", description='" + description + '\'' +
+                ", prix=" + prix +
+                ", fournisseurEmail='" + fournisseurEmail + '\'' +
+                '}';
     }
 }

@@ -1,4 +1,3 @@
-// EnregistrerComposantsController.java
 package ift2255.robotix.Controller.Fournisseur;
 
 import ift2255.robotix.Modeles.*;
@@ -36,18 +35,10 @@ public class EnregistrerComposantsController {
             String type = view.getTypeComboBox().getValue(); // Retrieve selected value from ComboBox
             String description = view.getDescriptionField().getText();
             int prix = Integer.parseInt(view.getPrixField().getText());
-            String fournisseurEmail = fournisseur.getEmail(); // Replace with actual logged-in fournisseur email
+            String fournisseurEmail = fournisseur.getEmail();
 
-            Composante composante = new Composante(0, nom, type, description, prix, fournisseurEmail); // ID set to 0, should be handled properly
+            Composante composante = new Composante(0, nom, type, description, prix, fournisseurEmail);
             gestionComposantes.ajouterComposante(composante);
-
-            // Print the added composante details to the terminal
-            System.out.println("Added Composante:");
-            System.out.println("Nom: " + nom);
-            System.out.println("Type: " + type);
-            System.out.println("Description: " + description);
-            System.out.println("Prix: " + prix);
-            System.out.println("FournisseurEmail: " + fournisseurEmail);
 
             // Optionally, clear the fields
             view.getNomField().clear();

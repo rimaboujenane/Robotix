@@ -25,8 +25,8 @@ public class MesComposantsView extends VBox {
         setAlignment(Pos.CENTER);
 
         tableView = new TableView<>();
-        TableColumn<Composante, Integer> numeroColumn = new TableColumn<>("Numéro");
-        numeroColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        TableColumn<Composante, Integer> idColumn = new TableColumn<>("ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         TableColumn<Composante, String> nomColumn = new TableColumn<>("Nom");
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
@@ -37,10 +37,10 @@ public class MesComposantsView extends VBox {
         TableColumn<Composante, String> descriptionColumn = new TableColumn<>("Description");
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        TableColumn<Composante, Double> prixColumn = new TableColumn<>("Prix");
-        prixColumn.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        TableColumn<Composante, Integer> prixColumn = new TableColumn<>("Prix");
+        prixColumn.setCellValueFactory(new PropertyValueFactory<>("prix")); // Assurez-vous que ce nom correspond à getPrix()
 
-        tableView.getColumns().addAll(numeroColumn, nomColumn, typeColumn, descriptionColumn, prixColumn);
+        tableView.getColumns().addAll(idColumn, nomColumn, typeColumn, descriptionColumn, prixColumn);
 
         nomField = new TextField();
         nomField.setPromptText("Nom");
