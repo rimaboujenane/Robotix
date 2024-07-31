@@ -28,15 +28,13 @@ public class GestionActivites {
     private List<Activite> activitesNonInscrites = new ArrayList<>();
 
     // Utilisateur pour lequel les activités sont gérées
-    private Utilisateur utilisateur;
+    private Utilisateur utilisateur = RegisterUtilisateur.getInstance().getUtilisateur();
 
     /**
      * Constructeur pour initialiser la gestion des activités avec un utilisateur spécifique.
      *
-     * @param utilisateur L'utilisateur dont les activités sont gérées
      */
-    public GestionActivites(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public GestionActivites() {
         chargerActivite("src/main/resources/data/activites.csv");
         mesActivites(utilisateur.getEmail());
     }
@@ -103,9 +101,8 @@ public class GestionActivites {
      * Inscrit l'utilisateur à une activité et met à jour le fichier CSV.
      *
      * @param activite L'activité à laquelle l'utilisateur s'inscrit
-     * @param utilisateurInscrit L'utilisateur qui s'inscrit à l'activité
      */
-    public void inscription(Activite activite, Utilisateur utilisateurInscrit) {
+    public void inscription(Activite activite) {
         List<String> utilisateursInscrits = new ArrayList<>(activite.getUtilisateursInscrits());
         boolean add = utilisateursInscrits.add(utilisateur.getEmail());
 
