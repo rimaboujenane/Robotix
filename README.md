@@ -16,11 +16,11 @@ Robotix est une plateforme innovante dédiée à la gestion intelligente et coll
 - Recevoir et consulter des notifications pour diverses actions et événements (nouveaux suiveurs, nouvelles activités, problèmes des robots, etc.)
 - Trouver un fournisseur
 
-#### Robots et flotte
+#### Robots
 - Enregistrer un robot
 - Acheter et enregistrer des composantes
 - Afficher l'état des ses robots
-- Afficher les métriques de sa flotte
+
 
 #### Activités
 - Créer des activités
@@ -28,14 +28,6 @@ Robotix est une plateforme innovante dédiée à la gestion intelligente et coll
 - Ajouter, modifier et/ou supprimer des activités
 - Afficher les activités qu'il maintient
 - S'inscrire à une activité créée par d'autres utilisateurs
-
-#### Tâches
-- Créer des tâches
-- Ajouter, modifier et/ou supprimer des tâches
-
-#### Actions
-- Créer des actions
-- Ajouter, modifier et/ou supprimer des actions
 
                    
 ### Pour les fournisseurs :
