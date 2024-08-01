@@ -17,9 +17,6 @@ public class Composante {
         this.fournisseurEmail = fournisseurEmail;
     }
 
-    public Composante(int id, String nom, String type, String description, int prix) {
-    }
-
     // Getters et setters
     public int getId() {
         return id;

@@ -1,18 +1,20 @@
 package ift2255.robotix.View.Fournisseur;
 
 import ift2255.robotix.Modeles.Composante;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class MesComposantsView extends VBox {
-    private TableView<Composante> tableView;
+    private ListView<Composante> listView;
     private TextField nomField;
-    private TextField typeField;
+    private ComboBox<String> typeComboBox;
     private TextField descriptionField;
     private TextField prixField;
     private Button modifierButton;
@@ -22,31 +24,46 @@ public class MesComposantsView extends VBox {
     public MesComposantsView() {
         setSpacing(10);
         setPadding(new Insets(20));
-        setAlignment(Pos.CENTER);
+        setAlignment(Pos.TOP_CENTER);
 
-        tableView = new TableView<>();
-        TableColumn<Composante, Integer> idColumn = new TableColumn<>("ID");
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        // Initialisation de la ListView
+        listView = new ListView<>();
+        listView.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Composante item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    VBox cellContent = new VBox();
+                    cellContent.setPadding(new Insets(10));
+                    cellContent.setStyle("-fx-background-color: #778DA9; -fx-text-fill: white;");
 
-        TableColumn<Composante, String> nomColumn = new TableColumn<>("Nom");
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+                    Label idLabel = new Label("ID: " + item.getId());
+                    idLabel.setFont(new Font("Arial", 14));
+                    Label nomLabel = new Label("Nom: " + item.getNom());
+                    Label typeLabel = new Label("Type: " + item.getType());
+                    Label descriptionLabel = new Label("Description: " + item.getDescription());
+                    Label prixLabel = new Label("Prix: " + item.getPrix());
 
-        TableColumn<Composante, String> typeColumn = new TableColumn<>("Type");
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+                    cellContent.getChildren().addAll(idLabel, nomLabel, typeLabel, descriptionLabel, prixLabel);
+                    setGraphic(cellContent);
+                }
+            }
+        });
 
-        TableColumn<Composante, String> descriptionColumn = new TableColumn<>("Description");
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-
-        TableColumn<Composante, Integer> prixColumn = new TableColumn<>("Prix");
-        prixColumn.setCellValueFactory(new PropertyValueFactory<>("prix")); // Assurez-vous que ce nom correspond à getPrix()
-
-        tableView.getColumns().addAll(idColumn, nomColumn, typeColumn, descriptionColumn, prixColumn);
-
+        // Création des champs de texte et boutons
         nomField = new TextField();
         nomField.setPromptText("Nom");
 
-        typeField = new TextField();
-        typeField.setPromptText("Type");
+        typeComboBox = new ComboBox<>();
+        typeComboBox.getItems().addAll("CPU", "Roues", "Bras", "Hélice", "Caméra", "Haut-parleur", "Micro", "Écran");
+        typeComboBox.setPromptText("Type");
+        typeComboBox.setMaxWidth(Double.MAX_VALUE);
+        HBox typeBox = new HBox(typeComboBox);
+        typeBox.setPadding(new Insets(0, 0, 10, 0));
+        HBox.setHgrow(typeComboBox, Priority.ALWAYS);
 
         descriptionField = new TextField();
         descriptionField.setPromptText("Description");
@@ -58,25 +75,26 @@ public class MesComposantsView extends VBox {
         modifierButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
 
         supprimerButton = new Button("Supprimer");
-        supprimerButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
+        supprimerButton.setStyle("-fx-background-color: #C8102E; -fx-text-fill: white;");
 
         retourButton = new Button("Retour");
         retourButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
 
-        getChildren().addAll(tableView, nomField, typeField, descriptionField, prixField, modifierButton, supprimerButton, retourButton);
+        // Ajout des éléments à la VBox
+        getChildren().addAll(listView, nomField, typeComboBox, descriptionField, prixField, modifierButton, supprimerButton, retourButton);
         setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
 
-    public TableView<Composante> getTableView() {
-        return tableView;
+    public ListView<Composante> getListView() {
+        return listView;
     }
 
     public TextField getNomField() {
         return nomField;
     }
 
-    public TextField getTypeField() {
-        return typeField;
+    public ComboBox<String> getTypeComboBox() {
+        return typeComboBox;
     }
 
     public TextField getDescriptionField() {
@@ -100,6 +118,15 @@ public class MesComposantsView extends VBox {
     }
 
     public void setComposantesList(ObservableList<Composante> composantesList) {
-        tableView.setItems(composantesList);
+        listView.setItems(composantesList);
+    }
+
+    public void remplirChamps(Composante composante) {
+        nomField.setText(composante.getNom());
+        typeComboBox.setValue(composante.getType());
+        descriptionField.setText(composante.getDescription());
+        prixField.setText(String.valueOf(composante.getPrix()));
     }
 }
+
+
