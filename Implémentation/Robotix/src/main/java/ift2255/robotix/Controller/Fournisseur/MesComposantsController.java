@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -60,15 +61,33 @@ public class MesComposantsController {
         Composante selected = view.getListView().getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
-                selected.setNom(view.getNomField().getText());
-                selected.setType(view.getTypeComboBox().getValue());
-                selected.setDescription(view.getDescriptionField().getText());
-                selected.setPrix(Integer.parseInt(view.getPrixField().getText()));
+                // Récupérer les nouvelles valeurs des champs de texte
+                String nouveauNom = view.getNomField().getText();
+                String nouveauType = view.getTypeComboBox().getValue();
+                String nouvelleDescription = view.getDescriptionField().getText();
+                int nouveauPrix = Integer.parseInt(view.getPrixField().getText());
+
+                // Mettre à jour les valeurs de la composante sélectionnée
+                selected.setNom(nouveauNom);
+                selected.setType(nouveauType);
+                selected.setDescription(nouvelleDescription);
+                selected.setPrix(nouveauPrix);
+
+                // Mettre à jour la composante dans la gestion des composantes
                 gestionComposantes.updateComposante(selected);
+
+                // Mettre à jour la liste affichée
                 afficherComposants(gestionComposantes.chargerComposantes(fournisseur.getEmail())); // Refresh the list
             } catch (NumberFormatException e) {
                 System.err.println("Erreur de format pour le prix : " + e.getMessage());
             }
+            // Afficher une confirmation de la modification
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Modification");
+            alert.setHeaderText(null);
+            alert.setContentText("Modification enregistrée!");
+            alert.show();
+
         }
     }
 

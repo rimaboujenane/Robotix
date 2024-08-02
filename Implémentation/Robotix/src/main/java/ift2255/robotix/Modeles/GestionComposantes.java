@@ -12,6 +12,7 @@ public class GestionComposantes {
     private List<Composante> mesComposantes = new ArrayList<>();
     private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
     private Map<String, List<Composante>> composantesParFournisseur = new HashMap<>();
+    private int nextId = 1; // Initialisation à 1 ou à une autre valeur appropriée
 
     public GestionComposantes(Fournisseur fournisseur) {
         this.fournisseur = fournisseur;
@@ -20,7 +21,7 @@ public class GestionComposantes {
 
     public void ajouterComposante(Composante composante) {
         // Générer un ID unique pour le nouveau composant
-        int id = mesComposantes.size();
+        int id = getNextId();
         composante.setId(id);
 
         try (CSVWriter writer = new CSVWriter(new FileWriter(CSV_FILE, true))) {
@@ -41,6 +42,19 @@ public class GestionComposantes {
             System.err.println("Erreur lors de l'écriture du composant dans le CSV: " + e.getMessage());
         }
     }
+
+    private int getNextId() {
+        int maxId = 0;
+        for (List<Composante> composants : composantesParFournisseur.values()) {
+            for (Composante composante : composants) {
+                if (composante.getId() > maxId) {
+                    maxId = composante.getId();
+                }
+            }
+        }
+        return maxId + 1;
+    }
+
 
     public List<Composante> chargerComposantes(String fournisseurEmail) {
         List<Composante> composants = composantesParFournisseur.getOrDefault(fournisseurEmail, new ArrayList<>());
@@ -66,6 +80,11 @@ public class GestionComposantes {
                         composantesParFournisseur
                                 .computeIfAbsent(fournisseurEmail, k -> new ArrayList<>())
                                 .add(composante);
+
+                        // Mettre à jour le prochain ID disponible
+                        if (id >= nextId) {
+                            nextId = id + 1;
+                        }
                     } catch (NumberFormatException e) {
                         System.err.println("Erreur de format dans les données : " + String.join(",", nextLine));
                     }
