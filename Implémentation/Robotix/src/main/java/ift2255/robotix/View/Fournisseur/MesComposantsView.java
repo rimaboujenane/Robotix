@@ -53,6 +53,7 @@ public class MesComposantsView extends VBox {
                     VBox cellContent = new VBox();
                     cellContent.setPadding(new Insets(10));
                     cellContent.setStyle("-fx-background-color: #778DA9; -fx-text-fill: white;");
+                    cellContent.setAlignment(Pos.CENTER);
 
                     Label nomLabel = new Label("Nom: " + item.getNom());
                     Label typeLabel = new Label("Type: " + item.getType());
@@ -61,6 +62,7 @@ public class MesComposantsView extends VBox {
 
                     cellContent.getChildren().addAll(nomLabel, typeLabel, descriptionLabel, prixLabel);
                     setGraphic(cellContent);
+
                 }
             }
         });

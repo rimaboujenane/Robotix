@@ -29,7 +29,7 @@ public class MenuFournisseurController {
     public MenuFournisseurController(Stage stage, MenuFournisseurView view) {
         this.view = view;
         this.stage = stage;
-        this.gestionComposantes = new GestionComposantes(fournisseur);
+        this.gestionComposantes = new GestionComposantes();
         this.view.getProfilMenuButton().setOnAction(e -> navigateToProfil());
         this.view.getMesComposantsMenuButton().setOnAction(e -> navigateToMesComposants());
         this.view.getEnregistrerComposantsMenuButton().setOnAction(e -> navigateToEnregistrer());

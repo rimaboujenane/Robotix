@@ -1,3 +1,8 @@
 "Nom","Prenom","Password","Email","Telephone"
 "test","test","","","test"
 "","admin","","admin",""
+"Smith","John","password123","john.smith@example.com","0612345678"
+"Nguyen","An","securepass456","an.nguyen@example.com","0678901234"
+"García","Maria","mypassword789","maria.garcia@example.com","0654321098"
+"Kumar","Arjun","passw0rd123","arjun.kumar@example.com","0623456789"
+"Lee","Min","qwerty987","min.lee@example.com","0698765432"

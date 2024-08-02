@@ -13,18 +13,14 @@ import java.util.*;
  */
 public class GestionComposantes {
     private static final String CSV_FILE = "src/main/resources/data/composantes.csv";
-    private List<Composante> mesComposantes = new ArrayList<>();
-    private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
     private Map<String, List<Composante>> composantesParFournisseur = new HashMap<>();
     private int nextId = 1; // Initialisation à 1 ou à une autre valeur appropriée
 
     /**
      * Constructeur pour initialiser la gestion des composantes avec un fournisseur donné.
      *
-     * @param fournisseur Le fournisseur actuel.
      */
-    public GestionComposantes(Fournisseur fournisseur) {
-        this.fournisseur = fournisseur;
+    public GestionComposantes() {
         chargerToutesComposantes();
     }
 
