@@ -9,6 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * La classe MenuFournisseurView représente la vue du menu principal pour les fournisseurs.
+ * Elle affiche un message de bienvenue et propose plusieurs boutons de navigation vers
+ * différentes sections de l'application.
+ */
 public class MenuFournisseurView extends VBox {
     private Button profilMenuButton;
     private Button mesComposantsMenuButton;
@@ -16,6 +21,10 @@ public class MenuFournisseurView extends VBox {
     private Button logoutMenuButton;
     private Button exitMenuButton;
 
+    /**
+     * Constructeur de la classe MenuFournisseurView.
+     * Initialise la vue avec un message de bienvenue et les boutons de navigation.
+     */
     public MenuFournisseurView() {
         // Titre principal
         Label titleLabel = new Label("Bienvenue " + RegisterFournisseur.getInstance().getFournisseur().getPrenom() + " !");
@@ -109,22 +118,47 @@ public class MenuFournisseurView extends VBox {
         this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
 
+    /**
+     * Retourne le bouton de menu pour accéder au profil.
+     *
+     * @return le bouton profilMenuButton
+     */
     public Button getProfilMenuButton() {
         return profilMenuButton;
     }
 
+    /**
+     * Retourne le bouton de menu pour accéder à la section Mes Composants.
+     *
+     * @return le bouton mesComposantsMenuButton
+     */
     public Button getMesComposantsMenuButton() {
         return mesComposantsMenuButton;
     }
 
+    /**
+     * Retourne le bouton de menu pour accéder à la section Enregistrer Composants.
+     *
+     * @return le bouton enregistrerComposantsMenuButton
+     */
     public Button getEnregistrerComposantsMenuButton() {
         return enregistrerComposantsMenuButton;
     }
 
+    /**
+     * Retourne le bouton de menu pour se déconnecter.
+     *
+     * @return le bouton logoutMenuButton
+     */
     public Button getLogoutMenuButton() {
         return logoutMenuButton;
     }
 
+    /**
+     * Retourne le bouton de menu pour quitter l'application.
+     *
+     * @return le bouton exitMenuButton
+     */
     public Button getExitMenuButton() {
         return exitMenuButton;
     }

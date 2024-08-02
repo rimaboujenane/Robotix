@@ -7,6 +7,10 @@ import com.opencsv.exceptions.CsvValidationException;
 import java.io.*;
 import java.util.*;
 
+/**
+ * Gestion des composantes pour les fournisseurs. Cette classe permet d'ajouter, de modifier,
+ * de supprimer et de charger des composantes à partir d'un fichier CSV.
+ */
 public class GestionComposantes {
     private static final String CSV_FILE = "src/main/resources/data/composantes.csv";
     private List<Composante> mesComposantes = new ArrayList<>();
@@ -14,11 +18,21 @@ public class GestionComposantes {
     private Map<String, List<Composante>> composantesParFournisseur = new HashMap<>();
     private int nextId = 1; // Initialisation à 1 ou à une autre valeur appropriée
 
+    /**
+     * Constructeur pour initialiser la gestion des composantes avec un fournisseur donné.
+     *
+     * @param fournisseur Le fournisseur actuel.
+     */
     public GestionComposantes(Fournisseur fournisseur) {
         this.fournisseur = fournisseur;
         chargerToutesComposantes();
     }
 
+    /**
+     * Ajoute une nouvelle composante au système et l'enregistre dans le fichier CSV.
+     *
+     * @param composante La composante à ajouter.
+     */
     public void ajouterComposante(Composante composante) {
         // Générer un ID unique pour le nouveau composant
         int id = getNextId();
@@ -43,6 +57,11 @@ public class GestionComposantes {
         }
     }
 
+    /**
+     * Génère un nouvel identifiant unique pour une composante.
+     *
+     * @return Le prochain identifiant disponible.
+     */
     private int getNextId() {
         int maxId = 0;
         for (List<Composante> composants : composantesParFournisseur.values()) {
@@ -55,13 +74,21 @@ public class GestionComposantes {
         return maxId + 1;
     }
 
-
+    /**
+     * Charge les composantes pour un fournisseur donné à partir du fichier CSV.
+     *
+     * @param fournisseurEmail L'email du fournisseur dont les composantes doivent être chargées.
+     * @return Une liste de composantes pour le fournisseur spécifié.
+     */
     public List<Composante> chargerComposantes(String fournisseurEmail) {
         List<Composante> composants = composantesParFournisseur.getOrDefault(fournisseurEmail, new ArrayList<>());
         System.out.println("Composants chargés pour " + fournisseurEmail + ": " + composants);
         return composants;
     }
 
+    /**
+     * Charge toutes les composantes à partir du fichier CSV et les stocke dans une carte par fournisseur.
+     */
     private void chargerToutesComposantes() {
         try (CSVReader reader = new CSVReader(new FileReader(CSV_FILE))) {
             reader.skip(1); // Ignore l'en-tête du fichier CSV
@@ -73,7 +100,7 @@ public class GestionComposantes {
                         String nom = nextLine[1];
                         String type = nextLine[2];
                         String description = nextLine[3];
-                        int prix = Integer.parseInt(nextLine[4]);
+                        double prix = Double.parseDouble(nextLine[4]);
                         String fournisseurEmail = nextLine[5];
 
                         Composante composante = new Composante(id, nom, type, description, prix, fournisseurEmail);
@@ -97,6 +124,11 @@ public class GestionComposantes {
         }
     }
 
+    /**
+     * Met à jour une composante existante dans le système et enregistre les modifications dans le fichier CSV.
+     *
+     * @param composanteModifie La composante modifiée.
+     */
     public void updateComposante(Composante composanteModifie) {
         List<Composante> composantes = chargerComposantes(composanteModifie.getFournisseurEmail());
         boolean composanteUpdated = false;
@@ -116,6 +148,9 @@ public class GestionComposantes {
         }
     }
 
+    /**
+     * Écrit toutes les composantes dans le fichier CSV.
+     */
     private void writeComposantesToCSV() {
         try (CSVWriter writer = new CSVWriter(new FileWriter(CSV_FILE))) {
             String[] header = {"ID", "Nom", "Type", "Description", "Prix", "FournisseurEmail"};
@@ -140,6 +175,12 @@ public class GestionComposantes {
         }
     }
 
+    /**
+     * Supprime une composante du système et du fichier CSV.
+     *
+     * @param id               L'identifiant de la composante à supprimer.
+     * @param fournisseurEmail L'email du fournisseur de la composante.
+     */
     public void supprimerComposante(int id, String fournisseurEmail) {
         List<Composante> composantes = chargerComposantes(fournisseurEmail);
         composantes.removeIf(c -> c.getId() == id);
