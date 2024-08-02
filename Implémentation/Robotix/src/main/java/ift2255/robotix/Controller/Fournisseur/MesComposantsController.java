@@ -91,6 +91,12 @@ public class MesComposantsController {
                 String prixText = view.getPrixField().getText().replace(',', '.');
                 double nouveauPrix = Double.parseDouble(prixText);
 
+                // Vérification des champs vides
+                if (nouveauNom.isEmpty() || nouveauType == null || nouveauType.isEmpty() || nouvelleDescription.isEmpty() || prixText.isEmpty()) {
+                    showError("Tous les champs doivent être remplis.");
+                    return;
+                }
+
                 // Vérifier la longueur de la description
                 if (nouvelleDescription.length() > 30) {
                     showError("La description ne peut pas dépasser 30 caractères.");
@@ -119,8 +125,9 @@ public class MesComposantsController {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Modification");
                 alert.setHeaderText(null);
-                alert.setContentText("Modification enregistrée!");
+                alert.setContentText("Modification enregistrée pour la composante: '" + selected.getNom() + "'!");
                 alert.show();
+
 
                 // Optionnellement, vider les champs
                 view.getNomField().clear();
@@ -159,16 +166,16 @@ public class MesComposantsController {
             gestionComposantes.supprimerComposante(selected.getId(), selected.getFournisseurEmail());
             composantsObservableList.remove(selected);
         }
-        // Afficher une confirmation de la suppression
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Suppression");
-        alert.setHeaderText(null);
-        alert.setContentText("Suppression effectuée!");
-        alert.show();
         view.getNomField().clear();
         view.getTypeComboBox().getSelectionModel().clearSelection();
         view.getDescriptionField().clear();
         view.getPrixField().clear();
+        // Afficher une confirmation de la suppression
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Suppression");
+        alert.setHeaderText(null);
+        alert.setContentText("Suppression effectuée de la composante: '" + selected.getNom() + "!");
+        alert.show();
     }
 
     /**

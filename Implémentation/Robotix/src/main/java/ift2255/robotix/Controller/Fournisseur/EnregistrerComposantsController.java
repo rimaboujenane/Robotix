@@ -49,13 +49,19 @@ public class EnregistrerComposantsController {
     }
 
     /**
-     * Enregistre une composante en fonction des informations saisies par l'utilisateur.
+     * Enregistre une nouvelle composante après validation des champs.
      */
     private void enregistrerComposante() {
         String nom = view.getNomField().getText();
         String type = view.getTypeComboBox().getValue(); // Récupère la valeur sélectionnée dans ComboBox
         String description = view.getDescriptionField().getText();
         String prixText = view.getPrixField().getText();
+
+        // Vérification des champs vides
+        if (nom.isEmpty() || type == null || type.isEmpty() || description.isEmpty() || prixText.isEmpty()) {
+            showError("Tous les champs doivent être remplis.");
+            return;
+        }
 
         // Vérification de la longueur de la description
         if (description.length() > 30) {
@@ -66,7 +72,7 @@ public class EnregistrerComposantsController {
         try {
             double prix = Double.parseDouble(prixText);
             // Vérifier si le prix est négatif
-            if (prix < 0) {
+            if (prix <= 0) {
                 showError("Le prix ne peut pas être négatif.");
                 return;
             }
@@ -96,6 +102,12 @@ public class EnregistrerComposantsController {
     }
 
     /**
+     * Affiche un message d'erreur dans une alerte.
+     *
+     * @param message Le message d'erreur à afficher.
+     */
+
+    /**
      * Retourne au menu principal du fournisseur.
      */
     private void retournerMenu() {
@@ -110,8 +122,11 @@ public class EnregistrerComposantsController {
      * @param message Le message d'erreur à afficher.
      */
     private void showError(String message) {
-        Alert alert = new Alert(AlertType.ERROR, message, ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
         alert.setHeaderText(null);
+        alert.setContentText(message);
         alert.showAndWait();
     }
+
 }
