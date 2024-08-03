@@ -1,9 +1,6 @@
 package ift2255.robotix.Controller.Utilisateur;
 
-import ift2255.robotix.Modeles.Activite;
-import ift2255.robotix.Modeles.GestionActivites;
-import ift2255.robotix.Modeles.RegisterUtilisateur;
-import ift2255.robotix.Modeles.Utilisateur;
+import ift2255.robotix.Modeles.*;
 import ift2255.robotix.View.Utilisateur.ActiviteMenuView;
 import ift2255.robotix.View.Utilisateur.MenuView;
 import javafx.scene.Scene;
@@ -48,6 +45,8 @@ public class ActiviteMenuController {
 
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
 
+        NotifService.getInstance().sendNotif("Inscription à l'activité : " + activite.getNom());
+
         // Réinitialiser les actions des boutons après l'inscription
         this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
         this.activiteMenuView.setButtonAction("Se désinscrire", event -> handleDesinscription((Activite) ((Button) event.getSource()).getUserData()));
@@ -64,6 +63,7 @@ public class ActiviteMenuController {
         activiteMenuView.afficherVue();
 
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
+        NotifService.getInstance().sendNotif("Désinscription à l'activité : " + activite.getNom());
 
         // Réinitialiser les actions des boutons après la désinscription
         this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
