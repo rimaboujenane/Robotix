@@ -183,4 +183,7 @@ public class GestionComposantes {
         writeComposantesToCSV();
         composantesParFournisseur.put(fournisseurEmail, composantes);
     }
+    public Map<String, List<Composante>> getComposantesParFournisseur() {
+        return composantesParFournisseur;
+    }
 }
