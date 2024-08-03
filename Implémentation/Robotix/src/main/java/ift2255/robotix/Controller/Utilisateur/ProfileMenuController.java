@@ -72,7 +72,7 @@ public class ProfileMenuController {
         this.utilisateur = utilisateurModifie;
 
         RegisterUtilisateur.getInstance().setUtilisateur(utilisateur);
-        NotifService.getInstance().sendNotif("Vous avez modifié votre profil");
+        NotifService.getInstance().sendNotif("Vous avez modifié votre profil"); // envoyer une notification
 
         // Afficher une confirmation de la modification
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

@@ -45,7 +45,7 @@ public class ActiviteMenuController {
 
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
 
-        NotifService.getInstance().sendNotif("Inscription à l'activité : " + activite.getNom());
+        NotifService.getInstance().sendNotif("Inscription à l'activité : " + activite.getNom()); // envoyer une notification
 
         // Réinitialiser les actions des boutons après l'inscription
         this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));
@@ -63,7 +63,7 @@ public class ActiviteMenuController {
         activiteMenuView.afficherVue();
 
         this.activiteMenuView.getBackButton().setOnAction(e -> goBackMenu());
-        NotifService.getInstance().sendNotif("Désinscription à l'activité : " + activite.getNom());
+        NotifService.getInstance().sendNotif("Désinscription à l'activité : " + activite.getNom()); // envoyer une notification
 
         // Réinitialiser les actions des boutons après la désinscription
         this.activiteMenuView.setButtonAction("S'inscrire", event -> handleInscription((Activite) ((Button) event.getSource()).getUserData()));

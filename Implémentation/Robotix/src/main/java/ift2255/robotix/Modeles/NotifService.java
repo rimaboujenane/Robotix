@@ -5,15 +5,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe de service singleton responsable de la gestion des notifications.
+ */
 public class NotifService {
-    // The instance should be static
+    // L'instance unique de NotifService
     private static NotifService instance = null;
-    private List<Notification> notifications = new ArrayList<Notification>();
+    // Liste pour stocker les notifications
+    private List<Notification> notifications = new ArrayList<>();
 
-    // Private constructor to prevent instantiation
+    /**
+     * Constructeur privé pour empêcher l'instanciation depuis l'extérieur.
+     */
     private NotifService() {}
 
-    // Public method to provide access to the instance
+    /**
+     * Fournit l'accès à l'instance singleton de NotifService.
+     *
+     * @return l'instance singleton de NotifService
+     */
     public static synchronized NotifService getInstance() {
         if (instance == null) {
             instance = new NotifService();
@@ -21,18 +31,39 @@ public class NotifService {
         return instance;
     }
 
-   public void sendNotif(String text) {
+    /**
+     * Envoie une notification avec la date et l'heure actuelles.
+     *
+     * @param text le texte de la notification
+     */
+    public void sendNotif(String text) {
+        // Obtenir la date et l'heure actuelles
         LocalDateTime now = LocalDateTime.now();
+        // Définir le format pour la date et l'heure
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd HH:mm");
+        // Formater la date et l'heure actuelles
         String date = now.format(formatter);
-        Notification notif = new Notification(date + " | " +text);
+        // Créer une nouvelle notification avec la date formatée et le message
+        Notification notif = new Notification(date + " | " + text);
+        // Ajouter la notification à la liste
         notifications.add(notif);
-   }
-   public List<Notification> getNotifications() {
-        return notifications;
-   }
+    }
 
-   public void suppressNotif(Notification notif) {
+    /**
+     * Renvoie la liste des notifications actuelles.
+     *
+     * @return une liste de notifications
+     */
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    /**
+     * Supprime une notification spécifique de la liste.
+     *
+     * @param notif la notification à supprimer
+     */
+    public void suppressNotif(Notification notif) {
         notifications.remove(notif);
-   }
+    }
 }
