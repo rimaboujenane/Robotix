@@ -1,15 +1,11 @@
 package ift2255.robotix.Controller;
 
-import ift2255.robotix.Controller.Fournisseur.MenuFournisseurController;
-import ift2255.robotix.Controller.Utilisateur.MenuController;
 import ift2255.robotix.Modeles.Fournisseur;
 import ift2255.robotix.Modeles.GestionFournisseurs;
 import ift2255.robotix.Modeles.GestionUtilisateurs;
 import ift2255.robotix.Modeles.Utilisateur;
-import ift2255.robotix.View.Fournisseur.MenuFournisseurView;
 import ift2255.robotix.View.InscriptionView;
 import ift2255.robotix.View.LoginView;
-import ift2255.robotix.View.Utilisateur.MenuView;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
@@ -70,7 +66,7 @@ public class InscriptionController {
             this.fournisseur = new Fournisseur(nom, prenom, password, email, phone);
             GestionFournisseurs fournisseurs = new GestionFournisseurs();
             fournisseurs.addFournisseur(fournisseur);
-            navigateToMenuFournisseur(); // Naviguer vers le menu fournisseur
+            navigateToMenu(); // Naviguer vers le menu fournisseur
         }
     }
 
@@ -87,17 +83,9 @@ public class InscriptionController {
      * Navigue vers le menu principal de l'utilisateur inscrit.
      */
     public void navigateToMenu() {
-        MenuView menuView = new MenuView();
-        MenuController menuController = new MenuController(stage, menuView);
-        stage.setScene(new Scene(menuView, 900, 700));
+        LoginView loginView = new LoginView();
+        LoginController loginController = new LoginController(stage, loginView);
+        stage.setScene(new Scene(loginView, 900, 700));
     }
 
-    /**
-     * Navigue vers le menu principal du fournisseur inscrit.
-     */
-    public void navigateToMenuFournisseur() {
-        MenuFournisseurView menuView = new MenuFournisseurView();
-        MenuFournisseurController menuController = new MenuFournisseurController(stage, menuView);
-        stage.setScene(new Scene(menuView, 900, 700));
-    }
 }
