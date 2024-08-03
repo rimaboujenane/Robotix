@@ -1,5 +1,7 @@
 package ift2255.robotix.Modeles;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +22,16 @@ public class NotifService {
     }
 
    public void sendNotif(String text) {
-        Notification notif = new Notification(text);
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd HH:mm");
+        String date = now.format(formatter);
+        Notification notif = new Notification(date + " | " +text);
         notifications.add(notif);
    }
    public List<Notification> getNotifications() {
         return notifications;
    }
-   public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
-   }
+
    public void suppressNotif(Notification notif) {
         notifications.remove(notif);
    }
