@@ -54,6 +54,7 @@ public class TestGestionUser {
      */
     @Test
     public void testNonExistentUser() {
+        setUp();
         assertFalse(gestionUtilisateurs.isValidUser("nonexistent@example.com", "password123"));
         assertNull(gestionUtilisateurs.getUtilisateur());
     }
