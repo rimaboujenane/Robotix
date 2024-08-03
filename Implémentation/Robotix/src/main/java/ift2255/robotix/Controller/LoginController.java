@@ -54,6 +54,7 @@ public class LoginController {
         if ("Utilisateur".equals(type.getValue()) && utilisateurs.isValidUser(username, password)) {
             this.utilisateur = utilisateurs.getUtilisateur();
             RegisterUtilisateur.getInstance().setUtilisateur(this.utilisateur);
+            NotifService.getInstance().getNotifications().clear();
             navigateToMenu(); // Naviguer vers le menu utilisateur
         }
         // Vérifier les informations de connexion pour un fournisseur

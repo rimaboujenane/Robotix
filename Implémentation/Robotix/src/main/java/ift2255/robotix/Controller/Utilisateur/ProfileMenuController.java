@@ -1,6 +1,7 @@
 package ift2255.robotix.Controller.Utilisateur;
 
 import ift2255.robotix.Modeles.GestionUtilisateurs;
+import ift2255.robotix.Modeles.NotifService;
 import ift2255.robotix.Modeles.RegisterUtilisateur;
 import ift2255.robotix.Modeles.Utilisateur;
 import ift2255.robotix.View.Utilisateur.MenuView;
@@ -71,6 +72,7 @@ public class ProfileMenuController {
         this.utilisateur = utilisateurModifie;
 
         RegisterUtilisateur.getInstance().setUtilisateur(utilisateur);
+        NotifService.getInstance().sendNotif("Vous avez modifié votre profil");
 
         // Afficher une confirmation de la modification
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
