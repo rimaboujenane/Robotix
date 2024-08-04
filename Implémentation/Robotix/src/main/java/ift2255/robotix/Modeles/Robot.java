@@ -1,6 +1,7 @@
 package ift2255.robotix.Modeles;
 
-public class Robot{
+public class Robot {
+    private int id;
     private String numeroSerie;
     private String nom;
     private String type;
@@ -9,81 +10,233 @@ public class Robot{
     private int niveauBatterie;
     private double consommationCPU;
     private double consommationMemoire;
+    private String utilisateurEmail;
 
-    public Robot(){
-        // creation de robot sans attributs
+    /**
+     * Constructeur par défaut pour créer un robot sans attributs.
+     */
+    public Robot() {
+        // Création de robot sans attributs
     }
 
-    public Robot(String numeroSerie, String nom, String type, String position, double vitesse,int niveauBatterie, double consommationCPU, double consommationMemoire){
-        this.numeroSerie= numeroSerie;
-        this.nom= nom;
-        this.type=type;
-        this.position=position;
-        this.vitesse= vitesse;
-        this.niveauBatterie= niveauBatterie;
-        this.consommationCPU= consommationCPU;
-        this.consommationMemoire=consommationMemoire;
+    /**
+     * Constructeur avec paramètres pour initialiser tous les attributs du robot.
+     *
+     * @param id                 L'identifiant du robot.
+     * @param numeroSerie        Le numéro de série du robot.
+     * @param nom                Le nom du robot.
+     * @param type               Le type du robot.
+     * @param position           La position du robot.
+     * @param vitesse            La vitesse du robot.
+     * @param niveauBatterie     Le niveau de batterie du robot.
+     * @param consommationCPU    La consommation CPU du robot.
+     * @param consommationMemoire La consommation mémoire du robot.
+     * @param utilisateurEmail   L'email de l'utilisateur propriétaire du robot.
+     */
+    public Robot(int id, String numeroSerie, String nom, String type, String position, double vitesse, int niveauBatterie, double consommationCPU, double consommationMemoire, String utilisateurEmail) {
+        this.id = id;
+        this.numeroSerie = numeroSerie;
+        this.nom = nom;
+        this.type = type;
+        this.position = position;
+        this.vitesse = vitesse;
+        this.niveauBatterie = niveauBatterie;
+        this.consommationCPU = consommationCPU;
+        this.consommationMemoire = consommationMemoire;
+        this.utilisateurEmail = utilisateurEmail;
     }
 
-    // getters de la classe
-    public String getNumeroSerie(){
+    /**
+     * Obtient l'identifiant du robot.
+     *
+     * @return L'identifiant du robot.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Obtient le numéro de série du robot.
+     *
+     * @return Le numéro de série du robot.
+     */
+    public String getNumeroSerie() {
         return numeroSerie;
     }
-    public String getNom(){
+
+    /**
+     * Obtient le nom du robot.
+     *
+     * @return Le nom du robot.
+     */
+    public String getNom() {
         return nom;
     }
-    public String getType(){
+
+    /**
+     * Obtient le type du robot.
+     *
+     * @return Le type du robot.
+     */
+    public String getType() {
         return type;
     }
-    public String getPosition(){
+
+    /**
+     * Obtient la position du robot.
+     *
+     * @return La position du robot.
+     */
+    public String getPosition() {
         return position;
     }
-    public double getVitesse(){
+
+    /**
+     * Obtient la vitesse du robot.
+     *
+     * @return La vitesse du robot.
+     */
+    public double getVitesse() {
         return vitesse;
     }
-    public int getNiveauBatterie(){
+
+    /**
+     * Obtient le niveau de batterie du robot.
+     *
+     * @return Le niveau de batterie du robot.
+     */
+    public int getNiveauBatterie() {
         return niveauBatterie;
     }
-    public double getConsommationCPU(){
+
+    /**
+     * Obtient la consommation CPU du robot.
+     *
+     * @return La consommation CPU du robot.
+     */
+    public double getConsommationCPU() {
         return consommationCPU;
     }
-    public double getConsommationMemoire(){
+
+    /**
+     * Obtient la consommation mémoire du robot.
+     *
+     * @return La consommation mémoire du robot.
+     */
+    public double getConsommationMemoire() {
         return consommationMemoire;
     }
-    // setters de la classe
-    public void setNom(String nom){
-        this.nom= nom;
-    }
-    public void setType(String type){
-        this.type=type;
-    }
-    public void setNumeroSerie(String numeroSerie){
-        this.numeroSerie= numeroSerie;
-    }
-    public void setPosition(String position){
-        this.position=position;
-    }
-    public void setVitesse(double vitesse){
-        this.vitesse=vitesse;
-    }
-    public void setNiveauBatterie( int niveauBatterie){
-        this.niveauBatterie= niveauBatterie;
-    }
-    public void setConsommationCPU(double consommationCPU){
-        this.consommationCPU= consommationCPU;
-    }
-    public void setConsommationMemoire(double consommationMemoire){
-        this.consommationMemoire= consommationMemoire;
+
+    /**
+     * Obtient l'email de l'utilisateur propriétaire du robot.
+     *
+     * @return L'email de l'utilisateur propriétaire du robot.
+     */
+    public String getUtilisateurEmail() {
+        return utilisateurEmail;
     }
 
-    // fonction qui prends un boolean en parametres si le bool == True 
-    // affiche un état général sinon on affiche complet.
-    public void afficherEtat(Boolean general){
-         if(general){
+    /**
+     * Définit l'identifiant du robot.
+     *
+     * @param id L'identifiant du robot.
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Définit le nom du robot.
+     *
+     * @param nom Le nom du robot.
+     */
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    /**
+     * Définit le type du robot.
+     *
+     * @param type Le type du robot.
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * Définit le numéro de série du robot.
+     *
+     * @param numeroSerie Le numéro de série du robot.
+     */
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+
+    /**
+     * Définit la position du robot.
+     *
+     * @param position La position du robot.
+     */
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    /**
+     * Définit la vitesse du robot.
+     *
+     * @param vitesse La vitesse du robot.
+     */
+    public void setVitesse(double vitesse) {
+        this.vitesse = vitesse;
+    }
+
+    /**
+     * Définit le niveau de batterie du robot.
+     *
+     * @param niveauBatterie Le niveau de batterie du robot.
+     */
+    public void setNiveauBatterie(int niveauBatterie) {
+        this.niveauBatterie = niveauBatterie;
+    }
+
+    /**
+     * Définit la consommation CPU du robot.
+     *
+     * @param consommationCPU La consommation CPU du robot.
+     */
+    public void setConsommationCPU(double consommationCPU) {
+        this.consommationCPU = consommationCPU;
+    }
+
+    /**
+     * Définit la consommation mémoire du robot.
+     *
+     * @param consommationMemoire La consommation mémoire du robot.
+     */
+    public void setConsommationMemoire(double consommationMemoire) {
+        this.consommationMemoire = consommationMemoire;
+    }
+
+    /**
+     * Définit l'email de l'utilisateur propriétaire du robot.
+     *
+     * @param utilisateurEmail L'email de l'utilisateur propriétaire du robot.
+     */
+    public void setUtilisateurEmail(String utilisateurEmail) {
+        this.utilisateurEmail = utilisateurEmail;
+    }
+
+    /**
+     * Affiche l'état du robot.
+     *
+     * @param general Si vrai, affiche un état général. Sinon, affiche un état complet.
+     */
+    public void afficherEtat(Boolean general) {
+        if (general) {
             System.out.println("Nom : " + nom);
             System.out.println("Type : " + type);
             System.out.println("Niveau de batterie : " + niveauBatterie + "%");
-         }else{
+        } else {
             System.out.println("État du Robot :");
             System.out.println("Numéro de série : " + numeroSerie);
             System.out.println("Nom : " + nom);
@@ -93,13 +246,17 @@ public class Robot{
             System.out.println("Niveau de batterie : " + niveauBatterie + "%");
             System.out.println("Consommation CPU : " + consommationCPU + "%");
             System.out.println("Consommation Mémoire : " + consommationMemoire + " MB");
-         }
+        }
     }
 
-
-@Override
-public String toString(){
-    return "Robot {" +
+    /**
+     * Convertit les informations du robot en chaîne de caractères.
+     *
+     * @return Une chaîne de caractères représentant les informations du robot.
+     */
+    @Override
+    public String toString() {
+        return "Robot {" +
                 "Numéro de série='" + numeroSerie + '\'' +
                 ", Nom='" + nom + '\'' +
                 ", Type='" + type + '\'' +
@@ -109,5 +266,5 @@ public String toString(){
                 ", Consommation CPU=" + consommationCPU + "%" +
                 ", Consommation Mémoire=" + consommationMemoire + " MB" +
                 '}';
-}
+    }
 }
