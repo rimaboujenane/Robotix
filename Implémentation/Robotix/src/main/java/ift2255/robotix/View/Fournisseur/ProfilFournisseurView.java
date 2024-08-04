@@ -21,6 +21,7 @@ public class ProfilFournisseurView extends VBox {
     private TextField emailField;
     private TextField phoneField;
     private PasswordField passwordField;
+    private TextField compagnieField;
     private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
 
     /**
@@ -57,6 +58,11 @@ public class ProfilFournisseurView extends VBox {
         passwordField = new PasswordField(); // Vous pouvez choisir si vous voulez afficher le mot de passe initial ou non
         passwordField.setStyle("-fx-background-color: white; -fx-text-fill: black;");
 
+        Label companieLabel = new Label("Companie");
+        companieLabel.setStyle("-fx-text-fill: white");
+        compagnieField = new TextField(fournisseur.getCompagnie());
+        compagnieField.setStyle("-fx-background-color: white; -fx-text-fill: black;");
+
         // Boutons
         saveButton = new Button("Enregistrer les modifications");
         saveButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
@@ -65,7 +71,7 @@ public class ProfilFournisseurView extends VBox {
         backButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
 
         VBox profileSection = new VBox(10, nameLabel, nameField, prenomLabel, prenomField, emailLabel, emailField,
-                phoneLabel, phoneField, passwordLabel, passwordField, saveButton);
+                phoneLabel, phoneField, passwordLabel, passwordField, companieLabel, compagnieField, saveButton);
         profileSection.setStyle("-fx-padding: 20; -fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         profileSection.setSpacing(10);
         profileSection.setPrefWidth(600);
@@ -140,5 +146,9 @@ public class ProfilFournisseurView extends VBox {
      */
     public String getUserPassword() {
         return passwordField.getText();
+    }
+
+    public String getUserCompagnie() {
+        return compagnieField.getText();
     }
 }

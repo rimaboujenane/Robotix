@@ -24,6 +24,7 @@ public class LoginView extends VBox {
     private ComboBox<String> loginTypeComboBox;
     private Button loginButton;
     private Label registerLabel;
+    private Label registerFournisseurLabel;
 
     /**
      * Constructeur de la vue de connexion.
@@ -56,17 +57,23 @@ public class LoginView extends VBox {
         loginTypeComboBox.getSelectionModel().selectFirst(); // Sélectionne par défaut le premier élément
 
         loginButton = new Button("Connexion");
-        loginButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white; ");
+        loginButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
         loginButton.prefWidthProperty().bind(usernameField.widthProperty());
 
-        registerLabel = new Label("Première fois sur Robotix? Créé un compte dès maintenant!");
+        registerLabel = new Label("Première fois sur Robotix? Créez un compte dès maintenant!");
         registerLabel.setStyle("-fx-text-fill: white;");
         // Souligné le texte quand on passe dessus
         registerLabel.setOnMouseEntered(event -> registerLabel.setStyle("-fx-text-fill: white; -fx-underline: true;"));
         registerLabel.setOnMouseExited(event -> registerLabel.setStyle("-fx-text-fill: white;"));
 
+        registerFournisseurLabel = new Label("Devenir Fournisseur dès maintenant!");
+        registerFournisseurLabel.setStyle("-fx-text-fill: white;");
+        // Souligné le texte quand on passe dessus
+        registerFournisseurLabel.setOnMouseEntered(event -> registerFournisseurLabel.setStyle("-fx-text-fill: white; -fx-underline: true;"));
+        registerFournisseurLabel.setOnMouseExited(event -> registerFournisseurLabel.setStyle("-fx-text-fill: white;"));
+
         VBox loginSection = new VBox(10, loginTitle, usernameLabel, usernameField, passwordLabel, passwordField,
-                loginTypeLabel, loginTypeComboBox, loginButton, registerLabel);
+                loginTypeLabel, loginTypeComboBox, loginButton, registerLabel, registerFournisseurLabel);
         loginSection.setStyle("-fx-padding: 20; -fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         loginSection.setSpacing(10);
         loginSection.setPrefWidth(400);
@@ -115,11 +122,20 @@ public class LoginView extends VBox {
     }
 
     /**
-     * Retourne le label d'inscription.
+     * Retourne le label d'inscription pour les nouveaux utilisateurs.
      *
-     * @return Le label d'inscription.
+     * @return Le label d'inscription pour les nouveaux utilisateurs.
      */
     public Label getRegisterLabel() {
         return registerLabel;
+    }
+
+    /**
+     * Retourne le label d'inscription pour les fournisseurs.
+     *
+     * @return Le label d'inscription pour les fournisseurs.
+     */
+    public Label getRegisterFournisseurLabel() {
+        return registerFournisseurLabel;
     }
 }

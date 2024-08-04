@@ -24,15 +24,18 @@ public class InscriptionView extends VBox {
     private TextField registerEmailField;
     private TextField registerPhoneField;
     private PasswordField registerPasswordField;
-    private ComboBox<String> registerTypeComboBox;
+    private TextField registerCompanieField;
     private Button registerButton;
     private Label loginLabel;
 
     /**
      * Constructeur de la vue d'inscription.
      * Initialise les éléments de l'interface utilisateur et les styles associés.
+     *
+     * @param fournisseur Indique si l'inscription est pour un fournisseur ou non.
+     *                    Si true, un champ pour le nom de la compagnie est ajouté.
      */
-    public InscriptionView() {
+    public InscriptionView(Boolean fournisseur) {
         // Titre pour la section d'inscription
         Label registerTitle = new Label("S'inscrire");
         registerTitle.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
@@ -60,13 +63,6 @@ public class InscriptionView extends VBox {
         registerPasswordLabel.setStyle("-fx-text-fill: white;");
         registerPasswordField = new PasswordField();
 
-        // ComboBox pour le type de compte
-        Label registerTypeLabel = new Label("Type de Compte:");
-        registerTypeLabel.setStyle("-fx-text-fill: white;");
-        registerTypeComboBox = new ComboBox<>();
-        registerTypeComboBox.getItems().addAll("Utilisateur", "Fournisseur");
-        registerTypeComboBox.getSelectionModel().selectFirst(); // Sélectionne par défaut le premier élément
-
         registerButton = new Button("S'inscrire");
         registerButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
         registerButton.prefWidthProperty().bind(registerNomField.widthProperty());
@@ -79,7 +75,19 @@ public class InscriptionView extends VBox {
 
         VBox registerSection = new VBox(10, registerTitle, registerNomLabel, registerNomField, registerPrenomLabel,
                 registerPrenomField, registerEmailLabel, registerEmailField, registerPhoneLabel, registerPhoneField,
-                registerPasswordLabel, registerPasswordField, registerTypeLabel, registerTypeComboBox, registerButton, loginLabel);
+                registerPasswordLabel, registerPasswordField);
+
+        if (fournisseur) {
+            Label registerCompanieLabel = new Label("Nom de votre compagnie");
+            registerCompanieLabel.setStyle("-fx-text-fill: white;");
+            registerCompanieField = new TextField();
+            registerSection.getChildren().addAll(registerCompanieLabel, registerCompanieField);
+            registerButton.setUserData(true);
+        }
+        else {
+            registerButton.setUserData(false);
+        }
+        registerSection.getChildren().addAll(registerButton, loginLabel);
         registerSection.setStyle("-fx-padding: 20; -fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         registerSection.setSpacing(10);
         registerSection.setPrefWidth(400);
@@ -136,15 +144,6 @@ public class InscriptionView extends VBox {
     }
 
     /**
-     * Retourne la ComboBox pour le type de compte.
-     *
-     * @return La ComboBox pour le type de compte.
-     */
-    public ComboBox<String> getRegisterTypeComboBox() {
-        return registerTypeComboBox;
-    }
-
-    /**
      * Retourne le bouton d'inscription.
      *
      * @return Le bouton d'inscription.
@@ -160,5 +159,14 @@ public class InscriptionView extends VBox {
      */
     public Label getLoginLabel() {
         return loginLabel;
+    }
+
+    /**
+     * Retourne le champ de texte pour le nom de la compagnie.
+     *
+     * @return Le champ de texte pour le nom de la compagnie, ou null si non applicable.
+     */
+    public TextField getRegisterCompanieField() {
+        return registerCompanieField;
     }
 }
