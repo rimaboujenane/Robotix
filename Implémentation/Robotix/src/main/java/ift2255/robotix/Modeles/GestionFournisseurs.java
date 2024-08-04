@@ -1,5 +1,8 @@
 package ift2255.robotix.Modeles;
 
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+
 import java.util.HashMap;
 
 public class GestionFournisseurs extends GestionUser{
@@ -41,7 +44,23 @@ public class GestionFournisseurs extends GestionUser{
         fournisseurMap.put(email, fournisseur);
         writeToCSV("src/main/resources/data/fournisseur.csv", false);
     }
+    public ObservableList<String> getFournisseurs() {
 
+        ObservableList<String> fourns = FXCollections.observableArrayList();
+        for (Fournisseur f : fournisseurMap.values()) {
+            fourns.add(f.getNom());
+        }
+        return fourns;
+    }
+    public Fournisseur getFournisseurByName(String nom) {
 
+        Fournisseur fourn = null;
+        for (Fournisseur f : fournisseurMap.values()) {
+            if (f.getNom().equals(nom)) {
+                fourn = f; break;
+            }
+        }
+        return fourn;
+    }
 
 }

@@ -31,6 +31,9 @@ public class MenuView extends VBox {
     private Button activiteMenuButton;
     private Button logoutMenuButton;
     private Button exitMenuButton;
+    private Button searchComposanteButton;
+    private Button searchFournisseurButton;
+    private Button buyComposanteButton;
 
     /**
      * Constructeur de la vue du menu principal.
@@ -67,6 +70,18 @@ public class MenuView extends VBox {
         exitImage.setFitHeight(75);
         exitImage.setFitWidth(75);
 
+        ImageView searchCompImage = new ImageView("file:src/main/resources/images/rechercheComposante.png");
+        searchCompImage.setFitHeight(75);
+        searchCompImage.setFitWidth(75);
+
+        ImageView searchFournImage = new ImageView("file:src/main/resources/images/rechercheFournisseur.png");
+        searchFournImage.setFitHeight(75);
+        searchFournImage.setFitWidth(75);
+
+        ImageView buyCompImage = new ImageView("file:src/main/resources/images/acheter.png");
+        buyCompImage.setFitHeight(75);
+        buyCompImage.setFitWidth(75);
+
         // Création des boutons du menu avec les images associées
         notifMenuButton = new Button();
         notifMenuButton.setGraphic(notifImage);
@@ -80,6 +95,13 @@ public class MenuView extends VBox {
         logoutMenuButton.setGraphic(logoutImage);
         exitMenuButton = new Button();
         exitMenuButton.setGraphic(exitImage);
+        searchComposanteButton = new Button();
+        searchComposanteButton.setGraphic(searchCompImage);
+        searchFournisseurButton = new Button();
+        searchFournisseurButton.setGraphic(searchFournImage);
+        buyComposanteButton = new Button();
+        buyComposanteButton.setGraphic(buyCompImage);
+
 
         // Style des boutons
         String buttonStyle = "-fx-background-color: #1B263B; -fx-padding: 10px; -fx-background-radius: 25;";
@@ -89,6 +111,9 @@ public class MenuView extends VBox {
         activiteMenuButton.setStyle(buttonStyle);
         logoutMenuButton.setStyle(buttonStyle);
         exitMenuButton.setStyle(buttonStyle);
+        searchComposanteButton.setStyle(buttonStyle);
+        searchFournisseurButton.setStyle(buttonStyle);
+        buyComposanteButton.setStyle(buttonStyle);
 
         // Ajuster la taille des boutons pour qu'ils soient uniformes
         notifMenuButton.setPrefSize(75, 75);
@@ -97,6 +122,9 @@ public class MenuView extends VBox {
         activiteMenuButton.setPrefSize(75, 75);
         logoutMenuButton.setPrefSize(75, 75);
         exitMenuButton.setPrefSize(75, 75);
+        searchComposanteButton.setPrefSize(75, 75);
+        searchFournisseurButton.setPrefSize(75, 75);
+        buyComposanteButton.setPrefSize(75, 75);
 
         // Création des étiquettes pour chaque bouton
         Label profilLabel = new Label("Profil");
@@ -111,6 +139,12 @@ public class MenuView extends VBox {
         logoutLabel.setStyle("-fx-text-fill: white");
         Label exitLabel = new Label("Quitter");
         exitLabel.setStyle("-fx-text-fill: white");
+        Label searchCompLabel = new Label("Recherche Composante");
+        searchCompLabel.setStyle("-fx-text-fill: white");
+        Label searchFournLabel = new Label("Recherche Fournisseur");
+        searchFournLabel.setStyle("-fx-text-fill: white");
+        Label buyCompLabel = new Label("Achete Composante");
+        buyCompLabel.setStyle("-fx-text-fill: white");
 
         // Organisation des boutons et des étiquettes dans des VBox pour chaque section
         VBox vbox1 = new VBox(10, profileMenuButton, profilLabel);
@@ -125,16 +159,24 @@ public class MenuView extends VBox {
         vbox5.setAlignment(Pos.CENTER);
         VBox vbox6 = new VBox(10, exitMenuButton, exitLabel);
         vbox6.setAlignment(Pos.CENTER);
+        VBox vbox7 = new VBox(10, searchComposanteButton, searchCompLabel);
+        vbox7.setAlignment(Pos.CENTER);
+        VBox vbox8 = new VBox(10, searchFournisseurButton, searchFournLabel);
+        vbox8.setAlignment(Pos.CENTER);
+        VBox vbox9 = new VBox(10, buyComposanteButton, buyCompLabel);
+        vbox9.setAlignment(Pos.CENTER);
 
         // Organisation des sections en lignes
         HBox row1 = new HBox(100, vbox1, vbox2, vbox3);
         row1.setAlignment(Pos.CENTER);
         HBox row2 = new HBox(100, vbox4, vbox5, vbox6);
         row2.setAlignment(Pos.CENTER);
+        HBox row3 = new HBox(100, vbox7, vbox8, vbox9);
+        row3.setAlignment(Pos.CENTER);
 
 
         // Organisation des lignes dans la vue principale
-        VBox appVbox = new VBox(75, row1, row2);
+        VBox appVbox = new VBox(75, row1, row2, row3);
 
         // Définir les marges et le style de la vue principale
         this.setSpacing(30);
@@ -196,5 +238,29 @@ public class MenuView extends VBox {
     public Button getExitMenuButton() {
         return exitMenuButton;
     }
+
+    /**
+     * Retourne le bouton de rechercher composantes.
+     *
+     * @return Le bouton de rechercher composantes.
+     */
+
+    public Button getSearchComposanteButton() { return searchComposanteButton; }
+
+    /**
+     * Retourne le bouton de rechercher fournisseurs.
+     *
+     * @return Le bouton de rechercher fournisseurs.
+     */
+
+    public Button getSearchFournisseurButton() { return searchFournisseurButton; }
+
+    /**
+     * Retourne le bouton d'acheter composantes.
+     *
+     * @return Le bouton d'acheter composantes.
+     */
+
+    public Button getBuyComposanteButton() { return buyComposanteButton; }
 }
 
