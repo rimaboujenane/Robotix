@@ -38,6 +38,7 @@ public class InscriptionController {
 
     /**
      * Gère l'inscription d'un nouvel utilisateur ou fournisseur en fonction du type sélectionné.
+     * Vérifie que tous les champs sont remplis, puis crée un utilisateur ou un fournisseur et l'ajoute à la gestion correspondante.
      */
     private void handleUtilisateurRegister() {
         String nom = view.getRegisterNomField().getText();
@@ -57,16 +58,20 @@ public class InscriptionController {
         }
 
         // Créer un utilisateur ou un fournisseur en fonction du type sélectionné
-        if (view.getRegisterTypeComboBox().getValue().equals("Utilisateur")) {
+        Object userData = view.getRegisterButton().getUserData();
+        if (userData instanceof Boolean && (Boolean) userData) {
+            String companie = view.getRegisterCompanieField() != null ? view.getRegisterCompanieField().getText() : "";
+            this.fournisseur = new Fournisseur(nom, prenom, password, email, phone, companie);
+            GestionFournisseurs fournisseurs = new GestionFournisseurs();
+            fournisseurs.addFournisseur(fournisseur);
+            valid();
+            navigateToMenu(); // Naviguer vers le menu fournisseur
+        } else {
             this.utilisateur = new Utilisateur(nom, prenom, password, email, phone);
             GestionUtilisateurs utilisateurs = new GestionUtilisateurs();
             utilisateurs.addUtilisateur(utilisateur);
+            valid();
             navigateToMenu(); // Naviguer vers le menu utilisateur
-        } else if (view.getRegisterTypeComboBox().getValue().equals("Fournisseur")) {
-            this.fournisseur = new Fournisseur(nom, prenom, password, email, phone);
-            GestionFournisseurs fournisseurs = new GestionFournisseurs();
-            fournisseurs.addFournisseur(fournisseur);
-            navigateToMenu(); // Naviguer vers le menu fournisseur
         }
     }
 
@@ -88,4 +93,13 @@ public class InscriptionController {
         stage.setScene(new Scene(loginView, 900, 700));
     }
 
+    /**
+     * Affiche une alerte de confirmation indiquant que l'inscription a été validée.
+     */
+    public void valid() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setContentText("Inscription validée!");
+        alert.showAndWait();
+    }
 }
