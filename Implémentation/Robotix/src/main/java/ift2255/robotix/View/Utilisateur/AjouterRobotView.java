@@ -1,7 +1,6 @@
 package ift2255.robotix.View.Utilisateur;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -19,7 +18,6 @@ public class AjouterRobotView extends VBox {
     private TextField niveauBatterieField;
     private TextField consommationCPUField;
     private TextField consommationMemoireField;
-    private TextField utilisateurEmailField;
     private Button ajouterButton;
     private Button retourButton;
     private Label errorMessage;
@@ -39,55 +37,51 @@ public class AjouterRobotView extends VBox {
         numeroSerieLabel.setStyle("-fx-text-fill: white;");
         numeroSerieField = new TextField();
         numeroSerieField.setPromptText("Numéro de Série");
-        numeroSerieField.setMaxWidth(400);
+        numeroSerieField.setMaxWidth(700);
 
         Label nomLabel = new Label("Nom:");
         nomLabel.setStyle("-fx-text-fill: white;");
         nomField = new TextField();
         nomField.setPromptText("Nom");
-        nomField.setMaxWidth(400);
+        nomField.setMaxWidth(700);
 
         Label typeLabel = new Label("Type:");
         typeLabel.setStyle("-fx-text-fill: white;");
         typeField = new TextField();
         typeField.setPromptText("Type");
-        typeField.setMaxWidth(400);
+        typeField.setMaxWidth(700);
 
         Label positionLabel = new Label("Position:");
         positionLabel.setStyle("-fx-text-fill: white;");
         positionField = new TextField();
         positionField.setPromptText("Position");
-        positionField.setMaxWidth(400);
+        positionField.setMaxWidth(700);
 
         Label vitesseLabel = new Label("Vitesse (m/s):");
         vitesseLabel.setStyle("-fx-text-fill: white;");
         vitesseField = new TextField();
         vitesseField.setPromptText("00.00");
-        vitesseField.setMaxWidth(400);
+        vitesseField.setMaxWidth(700);
 
         Label niveauBatterieLabel = new Label("Niveau de Batterie (%):");
         niveauBatterieLabel.setStyle("-fx-text-fill: white;");
         niveauBatterieField = new TextField();
         niveauBatterieField.setPromptText("00");
-        niveauBatterieField.setMaxWidth(400);
+        niveauBatterieField.setMaxWidth(700);
 
         Label consommationCPULabel = new Label("Consommation CPU (%):");
         consommationCPULabel.setStyle("-fx-text-fill: white;");
         consommationCPUField = new TextField();
         consommationCPUField.setPromptText("00.00");
-        consommationCPUField.setMaxWidth(400);
+        consommationCPUField.setMaxWidth(700);
 
         Label consommationMemoireLabel = new Label("Consommation Mémoire (MB):");
         consommationMemoireLabel.setStyle("-fx-text-fill: white;");
         consommationMemoireField = new TextField();
         consommationMemoireField.setPromptText("00.00");
-        consommationMemoireField.setMaxWidth(400);
+        consommationMemoireField.setMaxWidth(700);
 
-        Label utilisateurEmailLabel = new Label("Email de l'Utilisateur:");
-        utilisateurEmailLabel.setStyle("-fx-text-fill: white;");
-        utilisateurEmailField = new TextField();
-        utilisateurEmailField.setPromptText("Email de l'Utilisateur");
-        utilisateurEmailField.setMaxWidth(400);
+        
 
         ajouterButton = new Button("Ajouter");
         ajouterButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
@@ -98,7 +92,7 @@ public class AjouterRobotView extends VBox {
         errorMessage = new Label();
         errorMessage.setTextFill(javafx.scene.paint.Color.RED);
 
-        VBox formLayout = new VBox(10, numeroSerieLabel, numeroSerieField, nomLabel, nomField, typeLabel, typeField, positionLabel, positionField, vitesseLabel, vitesseField, niveauBatterieLabel, niveauBatterieField, consommationCPULabel, consommationCPUField, consommationMemoireLabel, consommationMemoireField, utilisateurEmailLabel, utilisateurEmailField);
+        VBox formLayout = new VBox(10, numeroSerieLabel, numeroSerieField, nomLabel, nomField, typeLabel, typeField, positionLabel, positionField, vitesseLabel, vitesseField, niveauBatterieLabel, niveauBatterieField, consommationCPULabel, consommationCPUField, consommationMemoireLabel, consommationMemoireField);
         formLayout.setStyle("-fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         formLayout.setPadding(new Insets(10));
         formLayout.setPrefWidth(420);
@@ -145,10 +139,7 @@ public class AjouterRobotView extends VBox {
         return consommationMemoireField;
     }
 
-    public TextField getUtilisateurEmailField() {
-        return utilisateurEmailField;
-    }
-
+    
     public Button getAjouterButton() {
         return ajouterButton;
     }
