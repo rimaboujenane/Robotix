@@ -42,7 +42,8 @@ public class TestGestionActivites {
      * Vérifie que l'activité est ajoutée à la liste des activités inscrites et retirée de la liste des non inscrites.
      */
     @Test
-    public void testInscriptionSuccess() {
+    public void testInscriptionSuccess() throws IOException {
+        setUp();
         Activite activite = new Activite(5, "Maintenance Préventive", LocalDate.of(2024, 8, 9), LocalDate.of(2024, 8, 10), List.of());
         gestionActivites.inscription(activite);
 
@@ -58,7 +59,8 @@ public class TestGestionActivites {
      * Vérifie que l'activité est retirée de la liste des activités inscrites et ajoutée à la liste des non inscrites.
      */
     @Test
-    public void testDesinscriptionSuccess() {
+    public void testDesinscriptionSuccess() throws IOException {
+        setUp();
         Activite activite = new Activite(4, "Assemblage de Composants", LocalDate.of(2024, 8, 7), LocalDate.of(2024, 8, 8), List.of("jdupont@example.com"));
         gestionActivites.desinscription(activite);
 
@@ -74,7 +76,8 @@ public class TestGestionActivites {
      * Vérifie que l'activité est toujours présente dans la liste des activités inscrites, sans modification.
      */
     @Test
-    public void testInscriptionAlreadyRegistered() {
+    public void testInscriptionAlreadyRegistered() throws IOException {
+        setUp();
         Activite activite = new Activite(1, "Patrouille de Sécurité", LocalDate.of(2024, 8, 1), LocalDate.of(2024, 8, 2), List.of("jdupont@example.com", "admin"));
         gestionActivites.inscription(activite);
 
@@ -87,7 +90,8 @@ public class TestGestionActivites {
      * Vérifie que l'activité est toujours absente de la liste des activités inscrites et présente dans celle des non inscrites.
      */
     @Test
-    public void testDesinscriptionNotRegistered() {
+    public void testDesinscriptionNotRegistered() throws IOException {
+        setUp();
         Activite activite = new Activite(7, "Livraison de Colis", LocalDate.of(2024, 8, 13), LocalDate.of(2024, 8, 14), List.of());
         gestionActivites.desinscription(activite);
 
@@ -103,7 +107,8 @@ public class TestGestionActivites {
      * Vérifie que la liste des activités n'est pas nulle, contient le nombre attendu d'activités et que certaines activités spécifiques sont présentes.
      */
     @Test
-    public void testChargementActivites() {
+    public void testChargementActivites() throws IOException {
+        setUp();
         List<Activite> activites = gestionActivites.getActivites();
 
         assertNotNull(activites);
