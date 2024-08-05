@@ -61,8 +61,7 @@ public class GestionUtilisateurs extends GestionUser {
      *
      * @param utilisateurModifie L'utilisateur modifié avec les nouvelles informations.
      */
-    public void updateUtilisateur(Utilisateur utilisateurModifie) {
-        String email = utilisateurModifie.getEmail(); // Récupérer l'email de l'utilisateur modifié
+    public void updateUtilisateur(Utilisateur utilisateurModifie, String email) {
         if (utilisateursMap.containsKey(email)) {
             // Mettre à jour l'utilisateur dans la map avec les nouvelles informations
             utilisateursMap.put(email, utilisateurModifie);
