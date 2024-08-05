@@ -4,6 +4,9 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
 
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -157,4 +160,25 @@ public class GestionFournisseurs extends GestionUser {
     public boolean emailValide(String email) {
         return !fournisseurMap.keySet().contains(email);
     }
+
+    public ObservableList<String> getFournisseurs() {
+
+        ObservableList<String> fourns = FXCollections.observableArrayList();
+        for (Fournisseur f : fournisseurMap.values()) {
+            fourns.add(f.getNom());
+        }
+        return fourns;
+    }
+    public Fournisseur getFournisseurByName(String nom) {
+
+        Fournisseur fourn = null;
+        for (Fournisseur f : fournisseurMap.values()) {
+            if (f.getNom().equals(nom)) {
+                fourn = f; break;
+            }
+        }
+        return fourn;
+    }
+
 }
+
