@@ -28,7 +28,6 @@ public class TestGestionComposantes {
         composantes.add(new Composante(00, "Composante1", "test", "test", 0, "fournisseur@example.com"));
         composantes.add(new Composante(00, "Composante2", "test", "test", 0, "fournisseur@example.com"));
         composantesParFournisseur.put("fournisseur@example.com", composantes);
-
     }
 
     /**

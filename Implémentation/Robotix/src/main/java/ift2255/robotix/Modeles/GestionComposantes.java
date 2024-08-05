@@ -126,22 +126,21 @@ public class GestionComposantes {
      * @param composanteModifie La composante modifiée.
      */
     public void updateComposante(Composante composanteModifie) {
+        List<Composante> composantes = chargerComposantes(composanteModifie.getFournisseurEmail());
         boolean composanteUpdated = false;
 
-        for (List<Composante> composantes : composantesParFournisseur.values()) {
-            for (int i = 0; i < composantes.size(); i++) {
-                if (composantes.get(i).getId() == composanteModifie.getId()) {
-                    composantes.set(i, composanteModifie);
-                    composanteUpdated = true;
-                    break;
-                }
+        for (int i = 0; i < composantes.size(); i++) {
+            if (composantes.get(i).getId() == composanteModifie.getId()) {
+                composantes.set(i, composanteModifie);
+                composanteUpdated = true;
+                break;
             }
         }
 
         if (composanteUpdated) {
             writeComposantesToCSV();
         } else {
-            System.err.println("Le composant avec l'ID " + composanteModifie.getId() + " n'existe pas.");
+            System.err.println("Le composant avec l'ID " + composanteModifie.getId() + " n'existe pas dans la liste.");
         }
     }
 
