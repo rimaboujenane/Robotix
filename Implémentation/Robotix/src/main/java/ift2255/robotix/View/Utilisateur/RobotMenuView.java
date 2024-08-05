@@ -15,7 +15,8 @@ public class RobotMenuView extends VBox {
     private Button backButton;
     private Button addButton;
     private Button deleteButton;
-    private Button displayButton;
+    private Button displayButtonComplete;
+    private Button displayButtonGeneral;
     private Button exitMenuButton;
     private ListView<String> robotListView;
 
@@ -31,7 +32,8 @@ public class RobotMenuView extends VBox {
         backButton = new Button("Retour");
         addButton = new Button("Ajouter");
         deleteButton = new Button("Supprimer");
-        displayButton = new Button("Afficher état");
+        displayButtonComplete = new Button("Afficher état Complet");
+        displayButtonGeneral= new Button("Afficher état général");
         exitMenuButton = new Button("Quitter");
 
         // ListView pour afficher la liste des robots
@@ -39,7 +41,7 @@ public class RobotMenuView extends VBox {
         robotListView.setPrefHeight(200);
 
         // Mise en page des boutons
-        HBox buttonBox = new HBox(10, addButton, deleteButton, displayButton, exitMenuButton);
+        HBox buttonBox = new HBox(10, addButton, deleteButton, displayButtonComplete,displayButtonGeneral, exitMenuButton);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setPadding(new Insets(10, 0, 10, 0));
 
@@ -73,10 +75,17 @@ public class RobotMenuView extends VBox {
     }
 
     /**
-     * @return Le bouton pour afficher l'état d'un robot.
+     * @return Le bouton pour afficher l'état complet d'un robot.
      */
-    public Button getDisplayButton() {
-        return displayButton;
+    public Button getDisplayButtonComplete() {
+        return displayButtonComplete;
+    }
+
+      /**
+     * @return Le bouton pour afficher l'état general d'un robot.
+     */
+    public Button getDisplayButtonGeneral() {
+        return displayButtonGeneral;
     }
 
     /**

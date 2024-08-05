@@ -1,4 +1,6 @@
 package ift2255.robotix.Modeles;
+
+import ift2255.robotix.Modeles.RegisterUtilisateur;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
@@ -15,11 +17,13 @@ public class GestionRobots{
     private static final String CSV_FILE="src/main/resources/data/robots.csv";
     private Map<String, List<Robot>> flotteParUtilisateur= new HashMap<>();
     private int nextId=1; //Initialisation à 1.
+    private Utilisateur user;
 
     /*
      * Constructeur pour intilialiser la classe
      */
     public GestionRobots(){
+        this.user= RegisterUtilisateur.getInstance().getUtilisateur();
         chargerTousLesRobots();
     }
 
@@ -45,13 +49,13 @@ public class GestionRobots{
                 String.valueOf(robot.getNiveauBatterie()),
                 String.valueOf(robot.getConsommationCPU()),
                 String.valueOf(robot.getConsommationMemoire()),
-                robot.getUtilisateurEmail()
+                user.getEmail()
 
 
             };
             writer.writeNext(data);
             flotteParUtilisateur
-            .computeIfAbsent(robot.getUtilisateurEmail(),k-> new ArrayList<>())
+            .computeIfAbsent(user.getEmail(),k-> new ArrayList<>())
             .add(robot);
         }catch(IOException e){
             e.printStackTrace();
@@ -95,9 +99,9 @@ public class GestionRobots{
                       int niveauBatterie= Integer.parseInt(nextLine[6]);
                       double consommationCPU= Double.parseDouble(nextLine[7]);
                       double consommationMemoire= Double.parseDouble(nextLine[8]);
-                      String utilsateurEmail= nextLine[9];
+                      String utilsateurEmail= user.getEmail();
 
-                      Robot robot = new Robot(id, numeroDeSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire, utilsateurEmail);
+                      Robot robot = new Robot(id, numeroDeSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
                       flotteParUtilisateur
                          .computeIfAbsent(utilsateurEmail, k-> new ArrayList<>())
                          .add(robot);
@@ -139,7 +143,7 @@ public class GestionRobots{
                         String.valueOf(robot.getNiveauBatterie()),
                         String.valueOf(robot.getConsommationCPU()),
                         String.valueOf(robot.getConsommationMemoire()),
-                        robot.getUtilisateurEmail()
+                        user.getEmail()
                     });
                 }
             }
@@ -156,9 +160,9 @@ public class GestionRobots{
      * @param utilisateurEmail L'email de l'utilisateur dont les robots doivent être chargées.
      * @return Une liste de roots pour l'utilisateur  spécifié.
      */
-    public List<Robot> chargerRobots(String utilsateurEmail){
-        List<Robot> robots= flotteParUtilisateur.getOrDefault(utilsateurEmail,new ArrayList<>());
-        System.out.println("Robots appartenant à " + utilsateurEmail+ ": "+robots);
+    public List<Robot> chargerRobots(){
+        List<Robot> robots= flotteParUtilisateur.getOrDefault(user.getEmail(),new ArrayList<>());
+        System.out.println("Robots appartenant à " + user.getEmail()+ ": "+robots);
         return robots;
     }
 
@@ -170,10 +174,10 @@ public class GestionRobots{
      */
 
     public void supprimerRobot(int id, String utilisateurEmail ){
-        List <Robot> robots= chargerRobots(utilisateurEmail);
+        List <Robot> robots= chargerRobots();
         robots.removeIf(c-> c.getId()==id);
         writeRobotsToCSV();
-        flotteParUtilisateur.put(utilisateurEmail, robots);
+        flotteParUtilisateur.put(user.getEmail(), robots);
     }
         /**
      * Affiche l'état d'un robot.
@@ -183,17 +187,17 @@ public class GestionRobots{
      * @param complet est-ce que l'on affiche l'état complet ou général
      * @return Les informations du robot sous forme de chaîne de caractères.
      */
-    public String afficherEtatRobot(int id, String utilisateurEmail, boolean complet) {
-        List<Robot> robots = chargerRobots(utilisateurEmail);
-        if (complet){
+    public String afficherEtatRobotComplet(int id) {
+        List<Robot> robots = chargerRobots();
         for (Robot robot : robots) {
             if (robot.getId() == id) {
                 return robot.toString();
             }
         }
         return "Robot non trouvé.";
-       }
-       else{
+    }
+    public String afficherEtatRobotGeneral(int id ){
+        List<Robot> robots = chargerRobots();
         for (Robot robot : robots) {
             if (robot.getId() == id) {
                 return "Nom: " + robot.getNom() + ", Type: " + robot.getType() + ", Position: " + robot.getPosition(); // Affichage général des informations du robot
@@ -202,7 +206,7 @@ public class GestionRobots{
         return "Robot non trouvé.";
 
        }
-    }
+    
         /**
      * Récupère un robot par son nom et l'email de l'utilisateur.
      *
@@ -211,7 +215,7 @@ public class GestionRobots{
      * @return Le robot correspondant ou null s'il n'est pas trouvé.
      */
     public Robot getRobotByName(String nom, String utilisateurEmail) {
-        List<Robot> robots = chargerRobots(utilisateurEmail);
+        List<Robot> robots = chargerRobots();
         for (Robot robot : robots) {
             if (robot.getNom().equals(nom)) {
                 return robot;

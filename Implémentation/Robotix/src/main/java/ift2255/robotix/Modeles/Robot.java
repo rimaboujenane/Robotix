@@ -1,10 +1,13 @@
 package ift2255.robotix.Modeles;
 
+import ift2255.robotix.Modeles.RegisterUtilisateur;
+
 /**
  * Classe représentant un robot avec ses attributs et méthodes associées.
  */
 public class Robot {
     private int id;
+    private Utilisateur user;
     private String numeroSerie;
     private String nom;
     private String type;
@@ -29,8 +32,9 @@ public class Robot {
      * @param consommationMemoire La consommation de mémoire du robot en MB
      * @param utilisateurEmail L'email de l'utilisateur associé au robot
      */
-    public Robot(int id, String numeroSerie, String nom, String type, String position, double vitesse, int niveauBatterie, double consommationCPU, double consommationMemoire, String utilisateurEmail) {
+    public Robot(int id, String numeroSerie, String nom, String type, String position, double vitesse, int niveauBatterie, double consommationCPU, double consommationMemoire) {
         this.id = id;
+        this.user= RegisterUtilisateur.getInstance().getUtilisateur();
         this.numeroSerie = numeroSerie;
         this.nom = nom;
         this.type = type;
@@ -39,7 +43,7 @@ public class Robot {
         this.niveauBatterie = niveauBatterie;
         this.consommationCPU = consommationCPU;
         this.consommationMemoire = consommationMemoire;
-        this.utilisateurEmail = utilisateurEmail;
+        this.utilisateurEmail = this.user.getEmail() ;
     }
 
     // Getters de la classe
