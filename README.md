@@ -114,12 +114,8 @@ Dans l'onglet Profil, vous pouvez consulter et modifier vos informations.
 - Pour annuler les modifications ou revenir au menu principal, cliquez sur le bouton retour.
 
 #### Enregistrer Composants
-Dans l'onglet Enregistrer Composants, vous pouvez entrer les détails de la composante :
-- Nom
-- Type
-- Description
-- Prix
-Cliquez sur "Enregistrer" pour enregistrer la composante, puis sur "Retour" pour revenir au menu principal.
+Dans l'onglet Enregistrer Composants, vous pouvez entrer les détails de la composante : Nom, Type, Description, Prix.
+- Cliquez sur "Enregistrer" pour enregistrer la composante, puis sur "Retour" pour revenir au menu principal.
 
 #### Mes Composants
 Dans l'onglet Mes Composants, vous trouverez une liste déroulante affichant les composants et leurs détails.
