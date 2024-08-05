@@ -48,7 +48,7 @@ public class SearchComposanteController {
         for (Fournisseur f : fournisseurs.getFournisseurMap().values()) {
             i.put(f, composantes.chargerComposantes(f.getEmail()));
         }
-        this.searchCompMenuView.afficherVue(printComposantes(i));
+        this.searchCompMenuView.afficherVue(i);
         init();
     }
     public void reloadComposantes( String c) {
@@ -65,14 +65,14 @@ public class SearchComposanteController {
             }
         }
         System.out.println(c);
-        this.searchCompMenuView.afficherVue(printComposantes(i));
+        this.searchCompMenuView.afficherVue(i);
         init();
     }
     public void reloadComposantes( Fournisseur f) {
 
         HashMap<Fournisseur, List<Composante>> i = new HashMap<>();
         i.put(f, composantes.chargerComposantes(f.getEmail()));
-        this.searchCompMenuView.afficherVue(printComposantes(i));
+        this.searchCompMenuView.afficherVue(i);
         init();
     }
     public Text printComposantes(HashMap<Fournisseur, List<Composante>> i) {
@@ -88,6 +88,7 @@ public class SearchComposanteController {
         System.out.println(name);
         return new Text(name);
     }
+
 
     private void goBackMenu() {
         MenuView menuView = new MenuView();

@@ -7,11 +7,13 @@ import ift2255.robotix.Modeles.GestionComposantes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
 import javafx.scene.control.ScrollPane;
@@ -30,9 +32,9 @@ public class SearchComposanteView extends VBox {
     private GestionComposantes composantes;
     ScrollPane scroll;
 
-    public SearchComposanteView() {afficherVue(new Text()); }
+    public SearchComposanteView() {afficherVue(new HashMap<Fournisseur, List<Composante>>()); }
 
-    public void afficherVue(Text data) {
+    public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
 
         this.getChildren().clear();
 
@@ -43,7 +45,7 @@ public class SearchComposanteView extends VBox {
         fournisseurs = new GestionFournisseurs();
         composantes = new GestionComposantes();
 
-        VBox dataLayout = new VBox(10, data);
+        VBox dataLayout = buildCatalog(i);
         scroll = new ScrollPane(dataLayout);
         scroll.setFitToWidth(true);
         scroll.setStyle("-fx-background-color: #0D1B2A;");
@@ -86,6 +88,25 @@ public class SearchComposanteView extends VBox {
         scroll.setStyle("-fx-background-color: #0D1B2A;");
         this.getChildren().add(scroll);
 
+    }
+    public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
+
+        VBox cat = new VBox();
+        for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
+            Text name = new Text(entry.getKey().getPrenom() + " " + entry.getKey().getNom() );
+            cat.getChildren().add(name);
+            for (Composante c : entry.getValue()) {
+                HBox subCat = new HBox();
+                subCat.setPadding(new Insets(10));
+                subCat.setSpacing(10);
+                subCat.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                Text comp = new Text("Composante: " + c.getNom() + "\tType: " + c.getType());
+                Button b = new Button("Acheter");
+                subCat.getChildren().addAll(comp, b);
+                cat.getChildren().add(subCat);
+            }
+        }
+        return cat;
     }
 
     public Button getBackButton() { return backButton; }
