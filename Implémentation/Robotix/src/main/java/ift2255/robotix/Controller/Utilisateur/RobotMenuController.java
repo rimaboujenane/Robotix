@@ -54,7 +54,7 @@ public class RobotMenuController {
      * Initialise les actions des boutons dans la vue du menu des robots.
      */
     private void initializeButtonActions() {
-        view.getAddbUTTON().setOnAction(e -> ajouterRobot());
+        view.getAddButton().setOnAction(e -> ajouterRobot());
         view.getDeleteButton().setOnAction(e -> supprimerRobot());
         view.getDisplayButton().setOnAction(e -> afficherEtatRobot());
         view.getExitMenuButton().setOnAction(e -> quitterMenu());
