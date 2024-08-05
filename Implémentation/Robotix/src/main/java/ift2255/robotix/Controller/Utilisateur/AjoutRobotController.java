@@ -70,7 +70,7 @@ public class AjouterRobotController {
 
 private void retourAuMenu(){
     RobotMenuView robotMenuView= new RobotMenuView();
-    RobotMenuController robotMenuController= new RobotMenuController(stage, robotMenuView, gestionRobots,view.getUtilisateurEmailField().getText());
+    RobotMenuController robotMenuController= new RobotMenuController(stage, robotMenuView);
     stage.setScene(new Scene(robotMenuView,900,700));
 }
     
