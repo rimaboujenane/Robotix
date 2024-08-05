@@ -10,6 +10,8 @@
 "1","Ultra CPU","CPU","Processeur rapide","200.5","john.smith@example.com"
 "2","Roues Max","Roues","Roues robustes","50.0","john.smith@example.com"
 "3","Caméra HD","Caméra","Caméra haute definition","150.75","john.smith@example.com"
+"21","test","Bras","test","1.0","admin"
+"22","12","Bras","1111","1111.0","admin"
 "6","Haut-parleur 360","Haut-parleur","Son surround","120.0","maria.garcia@example.com"
 "7","Bras Titan","Bras","Bras robuste","250.9","maria.garcia@example.com"
 "8","Écran AMOLED","Écran","Écran vibrant","180.0","maria.garcia@example.com"
