@@ -147,7 +147,7 @@ public class RobotMenuController {
     private void ajouterRobot() {
         AjouterRobotView ajouterRobotView = new AjouterRobotView();
         AjouterRobotController ajouterRobotController = new AjouterRobotController(stage, ajouterRobotView, gestionRobots);
-        stage.setScene(new Scene(ajouterRobotView, 600, 400));
+        stage.setScene(new Scene(ajouterRobotView, 900, 700));
     }
 
     /**
