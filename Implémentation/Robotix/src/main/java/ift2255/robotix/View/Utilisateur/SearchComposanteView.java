@@ -28,18 +28,25 @@ public class SearchComposanteView extends VBox {
     private Label fournField;
     private GestionFournisseurs fournisseurs;
     private GestionComposantes composantes;
-    private HashMap<Fournisseur, List<Composante>> inv;
-    private Text data;
+    ScrollPane scroll;
 
-    public SearchComposanteView() {
+    public SearchComposanteView() {afficherVue(new Text()); }
+
+    public void afficherVue(Text data) {
+
+        this.getChildren().clear();
+
         setSpacing(10);
         setPadding(new Insets(20));
         setAlignment(Pos.CENTER);
 
         fournisseurs = new GestionFournisseurs();
         composantes = new GestionComposantes();
-        loadComposantes();
-        data = new Text(printComposantes());
+
+        VBox dataLayout = new VBox(10, data);
+        scroll = new ScrollPane(dataLayout);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background-color: #0D1B2A;");
 
         Label label = new Label("Recherche Composante");
         label.setStyle("-fx-text-fill: white;");
@@ -53,75 +60,37 @@ public class SearchComposanteView extends VBox {
         typeComboBox = new ComboBox<>(types);
         typeComboBox.setPromptText("Type");
         typeComboBox.setMaxWidth(400);
-        typeComboBox.showingProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue) {loadComposantes(fournComboBox.getValue()); data = new Text(printComposantes());}});
 
         ObservableList<String> fourns = fournisseurs.getFournisseurs();
         fournComboBox = new ComboBox<>(fourns);
         fournComboBox.setPromptText("Fournisseur");
         fournComboBox.setMaxWidth(400);
-        fournComboBox.showingProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue) {loadComposantes(fournisseurs.getFournisseurByName(fournComboBox.getValue())); data = new Text(printComposantes());}});
 
-        VBox formLayout = new VBox(10, typeField, typeComboBox, fournField, fournComboBox, data);
+
+        VBox formLayout = new VBox(10, typeField, typeComboBox, fournField, fournComboBox, scroll);
         formLayout.setStyle("-fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         formLayout.setPadding(new Insets(10));
         formLayout.setPrefWidth(420);
         formLayout.setMaxWidth(420);
         formLayout.setAlignment(Pos.CENTER);
 
-        VBox dataLayout = new VBox(10, data);
-        ScrollPane scroll = new ScrollPane(dataLayout);
-        scroll.setFitToWidth(true);
-        scroll.setStyle("-fx-background-color: #0D1B2A;");
-
-        this.getChildren().addAll(label, formLayout, scroll, backButton);
+        this.getChildren().addAll(label, formLayout, backButton);
         this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
-    public HashMap<Fournisseur, List<Composante>> loadComposantes() {
+    public void updateData(Text data) {
 
-        inv = new HashMap<>();
-        for (Fournisseur f : fournisseurs.getFournisseurMap().values()) {
-            inv.put(f, composantes.chargerComposantes(f.getEmail()));
-        }
-        return inv;
-    }
-    public HashMap<Fournisseur, List<Composante>> loadComposantes( String c) {
+        this.getChildren().remove(scroll);
+        VBox dataLayout = new VBox(10, data);
+        scroll = new ScrollPane(dataLayout);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background-color: #0D1B2A;");
+        this.getChildren().add(scroll);
 
-        inv = new HashMap<>();
-        for (Fournisseur f : fournisseurs.getFournisseurMap().values()) {
-            List<Composante> comps = composantes.chargerComposantes(f.getEmail());
-            for (Composante cc : comps) {
-                if (cc.getType() == c) {
-                    inv.put(f, composantes.chargerComposantes(f.getEmail()));
-                    break;
-                }
-            }
-        }
-        return inv;
-    }
-    public HashMap<Fournisseur, List<Composante>> loadComposantes( Fournisseur f) {
-
-        inv = new HashMap<>();
-        inv.put(f, composantes.chargerComposantes(f.getEmail()));
-        return inv;
-    }
-    public String printComposantes() {
-
-        String name = "";
-        for (Map.Entry<Fournisseur, List<Composante>> entry : inv.entrySet()) {
-            name += entry.getKey().getNom() + "\n";
-            for (Composante c : entry.getValue()) {
-                name += "\t" + c.getNom() + " -> Type: " + c.getType() + "\n";
-            }
-            name += "\n";
-        }
-        return name;
     }
 
-    public Button getBackButton() {
-        return backButton;
-    }
+    public Button getBackButton() { return backButton; }
+    public ComboBox<String> getTypeComboBox() { return typeComboBox; }
+    public ComboBox<String> getFournComboBox() { return fournComboBox; }
     public String getType() { return typeComboBox.getValue(); }
-    public String getFournisseur() { return fournComboBox.getValue(); }
+    public Fournisseur getFournisseur() { return fournisseurs.getFournisseurByName(fournComboBox.getValue()); }
 }
