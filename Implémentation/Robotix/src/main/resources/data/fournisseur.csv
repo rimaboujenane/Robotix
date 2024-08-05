@@ -1,4 +1,4 @@
-"Nom","Prenom","Password","Email","Telephone","companie"
+"Nom","Prenom","Password","Email","Telephone","Compagnie"
 "test","test","","","test","no"
 "Kumar","Arjun","passw0rd123","arjun.kumar@example.com","0623456789","Adafruit Industries"
 "Smith","John","password123","john.smith@example.com","0612345678","RobotShop"

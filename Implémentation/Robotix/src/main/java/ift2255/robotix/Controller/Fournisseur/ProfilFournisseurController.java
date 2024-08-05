@@ -73,7 +73,7 @@ public class ProfilFournisseurController {
 
         // Met à jour le fournisseur dans la gestion des fournisseurs
         GestionFournisseurs gestionFournisseurs = new GestionFournisseurs();
-        gestionFournisseurs.updateFournisseur(fournisseurModifie);
+        gestionFournisseurs.updateFournisseur(fournisseurModifie, RegisterFournisseur.getInstance().getFournisseur().getEmail() );
 
         // Met à jour le fournisseur actuel
         this.fournisseur = fournisseurModifie;
