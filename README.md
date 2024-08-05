@@ -4,39 +4,35 @@
 Robotix est une plateforme innovante dédiée à la gestion intelligente et collaborative des robots, visant à optimiser les opérations et à enrichir l'expérience des utilisateurs dans le domaine de la robotique. Avec un accent sur la technologie de pointe et la facilité d'utilisation, Robotix offre des fonctionnalités avancées pour enregistrer, surveiller et gérer les robots en temps réel. La plateforme permet aux utilisateurs de suivre les performances de leurs robots, de visualiser des métriques détaillées telles que la position, la vitesse, la consommation de batterie et l'utilisation des ressources matérielles. En favorisant la gestion proactive des composants, Robotix facilite également l'achat et l'intégration de nouvelles pièces pour optimiser les capacités et les fonctionnalités des robots.
 
 ## Fonctionnalités
+#### Compte
+- S'inscire comme utilisateur simple ou comme fournisseur.
+- S'authentifier pour accèder à son compte.
+
+#### Profil
+- Accèder aux informations du compte.
+- Modifier ses informations.
+
 ### Pour les utilisateurs :
-- S'inscrire comme utilisateur et s'authentifier :
-  - Créer un compte utilisateur avec les informations suivantes : nom, prénom, pseudo (unique), mot de passe, adresse courriel, téléphone, nom de la compagnie (optionnel), liste d'intérêts (jusqu'à 10)
-- Se connecter à son compte
-- Modifier son profil
-- Suivre un utilisateur
-- Accumuler des points en participant à des activités et voir ses points et son classement parmi les autres utilisateurs
-- S'inscrire ou se désinscrire à un intérêt
-- Sélectionner et mettre à jour une liste d'intérêts 
-- Recevoir et consulter des notifications pour diverses actions et événements (nouveaux suiveurs, nouvelles activités, problèmes des robots, etc.)
-- Trouver un fournisseur
-
 #### Robots
-- Enregistrer un robot
-- Acheter et enregistrer des composantes
-- Afficher l'état des ses robots
-
+- Enregistrer un robot.
+- Afficher l'état des ses robots.
 
 #### Activités
-- Créer des activités
-  - Définir des activités en spécifiant les tâches à accomplir, les robots impliqués, et les objectifs à atteindre
-- Ajouter, modifier et/ou supprimer des activités
-- Afficher les activités qu'il maintient
-- S'inscrire à une activité créée par d'autres utilisateurs
+- Afficher les activités existantes.
+- S'inscrire/désinscrire à une activité.
 
-                   
+#### Notifications
+- Afficher les notifications reçus durant la session.
+
+#### Composants
+- Acheter des composants.
+- Chercher un fournisseur.
+- Chercher une composante.
+  
 ### Pour les fournisseurs :
-- S'inscrire comme fournisseur et s'authentifier :
-  - Créer un compte utilisateur avec les informations suivantes : nom (unique), mot de passe, adresse, email, téléphone et capacité de fabrication
-- Modifier son profil
-- Gérer ses composantes
-- Enregistrer une composante
-- Recevoir et consulter des notifications concernant l'achat de composantes
+#### Composantes
+- Afficher mes composantes.
+- Enregistrer une composantes
   
 
 ## Organisation des fichiers
@@ -58,121 +54,42 @@ Le projet est origanisé selon la structure suivante
 ```
 
 ## Manuel d'utilisation
-Étant un prototype, le jeu de donnée est dynamique, ceci veut dire nous n'avons pas une base de donnée prédéfinie, à chaque connexion et inscription le système enregistre les noms de fournisseurs, d'utilisateur, ce qui forment notre base de données. Il faudra donc créer des comptes Fournisseurs en premier avant de tester quelques sections dans le compte Utilisateur. 
-
-
-### Connexion
-Pour se connecter à l’application, vous pouvez créer un compte utilisateur ou fournisseur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
-- [1] Utilisateur
-- [2] Fournisseur
+Votre première fois sur Robotix? Inscrivez-vous! Sinon connectez-vous! 
 
 ### Création d’un compte Utilisateur
-- Entrez votre nom.
-  - Votre compte est donc créé, votre username et ID sont affichés.
-- Entrer au moins 10 intérêts.
+Une fois que Robotix est lancé, en dessous de la section connexion cliquez sur :
+- Pour un compte Utilisateur : "Première fois sur Robotix? Créez un compte dès maintenant!".
+- Pour un compte Fournisseur : "Devenir Fournisseur dès maintenant!".
+Ensuite la page d'inscription apparaitra avec tous les champs à entrer.
 
+### Connexion
+Pour se connecter à l’application, vous devez d'abord entrez votre : 
+- Identifiant -> le email avec lequel vous vous êtes inscrit.
+- Mot de passe -> le mot de passe choisi lorsque vous êtes inscrit.
+- Choisir le type de compte que vous avez -> utilisateur ou fournisseur.
 
 ### Menu principal Utilisateur
-À partir du menu principal, dans le rôle d’utilisateur, vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
-[1] -> Voir inventaire.
-[2] -> Voir base de données de fournisseurs et composantes.
-[3] -> Définir mouvement.
-[4] -> Définir action.
-[5] -> Définir tâche.
-[6] -> Construire un robot.
-[7] -> Inscrire robot à une activité.
-[8] -> Acheter composante.
-[9] -> Consulter utilisateurs.
-[10] -> Voir notifications.
-[11] -> Gérer actions.
-[12] -> Gérer tâches.
-[13] -> Quitter.
+Une fois connecter, le menu principal s'affichera. Vous aurez comme options :
+- Profil
+- Notifications
+- Robots
+- Activités
+- Composantes
+- Déconnexion
+- Quittez
 
-  
-#### Voir inventaire
-Dans cette section, vous pouvez accéder à votre inventaire et vérifier la quantité existante de chaque composant.
-- CPU
-- Roues 
-- Bras 
-- Helices 
-- Cameras 
-- Haut-Parleurs 
-- Micros 
-- Ecrans 
+#### Profil
+Dans l'onglet profil, vous pouvez voir toutes vos informations et vous avez la possibilité de les modifiés.
+- Pour modifier, il suffit de cliquer sur le champ que vous désirez modifier, entrez les nouvelles informations, puis cliquez sur "Enregistrer les modifications".
+- Pour annuler les modifications ou pour retourner dans menu principale, il suffit de cliquez sur retour.
 
-#### Voir base de données de fournisseurs et composantes
-Dans cette section, vous pouvez accéder à la base de données des fournisseurs et les composantes qu’ils fournissent.
+#### Notifications
+Dans l'onglet notifications, vous pourrez accéder aux messages du système lors de votre session.
+- Vous avez la possibilité de les supprimer a l'aide de la croix à droite du message.
 
-#### Définir mouvement
-Dans cette section, vous pouvez définir un mouvement. Vous êtes invité à choisir la composante qui doit effectuer le mouvement et ensuite celui-ci peut définir le mouvement envisagé.
-- [1] Choisissez la composante dans laquelle vous voulez créer un mouvement.
-- [2] Nommez le mouvement .
-- [3] Ajoutez une description.
-- [4] Spécifiez la distance du mouvement.
-- [5] Spécifiez l'unité de distance. 
-- [6] Spécifiez l'axe 3D.
-- [7] Spécifiez la durée du mouvement en secondes. 
-Le mouvement sera donc ajouté.
+#### Activités
+Dans l'onglet activités, vous pourrez consulter en temps réel aux activités auquelles vous êtes inscrits et les autres.
+Pour effectuer une action, appuyer sur le bouton à droite de l'activité. Vous aurez la possibilité : 
+- De vous inscrire à une activité si vous ne l'êtes pas.
+- De vous désinscrire si vous vous êtes inscrit à une activité.
 
-#### Définir opération/action
-Dans cette section, vous pouvez définir une opération/action.
-- Vous devez nommer l'action/opération.
-- Ensuite, vous devez entrer les mouvements en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
-L’opération/action sera donc ajoutée.
-
-#### Définir tâche.
-Dans cette section, vous pouvez définir une tâche. Vous pourrez d’abord consulter la liste d’opérations/actions que vous avez déjà définies auparavant. 
-- Vous devez nommer la tâche.
-- Ensuite, vous devez entrer les opérations/actions en ordre, puis entrer '*' pour terminer. Il faut entrer les chiffres seulement.
-La tâche sera donc ajoutée.
-
-#### Construire un robot.
-Dans cette section, vous pouvez construire un robot. Vous devez suivre les commande suivantes:
-- Vous devez nommer le robot.
-- Ensuite, vous devez ajouter les composantes qui vont faire partie du robot.
-
-#### Inscrire robot à une activité.
-Dans cette section, vous pouvez inscrire robot à une activité. Vous pouvez consulter la liste d'activités et puis choisir le robot auquel vous voulez assigner l'activité.
-
-#### Acheter composante.
-Dans cette section, vous pouvez acheter une composante. 
-- Vous devez entrer le nom du fournisseur de la composante que vous voulez acheter, il faut que ce fournisseur se trouve dans la base de données. 
-- Vous devez ensuite entrer le nom de la composante que vous voulez acheter, il faut que le fournisseur que vous avez choisit ait cette composante dans son inventaire.
-
-#### Consulter utilisateurs.
-Dans cette section, vous pouvez consulter des profils d’utilisateurs Robotix. Entrez le numéro correspondant pour voir un profil. Vous pouvez alors suivre l’utilisateur ou retourner au menu principal.
-
-#### Voir notifications.
-Dans cette section, vous pouvez consulter vos notifications. Vous trouverez des exemples de notifications d’utilisateurs qui ont commencé à vous suivre.
-
-#### Gérer opérations/actions.
-Dans cette section, vous pouvez consulter les opérations/actions que vous avez crées, il faut en avoir créer pour pouvoir consulter cette section.
-- Vous devez entrer le numéro correspondant pour voir une opération/action en détail. Ceci affichera tous les détails de cette opération/action.
-- Vous pouvez ensuite soit supprimer l'opération/action ou la modifier selon le chiffre que vous tapez.
-
-#### Gérer tâches.
-Dans cette section, vous pouvez consulter les tâches que vous avez crées, il faut en avoir créer pour pouvoir consulter cette section.
-- Vous devez entrer le numéro correspondant pour voir une tâche en détail. Ceci affichera tous les détails de cette tâche.
-- Vous pouvez ensuite soit supprimer la tâche ou la modifier selon le chiffre que vous tapez.
-
-#### Quitter.
-Vous quittez l’application dans cette section.
-
-
-
-### Création d’un compte Fournisseur
-Entrez le nom d'entreprise.
-Votre compte est donc créé, votre username et ID sont affichés.
-Vous pouvez choisir l'une des options suivantes en tapant le chiffre correspondant.
-[1] -> Voir base de données de fournisseurs et composantes.
-[2] -> Fournir composante.
-[3] -> Quitter.
-
-#### Voir base de données de fournisseurs et composantes
-Dans cette section, vous pouvez accéder à la base de données des fournisseurs et les composantes qu’ils fournissent.
-
-#### Fournir composante
-Dans cette section, il faut entrer le nom de la composante que vous voulez fournir.
-
-#### Quitter
-Vous quittez l’application dans cette section.
