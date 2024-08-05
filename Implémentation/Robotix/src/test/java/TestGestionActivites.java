@@ -35,7 +35,11 @@ public class TestGestionActivites {
         Utilisateur utilisateur = new Utilisateur("Dupont","Jean","dupont123","jdupont@example.com","1234567890");
         RegisterUtilisateur.getInstance().setUtilisateur(utilisateur);
         gestionActivites = new GestionActivites();
+
+        // Vérifiez si gestionActivites est non-null
+        assertNotNull(gestionActivites, "GestionActivites should not be null");
     }
+
 
     /**
      * Teste l'inscription réussie d'une activité.
