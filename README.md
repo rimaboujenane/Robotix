@@ -56,6 +56,7 @@ Le projet est organisé selon la structure suivante :
 │   └── robotix.jar
 └── README.md
 └── rapport.html
+```
 
 
 ## Manuel d'utilisation
