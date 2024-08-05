@@ -29,6 +29,9 @@ public class MenuController {
         this.view.getNotifMenuButton().setOnAction(e -> navigateToNotifMenu());
         this.view.getProfileMenuButton().setOnAction(e -> navigateToProfileMenu());
         this.view.getActiviteMenuButton().setOnAction(e -> navigateToActiviteMenu());
+        this.view.getSearchComposanteButton().setOnAction(e -> navigateToSearchComposanteMenu());
+        this.view.getSearchFournisseurButton().setOnAction(e -> navigateToSearchFournisseurMenu());
+        //this.view.getBuyComposanteButton().setOnAction(e -> navigateToBuyComposanteMenu());
         this.view.getLogoutMenuButton().setOnAction(e -> returnToLoginMenu());
         this.view.getExitMenuButton().setOnAction(e -> System.exit(0)); // Quitter l'application
     }
@@ -77,4 +80,30 @@ public class MenuController {
         ActiviteMenuController activiteMenuController = new ActiviteMenuController(stage, activiteMenuView);
         stage.setScene(new Scene(activiteMenuView, 900, 700));
     }
+    /**
+     * Navigue vers le menu de recherche composantes.
+     */
+    private void navigateToSearchComposanteMenu() {
+
+        SearchComposanteView searchCompMenuView = new SearchComposanteView();
+        SearchComposanteController searchCompMenuController = new SearchComposanteController(stage, searchCompMenuView);
+        stage.setScene(new Scene(searchCompMenuView, 900, 700));
+    }
+    /**
+     * Navigue vers le menu de recherche fournisseurs.
+     */
+    private void navigateToSearchFournisseurMenu() {
+
+        SearchFournisseurView searchFournMenuView = new SearchFournisseurView();
+        SearchFournisseurController searchFournMenuController = new SearchFournisseurController(stage, searchFournMenuView);
+        stage.setScene(new Scene(searchFournMenuView, 900, 700));
+    }
+    /**
+    private void navigateToBuyComposanteMenu() {
+
+        BuyComposanteView buyCompMenuView = new BuyComposanteView();
+        BuyComposanteController buyCompMenuController = new BuyComposanteController(stage, buyCompMenuView);
+        stage.setScene(new Scene(buyCompMenuView, 900, 700));
+    }
+     */
 }
