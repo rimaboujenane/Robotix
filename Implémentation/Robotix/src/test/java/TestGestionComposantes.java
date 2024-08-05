@@ -13,7 +13,6 @@ import java.util.Map;
  * Cette classe contient des tests unitaires pour la méthode {@link GestionComposantes#chargerComposantes(String)}.
  */
 public class TestGestionComposantes {
-
     private GestionComposantes gestionComposantes;
     private Map<String, List<Composante>> composantesParFournisseur;
 
@@ -38,6 +37,7 @@ public class TestGestionComposantes {
      */
     @Test
     void testChargerComposantes_ExistingFournisseur() {
+        setUp();
         List<Composante> result = gestionComposantes.chargerComposantes("fournisseur@example.com");
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -52,8 +52,46 @@ public class TestGestionComposantes {
      */
     @Test
     void testChargerComposantes_NonExistingFournisseur() {
+        setUp();
         List<Composante> result = gestionComposantes.chargerComposantes("NonExistingFournisseur@example.com");
         assertNotNull(result);
         assertTrue(result.isEmpty());
     }
+
+    /**
+     * Teste la mise à jour réussie d'un composant avec la méthode {@link GestionComposantes#updateComposante(Composante)}.
+     * Vérifie que les modifications apportées au composant sont correctement reflétées dans la liste des composants du fournisseur.
+     */
+    @Test
+    public void testUpdateComposante_Success() {
+        setUp();
+        Composante composanteModifie = new Composante(00, "Composante1Modifie", "Type1Modifie", "Description1Modifie", 150.0, "fournisseur@example.com");
+        gestionComposantes.updateComposante(composanteModifie);
+
+        List<Composante> composantes = gestionComposantes.chargerComposantes("fournisseur@example.com");
+        Composante updatedComposante = composantes.stream().filter(c -> c.getId() == 00).findFirst().orElse(null);
+
+        assertNotNull(updatedComposante);
+        assertEquals("Composante1Modifie", updatedComposante.getNom());
+        assertEquals("Type1Modifie", updatedComposante.getType());
+        assertEquals("Description1Modifie", updatedComposante.getDescription());
+        assertEquals(150.0, updatedComposante.getPrix());
+    }
+
+    /**
+     * Teste la mise à jour d'un composant qui n'existe pas avec la méthode {@link GestionComposantes#updateComposante(Composante)}.
+     * Vérifie qu'un composant qui n'existe pas dans la liste des composants du fournisseur reste absent après la tentative de mise à jour.
+     */
+    @Test
+    public void testUpdateComposante_NonExistingComposante() {
+        setUp();
+        Composante composanteModifie = new Composante(3, "Composante3", "Type3", "Description3", 300.0, "fournisseur@example.com");
+        gestionComposantes.updateComposante(composanteModifie);
+
+        List<Composante> composantes = gestionComposantes.chargerComposantes("fournisseur@example.com");
+        Composante nonUpdatedComposante = composantes.stream().filter(c -> c.getId() == 3).findFirst().orElse(null);
+
+        assertNull(nonUpdatedComposante);
+    }
 }
+
