@@ -37,6 +37,7 @@ public class TestGestionComposantes {
      */
     @Test
     void testChargerComposantes_ExistingFournisseur() {
+        setUp();
         List<Composante> result = gestionComposantes.chargerComposantes("fournisseur@example.com");
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -51,6 +52,7 @@ public class TestGestionComposantes {
      */
     @Test
     void testChargerComposantes_NonExistingFournisseur() {
+        setUp();
         List<Composante> result = gestionComposantes.chargerComposantes("NonExistingFournisseur@example.com");
         assertNotNull(result);
         assertTrue(result.isEmpty());
@@ -62,6 +64,7 @@ public class TestGestionComposantes {
      */
     @Test
     public void testUpdateComposante_Success() {
+        setUp();
         Composante composanteModifie = new Composante(00, "Composante1Modifie", "Type1Modifie", "Description1Modifie", 150.0, "fournisseur@example.com");
         gestionComposantes.updateComposante(composanteModifie);
 
@@ -81,6 +84,7 @@ public class TestGestionComposantes {
      */
     @Test
     public void testUpdateComposante_NonExistingComposante() {
+        setUp();
         Composante composanteModifie = new Composante(3, "Composante3", "Type3", "Description3", 300.0, "fournisseur@example.com");
         gestionComposantes.updateComposante(composanteModifie);
 
