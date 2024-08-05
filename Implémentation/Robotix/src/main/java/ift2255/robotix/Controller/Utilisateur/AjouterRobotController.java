@@ -56,9 +56,9 @@ public class AjouterRobotController {
         int niveauBatterie = Integer.parseInt(view.getNiveauBatterieField().getText());
         double consommationCPU = Double.parseDouble(view.getConsommationCPUField().getText());
         double consommationMemoire = Double.parseDouble(view.getConsommationMemoireField().getText());
-        String utilisateurEmail = view.getUtilisateurEmailField().getText();
+        //String utilisateurEmail = view.getUtilisateurEmailField().getText();
 
-         Robot robot = new Robot(gestionRobots.getNextId(), numeroSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire, utilisateurEmail);
+         Robot robot = new Robot(gestionRobots.getNextId(), numeroSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
          gestionRobots.ajouterRobot(robot);
 
          retourAuMenu();
