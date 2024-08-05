@@ -1,3 +1,5 @@
+package ift2255.robotix.Modeles;
+
 /**
  * Classe représentant un robot avec ses attributs et méthodes associées.
  */
@@ -191,4 +193,15 @@ public class Robot {
      */
     @Override
     public String toString() {
-        return "Robot
+        return "Robot {" +
+                "Numéro de série='" + numeroSerie + '\'' +
+                ", Nom='" + nom + '\'' +
+                ", Type='" + type + '\'' +
+                ", Position='" + position + '\'' +
+                ", Vitesse=" + vitesse + " m/s" +
+                ", Niveau de batterie=" + niveauBatterie + "%" +
+                ", Consommation CPU=" + consommationCPU + "%" +
+                ", Consommation Mémoire=" + consommationMemoire + " MB" +
+                '}';
+    }
+}
