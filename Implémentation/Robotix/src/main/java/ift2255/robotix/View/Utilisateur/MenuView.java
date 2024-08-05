@@ -78,9 +78,9 @@ public class MenuView extends VBox {
         searchFournImage.setFitHeight(75);
         searchFournImage.setFitWidth(75);
 
-        ImageView buyCompImage = new ImageView("file:src/main/resources/images/acheter.png");
-        buyCompImage.setFitHeight(75);
-        buyCompImage.setFitWidth(75);
+        //ImageView buyCompImage = new ImageView("file:src/main/resources/images/acheter.png");
+        //buyCompImage.setFitHeight(75);
+        //buyCompImage.setFitWidth(75);
 
         // Création des boutons du menu avec les images associées
         notifMenuButton = new Button();
@@ -99,8 +99,8 @@ public class MenuView extends VBox {
         searchComposanteButton.setGraphic(searchCompImage);
         searchFournisseurButton = new Button();
         searchFournisseurButton.setGraphic(searchFournImage);
-        buyComposanteButton = new Button();
-        buyComposanteButton.setGraphic(buyCompImage);
+        //buyComposanteButton = new Button();
+        //buyComposanteButton.setGraphic(buyCompImage);
 
 
         // Style des boutons
@@ -113,7 +113,7 @@ public class MenuView extends VBox {
         exitMenuButton.setStyle(buttonStyle);
         searchComposanteButton.setStyle(buttonStyle);
         searchFournisseurButton.setStyle(buttonStyle);
-        buyComposanteButton.setStyle(buttonStyle);
+        //buyComposanteButton.setStyle(buttonStyle);
 
         // Ajuster la taille des boutons pour qu'ils soient uniformes
         notifMenuButton.setPrefSize(75, 75);
@@ -124,7 +124,7 @@ public class MenuView extends VBox {
         exitMenuButton.setPrefSize(75, 75);
         searchComposanteButton.setPrefSize(75, 75);
         searchFournisseurButton.setPrefSize(75, 75);
-        buyComposanteButton.setPrefSize(75, 75);
+        //buyComposanteButton.setPrefSize(75, 75);
 
         // Création des étiquettes pour chaque bouton
         Label profilLabel = new Label("Profil");
@@ -143,8 +143,8 @@ public class MenuView extends VBox {
         searchCompLabel.setStyle("-fx-text-fill: white");
         Label searchFournLabel = new Label("Recherche Fournisseur");
         searchFournLabel.setStyle("-fx-text-fill: white");
-        Label buyCompLabel = new Label("Achete Composante");
-        buyCompLabel.setStyle("-fx-text-fill: white");
+        //Label buyCompLabel = new Label("Achete Composante");
+        //buyCompLabel.setStyle("-fx-text-fill: white");
 
         // Organisation des boutons et des étiquettes dans des VBox pour chaque section
         VBox vbox1 = new VBox(10, profileMenuButton, profilLabel);
@@ -163,15 +163,15 @@ public class MenuView extends VBox {
         vbox7.setAlignment(Pos.CENTER);
         VBox vbox8 = new VBox(10, searchFournisseurButton, searchFournLabel);
         vbox8.setAlignment(Pos.CENTER);
-        VBox vbox9 = new VBox(10, buyComposanteButton, buyCompLabel);
-        vbox9.setAlignment(Pos.CENTER);
+        //VBox vbox9 = new VBox(10, buyComposanteButton, buyCompLabel);
+        //vbox9.setAlignment(Pos.CENTER);
 
         // Organisation des sections en lignes
         HBox row1 = new HBox(100, vbox1, vbox2, vbox3);
         row1.setAlignment(Pos.CENTER);
         HBox row2 = new HBox(100, vbox4, vbox5, vbox6);
         row2.setAlignment(Pos.CENTER);
-        HBox row3 = new HBox(100, vbox7, vbox8, vbox9);
+        HBox row3 = new HBox(100, vbox7, vbox8);
         row3.setAlignment(Pos.CENTER);
 
 
