@@ -56,7 +56,8 @@ public class RobotMenuController {
     private void initializeButtonActions() {
         view.getAddButton().setOnAction(e -> ajouterRobot());
         view.getDeleteButton().setOnAction(e -> supprimerRobot());
-        view.getDisplayButton().setOnAction(e -> afficherEtatRobot());
+        view.getDisplayButtonComplete().setOnAction(e -> afficherEtatRobot());
+        view.getDisplayButtonGeneral().setOnAction(e-> afficherEtatRobotGeneral());
         view.getExitMenuButton().setOnAction(e -> quitterMenu());
         view.getBackButton().setOnAction(e -> retournerMenu());
     }
@@ -96,7 +97,7 @@ public class RobotMenuController {
     }
 
     /**
-     * Affiche l'état du robot sélectionné.
+     * Affiche l'état general du robot sélectionné.
      */
     private void afficherEtatRobot() {
         String selected = view.getRobotListView().getSelectionModel().getSelectedItem();
@@ -105,8 +106,36 @@ public class RobotMenuController {
             if (robot != null) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("État du robot");
-                alert.setHeaderText(null);
-                alert.setContentText(robot.toString());
+                alert.setHeaderText("Détails du Robot:");
+                alert.setContentText("Numéro de série : " + robot.getNumeroSerie() + "\n" +
+                                     "Nom : " + robot.getNom() + "\n" +
+                                     "Type : " + robot.getType() + "\n" +
+                                     "Position : " + robot.getPosition() + "\n" +
+                                     "Vitesse : " + robot.getVitesse() + " m/s\n" +
+                                     "Niveau de batterie : " + robot.getNiveauBatterie() + " %\n" +
+                                     "Consommation CPU : " + robot.getConsommationCPU() + " %\n" +
+                                     "Consommation Mémoire : " + robot.getConsommationMemoire() + " MB\n" +
+                                     "Email de l'utilisateur : " + robot.getUtilisateurEmail());
+                alert.show();
+            }
+        }
+    }
+    /**
+     * Affiche l'état general du robot sélectionné.
+     */
+    private void afficherEtatRobotGeneral() {
+        String selected = view.getRobotListView().getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            Robot robot = gestionRobots.getRobotByName(selected, utilisateur.getEmail());
+            if (robot != null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("État du robot");
+                alert.setHeaderText("Détails du Robot:");
+                alert.setContentText(
+                                     "Nom : " + robot.getNom() + "\n" +
+                                     "Type : " + robot.getType() + "\n" +
+                                     
+                                     "Niveau de batterie : " + robot.getNiveauBatterie() + " %\n");
                 alert.show();
             }
         }
@@ -143,7 +172,7 @@ public class RobotMenuController {
      * @param utilisateurEmail L'email de l'utilisateur dont les robots doivent être chargés.
      */
     private void chargerEtAfficherRobots(String utilisateurEmail) {
-        List<Robot> robots = gestionRobots.chargerRobots(utilisateurEmail);
+        List<Robot> robots = gestionRobots.chargerRobots();
         afficherRobots(robots);
     }
 }
