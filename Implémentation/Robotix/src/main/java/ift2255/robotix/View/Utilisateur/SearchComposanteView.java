@@ -1,22 +1,15 @@
 package ift2255.robotix.View.Utilisateur;
 
-import ift2255.robotix.Modeles.Composante;
-import ift2255.robotix.Modeles.Fournisseur;
-import ift2255.robotix.Modeles.GestionFournisseurs;
-import ift2255.robotix.Modeles.GestionComposantes;
+import ift2255.robotix.Modeles.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
-import javafx.scene.control.ScrollPane;
 
 import java.util.HashMap;
 import java.util.List;
@@ -93,7 +86,8 @@ public class SearchComposanteView extends VBox {
 
         VBox cat = new VBox();
         for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
-            Text name = new Text(entry.getKey().getPrenom() + " " + entry.getKey().getNom() );
+            String n = entry.getKey().getPrenom() + " " + entry.getKey().getNom();
+            Text name = new Text(n);
             cat.getChildren().add(name);
             for (Composante c : entry.getValue()) {
                 HBox subCat = new HBox();
@@ -102,6 +96,14 @@ public class SearchComposanteView extends VBox {
                 subCat.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
                 Text comp = new Text("Composante: " + c.getNom() + "\tType: " + c.getType());
                 Button b = new Button("Acheter");
+                b.setOnMouseClicked(e -> {
+                    NotifService.getInstance().sendNotif(
+                            "La composante " + c.getNom() + ", vendu par " + n + " a été ajoutée à ton inventaire."
+                    );
+                    Alert success = new Alert(Alert.AlertType.CONFIRMATION, "Succès!", ButtonType.OK);
+                    success.showAndWait();
+
+                });
                 subCat.getChildren().addAll(comp, b);
                 cat.getChildren().add(subCat);
             }
