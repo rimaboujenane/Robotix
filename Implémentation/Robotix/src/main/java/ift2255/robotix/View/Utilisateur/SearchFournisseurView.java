@@ -43,12 +43,12 @@ public class SearchFournisseurView extends VBox {
         scroll.setFitToWidth(true);
         scroll.setStyle("-fx-background-color: #0D1B2A;");
 
-        Label label = new Label("Recherche Composante");
+        Label label = new Label("Recherche Fournisseur");
         label.setStyle("-fx-text-fill: white;");
         backButton = new Button("Retour");
         backButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
 
-        typeField = new Label("Rechercher par type de composante:");
+        typeField = new Label("Rechercher fournisseur par type de composante offerte:");
 
         ObservableList<String> types = FXCollections.observableArrayList("CPU", "Roues", "Bras", "Hélice", "Caméra", "Haut-parleur", "Micro", "Écran");
         typeComboBox = new ComboBox<>(types);
