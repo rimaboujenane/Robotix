@@ -61,8 +61,7 @@ public class GestionFournisseurs extends GestionUser {
      *
      * @param fournisseurModifie Le fournisseur modifié avec les nouvelles informations.
      */
-    public void updateFournisseur(Fournisseur fournisseurModifie) {
-        String email = fournisseurModifie.getEmail(); // Récupérer l'email du fournisseur modifié
+    public void updateFournisseur(Fournisseur fournisseurModifie, String email) {
         if (fournisseurMap.containsKey(email)) {
             // Mettre à jour le fournisseur dans la map avec les nouvelles informations
             fournisseurMap.put(email, fournisseurModifie);
@@ -154,5 +153,8 @@ public class GestionFournisseurs extends GestionUser {
      */
     public Map<String, Fournisseur> getFournisseurMap() {
         return fournisseurMap;
+    }
+    public boolean emailValide(String email) {
+        return !fournisseurMap.keySet().contains(email);
     }
 }

@@ -60,18 +60,28 @@ public class InscriptionController {
         // Créer un utilisateur ou un fournisseur en fonction du type sélectionné
         Object userData = view.getRegisterButton().getUserData();
         if (userData instanceof Boolean && (Boolean) userData) {
-            String companie = view.getRegisterCompanieField() != null ? view.getRegisterCompanieField().getText() : "";
-            this.fournisseur = new Fournisseur(nom, prenom, password, email, phone, companie);
             GestionFournisseurs fournisseurs = new GestionFournisseurs();
-            fournisseurs.addFournisseur(fournisseur);
-            valid();
-            navigateToMenu(); // Naviguer vers le menu fournisseur
+            if (fournisseurs.emailValide(email)){
+                String companie = view.getRegisterCompanieField() != null ? view.getRegisterCompanieField().getText() : "";
+                this.fournisseur = new Fournisseur(nom, prenom, password, email, phone, companie);
+                fournisseurs.addFournisseur(fournisseur);
+                valid();
+                navigateToMenu(); // Naviguer vers le menu fournisseur
+            }
+            else {
+                invalidEmail();
+            }
         } else {
-            this.utilisateur = new Utilisateur(nom, prenom, password, email, phone);
             GestionUtilisateurs utilisateurs = new GestionUtilisateurs();
-            utilisateurs.addUtilisateur(utilisateur);
-            valid();
-            navigateToMenu(); // Naviguer vers le menu utilisateur
+            if (utilisateurs.emailValide(email)){
+                this.utilisateur = new Utilisateur(nom, prenom, password, email, phone);
+                utilisateurs.addUtilisateur(utilisateur);
+                valid();
+                navigateToMenu(); // Naviguer vers le menu utilisateur
+            }
+            else {
+                invalidEmail();
+            }
         }
     }
 
@@ -100,6 +110,13 @@ public class InscriptionController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setContentText("Inscription validée!");
+        alert.showAndWait();
+    }
+
+    private void invalidEmail(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setContentText("Email déjà utilisé, veuillez soumettre un différent email.");
         alert.showAndWait();
     }
 }

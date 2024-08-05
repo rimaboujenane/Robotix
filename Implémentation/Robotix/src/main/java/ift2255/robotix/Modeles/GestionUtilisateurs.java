@@ -152,4 +152,8 @@ public class GestionUtilisateurs extends GestionUser {
     public Map<String, Utilisateur> getUtilisateursMap() {
         return utilisateursMap;
     }
+
+    public boolean emailValide(String email) {
+        return !utilisateursMap.keySet().contains(email);
+    }
 }

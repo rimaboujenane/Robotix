@@ -25,6 +25,7 @@ public class InscriptionView extends VBox {
     private TextField registerPhoneField;
     private PasswordField registerPasswordField;
     private TextField registerCompanieField;
+    private CheckBox emailCheckbox;
     private Button registerButton;
     private Label loginLabel;
 
@@ -59,6 +60,9 @@ public class InscriptionView extends VBox {
         registerPhoneField = new TextField();
         registerPhoneField.setPromptText("123-456-7890");
 
+        emailCheckbox = new CheckBox("Recevoir les notifications par email");
+        emailCheckbox.setStyle("-fx-text-fill: white;");
+
         Label registerPasswordLabel = new Label("Mot de passe:");
         registerPasswordLabel.setStyle("-fx-text-fill: white;");
         registerPasswordField = new PasswordField();
@@ -87,7 +91,7 @@ public class InscriptionView extends VBox {
         else {
             registerButton.setUserData(false);
         }
-        registerSection.getChildren().addAll(registerButton, loginLabel);
+        registerSection.getChildren().addAll(emailCheckbox, registerButton, loginLabel);
         registerSection.setStyle("-fx-padding: 20; -fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         registerSection.setSpacing(10);
         registerSection.setPrefWidth(400);
