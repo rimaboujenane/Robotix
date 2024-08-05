@@ -1,6 +1,7 @@
 package ift2255.robotix.Modeles;
 
 public class Robot{
+    private int id;
     private String numeroSerie;
     private String nom;
     private String type;
@@ -9,12 +10,14 @@ public class Robot{
     private int niveauBatterie;
     private double consommationCPU;
     private double consommationMemoire;
+    private String utilisateurEmail;
 
     public Robot(){
         // creation de robot sans attributs
     }
 
-    public Robot(String numeroSerie, String nom, String type, String position, double vitesse,int niveauBatterie, double consommationCPU, double consommationMemoire){
+    public Robot(int id,String numeroSerie, String nom, String type, String position, double vitesse,int niveauBatterie, double consommationCPU, double consommationMemoire, String utilisateurEmail){
+        this.id= id;
         this.numeroSerie= numeroSerie;
         this.nom= nom;
         this.type=type;
@@ -23,9 +26,13 @@ public class Robot{
         this.niveauBatterie= niveauBatterie;
         this.consommationCPU= consommationCPU;
         this.consommationMemoire=consommationMemoire;
+        this.utilisateurEmail=utilisateurEmail;
     }
 
     // getters de la classe
+    public int getId(){
+        return id;
+    }
     public String getNumeroSerie(){
         return numeroSerie;
     }
@@ -50,7 +57,13 @@ public class Robot{
     public double getConsommationMemoire(){
         return consommationMemoire;
     }
+    public String getUtilisateurEmail(){
+        return utilisateurEmail;
+    }
     // setters de la classe
+    public void setId(int id){
+        this.id=id;
+    }
     public void setNom(String nom){
         this.nom= nom;
     }
@@ -74,6 +87,10 @@ public class Robot{
     }
     public void setConsommationMemoire(double consommationMemoire){
         this.consommationMemoire= consommationMemoire;
+    }
+
+    public void setUtilisateurEmail(String utilisateurEmail){
+        this.utilisateurEmail= utilisateurEmail;
     }
 
     // fonction qui prends un boolean en parametres si le bool == True 
