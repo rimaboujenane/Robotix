@@ -66,7 +66,7 @@ public class ProfileMenuController {
 
         // Mettre à jour les informations de l'utilisateur
         GestionUtilisateurs utilisateurs = new GestionUtilisateurs();
-        utilisateurs.updateUtilisateur(utilisateurModifie);
+        utilisateurs.updateUtilisateur(utilisateurModifie, RegisterUtilisateur.getInstance().getUtilisateur().getEmail());
 
         // Mettre à jour l'utilisateur actuel avec les nouvelles informations
         this.utilisateur = utilisateurModifie;

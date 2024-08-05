@@ -34,8 +34,11 @@ public class LoginController {
         // Définir l'action pour le bouton de connexion
         this.view.getLoginButton().setOnAction(e -> handleLogin(view.getLoginTypeComboBox()));
 
-        // Définir l'action pour l'étiquette d'inscription
-        this.view.getRegisterLabel().setOnMouseClicked(e -> inscription());
+        // Définir l'action pour l'étiquette d'inscription pour les utilisateurs
+        this.view.getRegisterLabel().setOnMouseClicked(e -> inscription(false));
+
+        // Définir l'action pour l'étiquette d'inscription pour les fournisseurs
+        this.view.getRegisterFournisseurLabel().setOnMouseClicked(e -> inscription(true));
     }
 
     /**
@@ -47,37 +50,38 @@ public class LoginController {
         String username = view.getUsernameField().getText();
         String password = view.getPasswordField().getText();
 
-        GestionUtilisateurs utilisateurs = new GestionUtilisateurs(); // Gestion des utilisateurs
-        GestionFournisseurs fournisseurs = new GestionFournisseurs(); // Gestion des fournisseurs
-
         // Vérifier les informations de connexion pour un utilisateur
-        if ("Utilisateur".equals(type.getValue()) && utilisateurs.isValidUser(username, password)) {
-            this.utilisateur = utilisateurs.getUtilisateur();
-            RegisterUtilisateur.getInstance().setUtilisateur(this.utilisateur);
-            NotifService.getInstance().getNotifications().clear();
-            navigateToMenu(); // Naviguer vers le menu utilisateur
+        if ("Utilisateur".equals(type.getValue())) {
+            GestionUtilisateurs utilisateurs = new GestionUtilisateurs(); // Gestion des utilisateurs
+            if (utilisateurs.isValidUser(username, password)) {
+                this.utilisateur = utilisateurs.getUtilisateur();
+                RegisterUtilisateur.getInstance().setUtilisateur(this.utilisateur);
+                NotifService.getInstance().getNotifications().clear();
+                navigateToMenu(); // Naviguer vers le menu utilisateur
+            } else {
+                invalid(); // Afficher un message d'erreur si les informations de connexion sont incorrectes
+            }
         }
         // Vérifier les informations de connexion pour un fournisseur
-        else if ("Fournisseur".equals(type.getValue()) && fournisseurs.isValidUser(username, password)) {
-            this.fournisseur = fournisseurs.getFournisseur();
-            RegisterFournisseur.getInstance().setFournisseur(this.fournisseur);
-            navigateToMenuFournisseur(); // Naviguer vers le menu fournisseur
-        }
-        // Afficher un message d'erreur en cas d'échec de connexion
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de connexion");
-            alert.setHeaderText(null);
-            alert.setContentText("Nom d'utilisateur ou mot de passe incorrect.");
-            alert.showAndWait();
+        else if ("Fournisseur".equals(type.getValue())) {
+            GestionFournisseurs fournisseurs = new GestionFournisseurs(); // Gestion des fournisseurs
+            if (fournisseurs.isValidUser(username, password)) {
+                this.fournisseur = fournisseurs.getFournisseur();
+                RegisterFournisseur.getInstance().setFournisseur(this.fournisseur);
+                navigateToMenuFournisseur(); // Naviguer vers le menu fournisseur
+            } else {
+                invalid(); // Afficher un message d'erreur si les informations de connexion sont incorrectes
+            }
         }
     }
 
     /**
-     * Ouvre la vue d'inscription pour permettre à un nouvel utilisateur de s'inscrire.
+     * Ouvre la vue d'inscription pour permettre à un nouvel utilisateur ou fournisseur de s'inscrire.
+     *
+     * @param fournisseur Indique si l'inscription concerne un fournisseur (true) ou un utilisateur (false)
      */
-    public void inscription() {
-        InscriptionView inscriptionView = new InscriptionView();
+    public void inscription(Boolean fournisseur) {
+        InscriptionView inscriptionView = new InscriptionView(fournisseur);
         InscriptionController inscriptionController = new InscriptionController(stage, inscriptionView);
         stage.setScene(new Scene(inscriptionView, 900, 700));
     }
@@ -98,5 +102,16 @@ public class LoginController {
         MenuFournisseurView menuView = new MenuFournisseurView();
         MenuFournisseurController menuController = new MenuFournisseurController(stage, menuView);
         stage.setScene(new Scene(menuView, 900, 700));
+    }
+
+    /**
+     * Affiche un message d'erreur si les informations de connexion sont incorrectes.
+     */
+    public void invalid() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur de connexion");
+        alert.setHeaderText(null);
+        alert.setContentText("Nom d'utilisateur ou mot de passe incorrect.");
+        alert.showAndWait();
     }
 }

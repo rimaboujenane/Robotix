@@ -18,4 +18,6 @@ module ift2255.robotix {
     opens ift2255.robotix.Controller to javafx.fxml;
     exports ift2255.robotix.Controller.Utilisateur;
     opens ift2255.robotix.Controller.Utilisateur to javafx.fxml;
+    exports ift2255.robotix.Modeles;
+
 }
