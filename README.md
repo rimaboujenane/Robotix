@@ -58,9 +58,18 @@ Le projet est organisé selon la structure suivante :
 └── rapport.html
 ```
 
+## Utilisation des Fichiers CSV
+Pour faciliter le stockage, des fichiers CSV sont fournis comme base de données pour les fournisseurs et les utilisateurs. Ces fichiers permettent de pré-configurer des comptes et des informations, ce qui vous permet de tester l'application avec des données déjà définies.
+
+### Fichiers CSV
+- **`utilisateurs.csv`** : Contient les informations des utilisateurs prédéfinis, telles que les identifiants, les mots de passe, et d'autres détails pertinents.
+- **`fournisseurs.csv`** : Contient les informations des fournisseurs prédéfinis, y compris les noms, les types de composants offerts, et d'autres détails pertinents.
+- Le reste des fichiers, composantes.csv, activites.csv et robots.csv stocke les informations concernant les composantes que chaque fournisseur offre, les activités auxquelles chaque utilisateur est inscrit, et finalement les robots que chaque utilisateur a créé.
+
 
 ## Manuel d'utilisation
 Votre première fois sur Robotix? Inscrivez-vous! Sinon connectez-vous! 
+Vous trouverez 
 
 ### Création d’un compte Utilisateur
 Une fois que Robotix est lancé, en dessous de la section "Connexion", cliquez sur :
@@ -145,6 +154,3 @@ Dans l'onglet Mes Composants, vous trouverez une liste déroulante affichant les
 - Pour modifier un composant, cliquez dessus, modifiez les champs voulus, puis cliquez sur le bouton "Modifier".
 - Pour supprimer un composant, sélectionnez-le, puis cliquez sur le bouton "Supprimer".
 - Pour revenir au menu principal, cliquez sur le bouton retour.
-
-
-
