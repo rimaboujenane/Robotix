@@ -16,11 +16,13 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Classe pour gérer les fournisseurs, offrant des fonctionnalités d'ajout, de mise à jour et de validation.
+ * Classe pour gérer les fournisseurs, offrant des fonctionnalités d'ajout, de mise à jour, et de validation des fournisseurs.
+ * Cette classe étend {@link GestionUser} pour hériter des fonctionnalités de gestion des utilisateurs.
  */
 public class GestionFournisseurs extends GestionUser {
+
     /**
-     * Map pour stocker les fournisseurs.
+     * Map pour stocker les fournisseurs avec leur email comme clé.
      */
     protected Map<String, Fournisseur> fournisseurMap = new HashMap<>();
 
@@ -28,6 +30,7 @@ public class GestionFournisseurs extends GestionUser {
 
     /**
      * Constructeur pour initialiser la map des fournisseurs et charger les données depuis un fichier CSV.
+     * Le fichier CSV doit être situé à l'emplacement "src/main/resources/data/fournisseur.csv".
      */
     public GestionFournisseurs() {
         fournisseurMap = new HashMap<>();
@@ -63,6 +66,7 @@ public class GestionFournisseurs extends GestionUser {
      * Met à jour les informations d'un fournisseur dans la map et dans le fichier CSV.
      *
      * @param fournisseurModifie Le fournisseur modifié avec les nouvelles informations.
+     * @param email              L'email du fournisseur à mettre à jour.
      */
     public void updateFournisseur(Fournisseur fournisseurModifie, String email) {
         if (fournisseurMap.containsKey(email)) {
@@ -73,7 +77,6 @@ public class GestionFournisseurs extends GestionUser {
             writeToCSV("src/main/resources/data/fournisseur.csv");
         } else {
             System.err.println("Le fournisseur avec l'email " + email + " n'existe pas dans la liste.");
-            // Vous pouvez gérer ce cas comme nécessaire, par exemple, lever une exception ou afficher un message d'erreur
         }
     }
 
@@ -157,20 +160,37 @@ public class GestionFournisseurs extends GestionUser {
     public Map<String, Fournisseur> getFournisseurMap() {
         return fournisseurMap;
     }
+
+    /**
+     * Vérifie si l'email fourni est valide (c'est-à-dire qu'il n'est pas déjà utilisé par un fournisseur existant).
+     *
+     * @param email L'email à vérifier.
+     * @return true si l'email est valide (non utilisé), sinon false.
+     */
     public boolean emailValide(String email) {
         return !fournisseurMap.keySet().contains(email);
     }
 
+    /**
+     * Retourne une liste observable des noms de tous les fournisseurs.
+     *
+     * @return Une liste observable des noms des fournisseurs.
+     */
     public ObservableList<String> getFournisseurs() {
-
         ObservableList<String> fourns = FXCollections.observableArrayList();
         for (Fournisseur f : fournisseurMap.values()) {
             fourns.add(f.getNom());
         }
         return fourns;
     }
-    public Fournisseur getFournisseurByName(String nom) {
 
+    /**
+     * Recherche un fournisseur par son nom.
+     *
+     * @param nom Le nom du fournisseur à rechercher.
+     * @return Le fournisseur correspondant au nom, ou null si aucun fournisseur n'est trouvé.
+     */
+    public Fournisseur getFournisseurByName(String nom) {
         Fournisseur fourn = null;
         for (Fournisseur f : fournisseurMap.values()) {
             if (f.getNom().equals(nom)) {
@@ -181,4 +201,3 @@ public class GestionFournisseurs extends GestionUser {
     }
 
 }
-

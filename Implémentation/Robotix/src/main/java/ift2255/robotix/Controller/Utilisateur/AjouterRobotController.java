@@ -8,31 +8,31 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
-
-/*
- * Contrôleur pour l'ajout des robots. Gère les intéractions de l'utilsateur
- * avec la vue d'ajouter les robots
+/**
+ * Contrôleur pour l'ajout des robots. Gère les interactions de l'utilisateur
+ * avec la vue d'ajout des robots.
  */
-
 public class AjouterRobotController {
     private Stage stage;
     private AjouterRobotView view;
     private GestionRobots gestionRobots;
 
-    /*
+    /**
      * Constructeur pour initialiser le contrôleur.
      *
-     * @param stage Le stage principal de l'application.
-     * @param view La vue d'jout des robots.
+     * @param stage La scène principale de l'application.
+     * @param view  La vue d'ajout des robots.
      * @param gestionRobots La gestion des robots.
      */
     public AjouterRobotController(Stage stage, AjouterRobotView view, GestionRobots gestionRobots){
-        this.stage= stage;
-        this.view= view;
-        this.gestionRobots= gestionRobots;
+        this.stage = stage;
+        this.view = view;
+        this.gestionRobots = gestionRobots;
 
-        // On ajoute un gestionnaire d'event pour le bouton enregistrement
+        // On ajoute un gestionnaire d'événements pour le bouton d'enregistrement
         this.view.getAjouterButton().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event){
@@ -40,38 +40,69 @@ public class AjouterRobotController {
             }
         });
 
-        // On ajoute un gestionnaire d'evenements pour le bouton de retour
-        this.view.getRetourButton().setOnAction(e->retourAuMenu());
+        // On ajoute un gestionnaire d'événements pour le bouton de retour
+        this.view.getRetourButton().setOnAction(e -> retourAuMenu());
     }
-    /*
-     * Ajout d'un noiveau robot apres validation des champs
+
+    /**
+     * Ajoute un nouveau robot après validation des champs.
      */
-    private void ajouterRobot(){
-        try{
-        String nom= view.getNomField().getText();
+    private void ajouterRobot() {
+        // Récupération des valeurs des champs
+        String nom = view.getNomField().getText();
         String numeroSerie = view.getNumeroSerieField().getText();
         String type = view.getTypeField().getText();
         String position = view.getPositionField().getText();
-        double vitesse = Double.parseDouble(view.getVitesseField().getText());
-        int niveauBatterie = Integer.parseInt(view.getNiveauBatterieField().getText());
-        double consommationCPU = Double.parseDouble(view.getConsommationCPUField().getText());
-        double consommationMemoire = Double.parseDouble(view.getConsommationMemoireField().getText());
-        //String utilisateurEmail = view.getUtilisateurEmailField().getText();
+        String vitesseText = view.getVitesseField().getText();
+        String niveauBatterieText = view.getNiveauBatterieField().getText();
+        String consommationCPUText = view.getConsommationCPUField().getText();
+        String consommationMemoireText = view.getConsommationMemoireField().getText();
 
-         Robot robot = new Robot(gestionRobots.getNextId(), numeroSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
-         gestionRobots.ajouterRobot(robot);
+        // Vérification que tous les champs sont remplis
+        if (nom.isEmpty() || numeroSerie.isEmpty() || type.isEmpty() || position.isEmpty() ||
+                vitesseText.isEmpty() || niveauBatterieText.isEmpty() || consommationCPUText.isEmpty() || consommationMemoireText.isEmpty()) {
+            showAlert("Erreur", "Tous les champs doivent être remplis.");
+            return;
+        }
 
-         retourAuMenu();
-    }catch(NumberFormatException e){
-        // affiche un message d'erreur ou un dialogue pour l'utilisateur
-        System.err.println("Erreur de format de nombre: "+e.getMessage());
+        try {
+            // Conversion des valeurs des champs
+            double vitesse = Double.parseDouble(vitesseText);
+            int niveauBatterie = Integer.parseInt(niveauBatterieText);
+            double consommationCPU = Double.parseDouble(consommationCPUText);
+            double consommationMemoire = Double.parseDouble(consommationMemoireText);
+
+            // Création du robot et ajout
+            Robot robot = new Robot(gestionRobots.getNextId(), numeroSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
+            gestionRobots.ajouterRobot(robot);
+
+            retourAuMenu();
+        } catch (NumberFormatException e) {
+            // Affiche un message d'erreur en cas de format de nombre incorrect
+            showAlert("Erreur de format", "Vérifiez les formats des nombres.");
+        }
     }
-}
 
-private void retourAuMenu(){
-    RobotMenuView robotMenuView= new RobotMenuView();
-    RobotMenuController robotMenuController= new RobotMenuController(stage, robotMenuView);
-    stage.setScene(new Scene(robotMenuView,900,700));
-}
-    
+    /**
+     * Affiche une boîte de dialogue d'alerte avec le message spécifié.
+     *
+     * @param title Le titre de l'alerte.
+     * @param message Le message de l'alerte.
+     */
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    /**
+     * Retourne au menu des robots.
+     */
+    private void retourAuMenu(){
+        RobotMenuView robotMenuView = new RobotMenuView();
+        RobotMenuController robotMenuController = new RobotMenuController(stage, robotMenuView);
+        stage.setScene(new Scene(robotMenuView, 900, 700));
+    }
 }

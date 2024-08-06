@@ -1,6 +1,5 @@
 package ift2255.robotix.Modeles;
 
-
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
@@ -32,7 +31,6 @@ public class GestionActivites {
 
     /**
      * Constructeur pour initialiser la gestion des activités avec un utilisateur spécifique.
-     *
      */
     public GestionActivites() {
         chargerActivite("src/main/resources/data/activites.csv");
@@ -170,14 +168,29 @@ public class GestionActivites {
         }
     }
 
+    /**
+     * Retourne la liste de toutes les activités.
+     *
+     * @return La liste de toutes les activités
+     */
     public List<Activite> getActivites() {
         return activites;
     }
 
+    /**
+     * Retourne la liste des activités auxquelles l'utilisateur est inscrit.
+     *
+     * @return La liste des activités de l'utilisateur
+     */
     public List<Activite> getMesActivites() {
         return mesActivites;
     }
 
+    /**
+     * Retourne la liste des activités auxquelles l'utilisateur n'est pas inscrit.
+     *
+     * @return La liste des activités non inscrites par l'utilisateur
+     */
     public List<Activite> getActivitesNonInscrites() {
         return activitesNonInscrites;
     }

@@ -17,6 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Vue pour rechercher les composantes et afficher les détails disponibles chez les fournisseurs.
+ * Permet de filtrer les composantes par type et par fournisseur.
+ */
 public class SearchComposanteView extends VBox {
     private Button backButton;
     private ComboBox<String> typeComboBox;
@@ -25,17 +29,32 @@ public class SearchComposanteView extends VBox {
     private Label fournField;
     private GestionFournisseurs fournisseurs;
     private GestionComposantes composantes;
-    private SearchComposanteController controller; // Ajout de l'attribut contrôleur
+    private SearchComposanteController controller;
     private ScrollPane scroll;
 
+    /**
+     * Constructeur par défaut qui initialise la vue en appelant la méthode {@link #afficherVue(HashMap)}.
+     */
     public SearchComposanteView() {
         afficherVue(new HashMap<Fournisseur, List<Composante>>());
     }
 
+    /**
+     * Définit le contrôleur associé à cette vue.
+     *
+     * @param controller Le contrôleur à associer.
+     */
     public void setController(SearchComposanteController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Affiche la vue avec les données fournies.
+     * Configure les éléments de l'interface utilisateur, y compris le bouton de retour, les champs de sélection des types de composantes
+     * et des fournisseurs, et les composantes disponibles.
+     *
+     * @param i Une map associant chaque fournisseur à une liste de composantes.
+     */
     public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
         this.getChildren().clear();
 
@@ -80,6 +99,11 @@ public class SearchComposanteView extends VBox {
         this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
 
+    /**
+     * Met à jour les données affichées dans la vue avec le texte fourni.
+     *
+     * @param data Le texte à afficher.
+     */
     public void updateData(Text data) {
         this.getChildren().remove(scroll);
         VBox dataLayout = new VBox(10, data);
@@ -89,6 +113,12 @@ public class SearchComposanteView extends VBox {
         this.getChildren().add(scroll);
     }
 
+    /**
+     * Construit et retourne la vue du catalogue des composantes disponibles chez les fournisseurs donnés.
+     *
+     * @param i Une map associant chaque fournisseur à une liste de composantes.
+     * @return Un {@link VBox} contenant la vue du catalogue des composantes.
+     */
     public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
         VBox cat = new VBox();
         for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
@@ -119,10 +149,48 @@ public class SearchComposanteView extends VBox {
         return cat;
     }
 
+    /**
+     * Retourne le bouton de retour de la vue.
+     *
+     * @return Le bouton de retour.
+     */
+    public Button getBackButton() {
+        return backButton;
+    }
 
-    public Button getBackButton() { return backButton; }
-    public ComboBox<String> getTypeComboBox() { return typeComboBox; }
-    public ComboBox<String> getFournComboBox() { return fournComboBox; }
-    public String getType() { return typeComboBox.getValue(); }
-    public Fournisseur getFournisseur() { return fournisseurs.getFournisseurByName(fournComboBox.getValue()); }
+    /**
+     * Retourne la boîte de sélection pour les types de composantes.
+     *
+     * @return La boîte de sélection des types de composantes.
+     */
+    public ComboBox<String> getTypeComboBox() {
+        return typeComboBox;
+    }
+
+    /**
+     * Retourne la boîte de sélection pour les fournisseurs.
+     *
+     * @return La boîte de sélection des fournisseurs.
+     */
+    public ComboBox<String> getFournComboBox() {
+        return fournComboBox;
+    }
+
+    /**
+     * Retourne le type de composante sélectionné dans la boîte de sélection.
+     *
+     * @return Le type de composante sélectionné.
+     */
+    public String getType() {
+        return typeComboBox.getValue();
+    }
+
+    /**
+     * Retourne le fournisseur sélectionné dans la boîte de sélection.
+     *
+     * @return Le fournisseur sélectionné, ou null si aucun fournisseur n'est sélectionné.
+     */
+    public Fournisseur getFournisseur() {
+        return fournisseurs.getFournisseurByName(fournComboBox.getValue());
+    }
 }
