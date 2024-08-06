@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 public class TestGestionUser {
 
     private GestionUtilisateurs gestionUtilisateurs;
+    private Utilisateur utilisateur;
 
     /**
      * Configure l'environnement de test avant chaque cas de test.
@@ -20,7 +21,7 @@ public class TestGestionUser {
      */
     @BeforeEach
     public void setUp() {
-        Utilisateur utilisateur = new Utilisateur("testNom", "testPrenom", "password123", "test@gmail.com", "123-456-7890");
+        utilisateur = new Utilisateur("testNom", "testPrenom", "password123", "test@gmail.com", "123-456-7890");
         gestionUtilisateurs = new GestionUtilisateurs();
         gestionUtilisateurs.getUtilisateursMap().put("test@gmail.com", utilisateur);
     }
