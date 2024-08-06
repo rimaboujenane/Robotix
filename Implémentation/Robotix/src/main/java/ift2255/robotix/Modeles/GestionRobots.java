@@ -1,6 +1,7 @@
 package ift2255.robotix.Modeles;
 
 import ift2255.robotix.Modeles.RegisterUtilisateur;
+import ift2255.robotix.Modeles.NotifService;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvValidationException;
@@ -9,141 +10,139 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Gestion des robots par les utilisateurs. Cette classe permet d<ajouter, de modifier,
- * de voir l'état des robots à partir d'un fihier CSV.
+ * Gestion des robots par les utilisateurs. Cette classe permet d'ajouter, de modifier,
+ * de voir l'état des robots à partir d'un fichier CSV.
  */
+public class GestionRobots {
 
-public class GestionRobots{
-    private static final String CSV_FILE="src/main/resources/data/robots.csv";
-    private Map<String, List<Robot>> flotteParUtilisateur= new HashMap<>();
-    private int nextId=1; //Initialisation à 1.
+    private static final String CSV_FILE = "src/main/resources/data/robots.csv";
+    private Map<String, List<Robot>> flotteParUtilisateur = new HashMap<>();
+    private int nextId = 1; // Initialisation à 1.
     private Utilisateur user;
 
-    /*
-     * Constructeur pour intilialiser la classe
+    /**
+     * Constructeur pour initialiser la classe et charger les robots depuis le fichier CSV.
      */
-    public GestionRobots(){
-        this.user= RegisterUtilisateur.getInstance().getUtilisateur();
+    public GestionRobots() {
+        this.user = RegisterUtilisateur.getInstance().getUtilisateur();
         chargerTousLesRobots();
     }
 
-    /*
-     * Ajout d'un nouveau robot à la flotte d'un utilisateur
-     * 
-     * @param robot le robot à ajouter
+    /**
+     * Ajoute un nouveau robot à la flotte de l'utilisateur courant et l'enregistre dans le fichier CSV.
+     *
+     * @param robot Le robot à ajouter.
      */
-
-    public void ajouterRobot(Robot robot){
-        // On génère un ID unique pour le nouveau composant
+    public void ajouterRobot(Robot robot) {
+        // On génère un ID unique pour le nouveau robot
         int id = getNextId();
         robot.setId(id);
 
-        try(CSVWriter writer= new CSVWriter(new FileWriter(CSV_FILE, true))){
-            String [] data={
-                String.valueOf(robot.getId()),
-                robot.getNumeroSerie(),
-                robot.getNom(),
-                robot.getType(),
-                robot.getPosition(),
-                String.valueOf(robot.getVitesse()),
-                String.valueOf(robot.getNiveauBatterie()),
-                String.valueOf(robot.getConsommationCPU()),
-                String.valueOf(robot.getConsommationMemoire()),
-                user.getEmail()
-
-
+        try (CSVWriter writer = new CSVWriter(new FileWriter(CSV_FILE, true))) {
+            String[] data = {
+                    String.valueOf(robot.getId()),
+                    robot.getNumeroSerie(),
+                    robot.getNom(),
+                    robot.getType(),
+                    robot.getPosition(),
+                    String.valueOf(robot.getVitesse()),
+                    String.valueOf(robot.getNiveauBatterie()),
+                    String.valueOf(robot.getConsommationCPU()),
+                    String.valueOf(robot.getConsommationMemoire()),
+                    user.getEmail()
             };
             writer.writeNext(data);
             flotteParUtilisateur
-            .computeIfAbsent(user.getEmail(),k-> new ArrayList<>())
-            .add(robot);
-        }catch(IOException e){
+                    .computeIfAbsent(user.getEmail(), k -> new ArrayList<>())
+                    .add(robot);
+            NotifService.getInstance().sendNotif("Le robot "+ robot.getNom() +"a été ajouté avec succès");
+        } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Erreur lors de l'ajout du robot dans le fichier Csv: "+ e.getMessage());
+            System.err.println("Erreur lors de l'ajout du robot dans le fichier CSV: " + e.getMessage());
+            NotifService.getInstance().sendNotif("Le robot "+ robot.getNom() +"n'a pas pu être ajouté. Veuillez reéssayer plus tard");
         }
     }
+
     /**
      * Génère un nouvel identifiant unique pour un robot.
      *
      * @return Le prochain identifiant disponible.
      */
-
-    public synchronized int getNextId(){
-        int maxId=0;
-        for (List<Robot> robots: flotteParUtilisateur.values()){
-            for( Robot robot: robots){
-                if (robot.getId()> maxId){
-                    maxId= robot.getId();
+    public synchronized int getNextId() {
+        int maxId = 0;
+        for (List<Robot> robots : flotteParUtilisateur.values()) {
+            for (Robot robot : robots) {
+                if (robot.getId() > maxId) {
+                    maxId = robot.getId();
                 }
             }
         }
-        return maxId+1;
+        return maxId + 1;
     }
-    
-  /**
-     * Charge toutes les robots à partir du fichier CSV et les stocke dans une carte par utilisateur.
-     */
-    private void chargerTousLesRobots(){
-        try(CSVReader reader = new CSVReader(new FileReader(CSV_FILE))) {
-            reader.skip(1); // permet d'ignorer l'entete du fichier CSV
-            String[] nextLine;
-            while((nextLine= reader.readNext()) != null){
-                if( nextLine.length >= 10){ // verifie que la ligne contienne assez de champs
-                   try {
-                      int id= Integer.parseInt(nextLine[0]);
-                      String numeroDeSerie= nextLine[1];
-                      String nom= nextLine[2];
-                      String type= nextLine[3];
-                      String position= nextLine[4];
-                      double vitesse= Double.parseDouble(nextLine[5]);
-                      int niveauBatterie= Integer.parseInt(nextLine[6]);
-                      double consommationCPU= Double.parseDouble(nextLine[7]);
-                      double consommationMemoire= Double.parseDouble(nextLine[8]);
-                      String utilsateurEmail= user.getEmail();
 
-                      Robot robot = new Robot(id, numeroDeSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
-                      flotteParUtilisateur
-                         .computeIfAbsent(utilsateurEmail, k-> new ArrayList<>())
-                         .add(robot);
-                      
-                     // On mets à jour le prochain ID disponible
-                       if(id>= nextId){
-                        nextId= id+1;
-                       }
-                     } catch (NumberFormatException e) {
-                       System.err.println("Erreur de format dans les données :" + String.join(",", nextLine));
-                   }
-                }else{
-                    System.err.println("La ligne ne contient pas assez de champs: "+ String.join(",",nextLine));
+    /**
+     * Charge tous les robots à partir du fichier CSV et les stocke dans une carte par utilisateur.
+     */
+    private void chargerTousLesRobots() {
+        try (CSVReader reader = new CSVReader(new FileReader(CSV_FILE))) {
+            reader.skip(1); // Ignore l'entête du fichier CSV
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                if (nextLine.length >= 10) { // Vérifie que la ligne contient assez de champs
+                    try {
+                        int id = Integer.parseInt(nextLine[0]);
+                        String numeroDeSerie = nextLine[1];
+                        String nom = nextLine[2];
+                        String type = nextLine[3];
+                        String position = nextLine[4];
+                        double vitesse = Double.parseDouble(nextLine[5]);
+                        int niveauBatterie = Integer.parseInt(nextLine[6]);
+                        double consommationCPU = Double.parseDouble(nextLine[7]);
+                        double consommationMemoire = Double.parseDouble(nextLine[8]);
+                        String utilisateurEmail = user.getEmail();
+
+                        Robot robot = new Robot(id, numeroDeSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
+                        flotteParUtilisateur
+                                .computeIfAbsent(utilisateurEmail, k -> new ArrayList<>())
+                                .add(robot);
+
+                        // Met à jour le prochain ID disponible
+                        if (id >= nextId) {
+                            nextId = id + 1;
+                        }
+                    } catch (NumberFormatException e) {
+                        System.err.println("Erreur de format dans les données : " + String.join(",", nextLine));
+                    }
+                } else {
+                    System.err.println("La ligne ne contient pas assez de champs: " + String.join(",", nextLine));
                 }
             }
-        } catch (IOException | CsvValidationException e)  {
-           e.printStackTrace();
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
         }
     }
 
     /**
-     * Écrit toutes les robots dans le fichier CSV.
+     * Écrit tous les robots dans le fichier CSV.
      */
-
     private void writeRobotsToCSV() {
         try (CSVWriter writer = new CSVWriter(new FileWriter(CSV_FILE))) {
-            String[] header = {"ID","NumeroDeserie", "Nom", "Type", "Position", "Vitesse","NiveauBatterie","ConsommationCPU","consommationMemoire", "UtilsateurEmail"};
+            String[] header = {"ID", "NumeroDeserie", "Nom", "Type", "Position", "Vitesse", "NiveauBatterie", "ConsommationCPU", "ConsommationMemoire", "UtilisateurEmail"};
             writer.writeNext(header);
 
             for (List<Robot> robots : flotteParUtilisateur.values()) {
                 for (Robot robot : robots) {
                     writer.writeNext(new String[]{
-                        String.valueOf(robot.getId()),
-                        robot.getNumeroSerie(),
-                        robot.getNom(),
-                        robot.getType(),
-                        robot.getPosition(),
-                        String.valueOf(robot.getVitesse()),
-                        String.valueOf(robot.getNiveauBatterie()),
-                        String.valueOf(robot.getConsommationCPU()),
-                        String.valueOf(robot.getConsommationMemoire()),
-                        user.getEmail()
+                            String.valueOf(robot.getId()),
+                            robot.getNumeroSerie(),
+                            robot.getNom(),
+                            robot.getType(),
+                            robot.getPosition(),
+                            String.valueOf(robot.getVitesse()),
+                            String.valueOf(robot.getNiveauBatterie()),
+                            String.valueOf(robot.getConsommationCPU()),
+                            String.valueOf(robot.getConsommationMemoire()),
+                            user.getEmail()
                     });
                 }
             }
@@ -154,37 +153,35 @@ public class GestionRobots{
         }
     }
 
-     /**
-     * Charge les composantes pour un fournisseur donné à partir du fichier CSV.
+    /**
+     * Charge les robots pour l'utilisateur courant à partir de la carte des robots.
      *
-     * @param utilisateurEmail L'email de l'utilisateur dont les robots doivent être chargées.
-     * @return Une liste de roots pour l'utilisateur  spécifié.
+     * @return Une liste de robots pour l'utilisateur spécifié.
      */
-    public List<Robot> chargerRobots(){
-        List<Robot> robots= flotteParUtilisateur.getOrDefault(user.getEmail(),new ArrayList<>());
-        System.out.println("Robots appartenant à " + user.getEmail()+ ": "+robots);
+    public List<Robot> chargerRobots() {
+        List<Robot> robots = flotteParUtilisateur.getOrDefault(user.getEmail(), new ArrayList<>());
+        System.out.println("Robots appartenant à " + user.getEmail() + ": " + robots);
         return robots;
     }
 
     /**
      * Supprime un robot du système et du fichier CSV.
      *
-     * @param id               L'identifiant de la composante à supprimer.
-     * @param utilisateurEmail L'email du fournisseur de la composante.
+     * @param id               L'identifiant du robot à supprimer.
+     * @param utilisateurEmail L'email de l'utilisateur auquel appartient le robot.
      */
-
-    public void supprimerRobot(int id, String utilisateurEmail ){
-        List <Robot> robots= chargerRobots();
-        robots.removeIf(c-> c.getId()==id);
+    public void supprimerRobot(int id, String utilisateurEmail) {
+        List<Robot> robots = chargerRobots();
+        robots.removeIf(c -> c.getId() == id);
         writeRobotsToCSV();
         flotteParUtilisateur.put(user.getEmail(), robots);
+        NotifService.getInstance().sendNotif("Le robot a été supprimé avec succès");
     }
-        /**
-     * Affiche l'état d'un robot.
+
+    /**
+     * Affiche l'état complet d'un robot.
      *
-     * @param id               L'identifiant du robot.
-     * @param utilisateurEmail L'email de l'utilisateur du robot.
-     * @param complet est-ce que l'on affiche l'état complet ou général
+     * @param id L'identifiant du robot.
      * @return Les informations du robot sous forme de chaîne de caractères.
      */
     public String afficherEtatRobotComplet(int id) {
@@ -196,7 +193,14 @@ public class GestionRobots{
         }
         return "Robot non trouvé.";
     }
-    public String afficherEtatRobotGeneral(int id ){
+
+    /**
+     * Affiche un état général d'un robot.
+     *
+     * @param id L'identifiant du robot.
+     * @return Les informations générales du robot sous forme de chaîne de caractères.
+     */
+    public String afficherEtatRobotGeneral(int id) {
         List<Robot> robots = chargerRobots();
         for (Robot robot : robots) {
             if (robot.getId() == id) {
@@ -204,13 +208,12 @@ public class GestionRobots{
             }
         }
         return "Robot non trouvé.";
+    }
 
-       }
-    
-        /**
+    /**
      * Récupère un robot par son nom et l'email de l'utilisateur.
      *
-     * @param id L'identifiant du robot.
+     * @param nom              Le nom du robot.
      * @param utilisateurEmail L'email de l'utilisateur.
      * @return Le robot correspondant ou null s'il n'est pas trouvé.
      */
@@ -224,5 +227,3 @@ public class GestionRobots{
         return null;
     }
 }
-
-    
