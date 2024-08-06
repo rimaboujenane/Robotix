@@ -80,7 +80,8 @@ Une fois connecté, le menu principal s'affichera. Vous aurez les options suivan
 - Notifications
 - Robots
 - Activités
-- Composantes
+- Recherche Composante
+- Recherche Fournisseur
 - Déconnexion
 - Quittez
 
@@ -93,11 +94,29 @@ Dans l'onglet Profil, vous pouvez consulter toutes vos informations et vous avez
 Dans l'onglet Notifications, vous pouvez accéder aux messages du système lors de votre session.
 - Vous avez la possibilité de les supprimer à l'aide de la croix à droite du message.
 
+#### Robots
+Dans l'onglet Robots, vous pouvez :
+- **Ajouter un robot** : Remplir les informations requises, y compris le numéro de série, le nom, le type, la position, la vitesse, le niveau de batterie, la consommation CPU et la consommation mémoire.
+- **Afficher l'état complet d'un robot** : Voir toutes les informations détaillées du robot sélectionné.
+- **Afficher l'état général d'un robot** : Afficher le nom, le type et le niveau de batterie du robot sélectionné.
+- **Supprimer un robot** : Retirer le robot de la liste.
+
 #### Activités
 Dans l'onglet Activités, vous pouvez consulter en temps réel les auxquelles auquelles vous êtes inscrit ainsi que les autres activités disponibles.
 Pour effectuer une action, appuyez sur le bouton à droite de l'activité. Vous avez la possibilité de: 
 - Vous inscrire à une activité si vous ne l'êtes pas.
 - Vous désinscrire si vous vous êtes inscrit à une activité.
+
+#### Recherche Composante
+Dans l'onglet Recherche Composante, vous pouvez :
+- **Rechercher une composante** : Chercher une composante selon son type ou son fournisseur.
+- **Acheter des composants** : Acheter les composants trouvés lors de la recherche.
+
+#### Recherche Fournisseur
+Dans l'onglet Recherche Fournisseur, vous pouvez :
+- **Rechercher Fournisseur** : Chercher un fournisseur selon le type de composant qu'il offre.
+- **Acheter des composants** : Acheter les composants proposés par le fournisseur recherché.
+
 
 
 ### Menu principal Fournisseur
@@ -112,6 +131,10 @@ Une fois connecté en tant que fournisseur, le menu principal s'affichera. Vous 
 Dans l'onglet Profil, vous pouvez consulter et modifier vos informations.
 - Pour modifier, cliquez sur le champ à modifier, entrez les nouvelles informations, puis cliquez sur "Enregistrer les modifications".
 - Pour annuler les modifications ou revenir au menu principal, cliquez sur le bouton retour.
+
+#### Notifications
+Dans l'onglet Notifications, vous pouvez accéder aux messages du système lors de votre session.
+- Vous avez la possibilité de les supprimer à l'aide de la croix à droite du message.
 
 #### Enregistrer Composants
 Dans l'onglet Enregistrer Composants, vous pouvez entrer les détails de la composante : Nom, Type, Description, Prix.
