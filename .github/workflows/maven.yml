@@ -24,3 +24,4 @@ jobs:
 
       - name: Display dependencies
         run: mvn dependency:tree
+         working-directory: ./Implementation/Robotix
