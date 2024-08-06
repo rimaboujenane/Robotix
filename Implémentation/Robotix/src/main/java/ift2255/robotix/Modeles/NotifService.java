@@ -13,6 +13,7 @@ public class NotifService {
     private static NotifService instance = null;
     // Liste pour stocker les notifications
     private List<Notification> notifications = new ArrayList<>();
+    private List<NotifFournisseur> notificationsFournisseur = new ArrayList<>();
 
     /**
      * Constructeur privé pour empêcher l'instanciation depuis l'extérieur.
@@ -50,12 +51,35 @@ public class NotifService {
     }
 
     /**
+     * Envoie une notification spécifique à un fournisseur avec la date et l'heure actuelles.
+     *
+     * @param fournisseurEmail l'email du fournisseur
+     * @param text le texte de la notification
+     */
+    public void sendNotifFournisseur(String fournisseurEmail, String text) {
+        // Obtenir la date et l'heure actuelles
+        LocalDateTime now = LocalDateTime.now();
+        // Définir le format pour la date et l'heure
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd HH:mm");
+        // Formater la date et l'heure actuelles
+        String date = now.format(formatter);
+        // Créer une nouvelle notification avec la date formatée, l'email du fournisseur, et le message
+        NotifFournisseur notifFournisseur = new NotifFournisseur(date + " | " + text, fournisseurEmail);
+        notificationsFournisseur.add(notifFournisseur);
+    }
+
+
+    /**
      * Renvoie la liste des notifications actuelles.
      *
      * @return une liste de notifications
      */
     public List<Notification> getNotifications() {
         return notifications;
+    }
+
+    public List<NotifFournisseur> getNotifFournisseur() {
+        return notificationsFournisseur;
     }
 
     /**
@@ -65,5 +89,9 @@ public class NotifService {
      */
     public void suppressNotif(Notification notif) {
         notifications.remove(notif);
+    }
+
+    public void suppressNotifFournisseur(NotifFournisseur notifFournisseur) {
+        notificationsFournisseur.remove(notifFournisseur);
     }
 }

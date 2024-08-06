@@ -1,5 +1,6 @@
 package ift2255.robotix.View.Utilisateur;
 
+import ift2255.robotix.Controller.Utilisateur.SearchComposanteController;
 import ift2255.robotix.Modeles.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.*;
+import javafx.stage.Stage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,12 +25,18 @@ public class SearchComposanteView extends VBox {
     private Label fournField;
     private GestionFournisseurs fournisseurs;
     private GestionComposantes composantes;
-    ScrollPane scroll;
+    private SearchComposanteController controller; // Ajout de l'attribut contrôleur
+    private ScrollPane scroll;
 
-    public SearchComposanteView() {afficherVue(new HashMap<Fournisseur, List<Composante>>()); }
+    public SearchComposanteView() {
+        afficherVue(new HashMap<Fournisseur, List<Composante>>());
+    }
+
+    public void setController(SearchComposanteController controller) {
+        this.controller = controller;
+    }
 
     public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
-
         this.getChildren().clear();
 
         setSpacing(10);
@@ -61,7 +69,6 @@ public class SearchComposanteView extends VBox {
         fournComboBox.setPromptText("Fournisseur");
         fournComboBox.setMaxWidth(400);
 
-
         VBox formLayout = new VBox(10, typeField, typeComboBox, fournField, fournComboBox, scroll);
         formLayout.setStyle("-fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
         formLayout.setPadding(new Insets(10));
@@ -72,18 +79,17 @@ public class SearchComposanteView extends VBox {
         this.getChildren().addAll(label, formLayout, backButton);
         this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
-    public void updateData(Text data) {
 
+    public void updateData(Text data) {
         this.getChildren().remove(scroll);
         VBox dataLayout = new VBox(10, data);
         scroll = new ScrollPane(dataLayout);
         scroll.setFitToWidth(true);
         scroll.setStyle("-fx-background-color: #0D1B2A;");
         this.getChildren().add(scroll);
-
     }
-    public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
 
+    public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
         VBox cat = new VBox();
         for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
             String n = entry.getKey().getPrenom() + " " + entry.getKey().getNom();
@@ -97,12 +103,14 @@ public class SearchComposanteView extends VBox {
                 Text comp = new Text("Composante: " + c.getNom() + "\tType: " + c.getType());
                 Button b = new Button("Acheter");
                 b.setOnMouseClicked(e -> {
+                    if (controller != null) {
+                        controller.acheterComposante(entry.getKey(), c);
+                    }
                     NotifService.getInstance().sendNotif(
-                            "La composante " + c.getNom() + ", vendu par " + n + " a été ajoutée à ton inventaire."
+                            "La composante " + c.getNom() + ", vendue par " + n + " a été ajoutée à ton inventaire."
                     );
                     Alert success = new Alert(Alert.AlertType.CONFIRMATION, "Succès!", ButtonType.OK);
                     success.showAndWait();
-
                 });
                 subCat.getChildren().addAll(comp, b);
                 cat.getChildren().add(subCat);
@@ -110,6 +118,7 @@ public class SearchComposanteView extends VBox {
         }
         return cat;
     }
+
 
     public Button getBackButton() { return backButton; }
     public ComboBox<String> getTypeComboBox() { return typeComboBox; }
