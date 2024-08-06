@@ -4,8 +4,6 @@ import ift2255.robotix.Modeles.Utilisateur;
 import ift2255.robotix.Modeles.RegisterUtilisateur;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,8 +19,7 @@ public class TestGestionActivites {
     /** Instance de GestionActivites utilisée pour les tests. */
     private GestionActivites gestionActivites;
 
-    /** Chemin vers le fichier CSV utilisé pour les tests. */
-    private static final String CSV_FILE = "src/main/resources/data/activites.csv";
+    private Utilisateur utilisateur;
 
     /**
      * Méthode d'initialisation appelée avant chaque test.
@@ -32,7 +29,7 @@ public class TestGestionActivites {
      */
     @BeforeEach
     public void setUp() throws IOException {
-        Utilisateur utilisateur = new Utilisateur("Dupont","Jean","dupont123","jdupont@example.com","1234567890");
+        utilisateur = new Utilisateur("Dupont","Jean","dupont123","jdupont@example.com","1234567890");
         RegisterUtilisateur.getInstance().setUtilisateur(utilisateur);
         gestionActivites = new GestionActivites();
     }
