@@ -21,3 +21,6 @@ jobs:
       - name: Run tests with Maven
         run: mvn test
         working-directory: ./Implémentation/Robotix
+
+      - name: Display dependencies
+        run: mvn dependency:tree
