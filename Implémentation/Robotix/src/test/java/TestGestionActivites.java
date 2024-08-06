@@ -4,8 +4,6 @@ import ift2255.robotix.Modeles.Utilisateur;
 import ift2255.robotix.Modeles.RegisterUtilisateur;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -21,8 +19,7 @@ public class TestGestionActivites {
     /** Instance de GestionActivites utilisée pour les tests. */
     private GestionActivites gestionActivites;
 
-    /** Chemin vers le fichier CSV utilisé pour les tests. */
-    private static final String CSV_FILE = "src/main/resources/data/activites.csv";
+    private Utilisateur utilisateur;
 
     /**
      * Méthode d'initialisation appelée avant chaque test.
@@ -32,7 +29,7 @@ public class TestGestionActivites {
      */
     @BeforeEach
     public void setUp() throws IOException {
-        Utilisateur utilisateur = new Utilisateur("Dupont","Jean","dupont123","jdupont@example.com","1234567890");
+        utilisateur = new Utilisateur("Dupont","Jean","dupont123","jdupont@example.com","1234567890");
         RegisterUtilisateur.getInstance().setUtilisateur(utilisateur);
         gestionActivites = new GestionActivites();
     }
@@ -43,7 +40,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testInscriptionSuccess() throws IOException {
-        setUp();
         Activite activite = new Activite(5, "Maintenance Préventive", LocalDate.of(2024, 8, 9), LocalDate.of(2024, 8, 10), List.of());
         gestionActivites.inscription(activite);
 
@@ -60,7 +56,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testDesinscriptionSuccess() throws IOException {
-        setUp();
         Activite activite = new Activite(4, "Assemblage de Composants", LocalDate.of(2024, 8, 7), LocalDate.of(2024, 8, 8), List.of("jdupont@example.com"));
         gestionActivites.desinscription(activite);
 
@@ -77,7 +72,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testInscriptionAlreadyRegistered() throws IOException {
-        setUp();
         Activite activite = new Activite(1, "Patrouille de Sécurité", LocalDate.of(2024, 8, 1), LocalDate.of(2024, 8, 2), List.of("jdupont@example.com", "admin"));
         gestionActivites.inscription(activite);
 
@@ -91,7 +85,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testDesinscriptionNotRegistered() throws IOException {
-        setUp();
         Activite activite = new Activite(7, "Livraison de Colis", LocalDate.of(2024, 8, 13), LocalDate.of(2024, 8, 14), List.of());
         gestionActivites.desinscription(activite);
 
@@ -108,7 +101,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testChargementActivites() throws IOException {
-        setUp();
         List<Activite> activites = gestionActivites.getActivites();
 
         assertNotNull(activites);

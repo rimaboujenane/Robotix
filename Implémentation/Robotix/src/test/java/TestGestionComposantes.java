@@ -15,6 +15,7 @@ import java.util.Map;
 public class TestGestionComposantes {
     private GestionComposantes gestionComposantes;
     private Map<String, List<Composante>> composantesParFournisseur;
+    private List<Composante> composantes;
 
     /**
      * Configure l'environnement de test avant chaque cas de test.
@@ -24,7 +25,7 @@ public class TestGestionComposantes {
     public void setUp() {
         gestionComposantes = new GestionComposantes();
         composantesParFournisseur = gestionComposantes.getComposantesParFournisseur();
-        List<Composante> composantes = new ArrayList<>();
+        composantes = new ArrayList<>();
         composantes.add(new Composante(00, "Composante1", "test", "test", 0, "fournisseur@example.com"));
         composantes.add(new Composante(00, "Composante2", "test", "test", 0, "fournisseur@example.com"));
         composantesParFournisseur.put("fournisseur@example.com", composantes);
@@ -37,7 +38,6 @@ public class TestGestionComposantes {
      */
     @Test
     void testChargerComposantes_ExistingFournisseur() {
-        setUp();
         List<Composante> result = gestionComposantes.chargerComposantes("fournisseur@example.com");
         assertNotNull(result);
         assertEquals(2, result.size());
@@ -52,7 +52,6 @@ public class TestGestionComposantes {
      */
     @Test
     void testChargerComposantes_NonExistingFournisseur() {
-        setUp();
         List<Composante> result = gestionComposantes.chargerComposantes("NonExistingFournisseur@example.com");
         assertNotNull(result);
         assertTrue(result.isEmpty());
@@ -64,7 +63,6 @@ public class TestGestionComposantes {
      */
     @Test
     public void testUpdateComposante_Success() {
-        setUp();
         Composante composanteModifie = new Composante(00, "Composante1Modifie", "Type1Modifie", "Description1Modifie", 150.0, "fournisseur@example.com");
         gestionComposantes.updateComposante(composanteModifie);
 
@@ -84,7 +82,6 @@ public class TestGestionComposantes {
      */
     @Test
     public void testUpdateComposante_NonExistingComposante() {
-        setUp();
         Composante composanteModifie = new Composante(3, "Composante3", "Type3", "Description3", 300.0, "fournisseur@example.com");
         gestionComposantes.updateComposante(composanteModifie);
 
