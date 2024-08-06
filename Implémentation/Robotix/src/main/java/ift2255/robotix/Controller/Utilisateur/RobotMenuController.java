@@ -1,6 +1,5 @@
 package ift2255.robotix.Controller.Utilisateur;
 
-import ift2255.robotix.Controller.Utilisateur.MenuController;
 import ift2255.robotix.Modeles.GestionRobots;
 import ift2255.robotix.Modeles.Robot;
 import ift2255.robotix.Modeles.RegisterUtilisateur;
@@ -39,14 +38,14 @@ public class RobotMenuController {
         this.gestionRobots = new GestionRobots(); // Assumes GestionRobots can be instantiated here.
         this.utilisateur = RegisterUtilisateur.getInstance().getUtilisateur(); // Get the current user
 
-        // initialisation de la listView et de l'observable List
+        // Initialisation de la ListView et de l'ObservableList
         robotsObservableList = FXCollections.observableArrayList();
         view.getRobotListView().setItems(FXCollections.observableArrayList());
 
-        // configuration des actions des boutons
+        // Configuration des actions des boutons
         initializeButtonActions();
 
-        // afficher les robots pour l'utilisateur courant
+        // Afficher les robots pour l'utilisateur courant
         chargerEtAfficherRobots(utilisateur.getEmail());
     }
 
@@ -57,7 +56,7 @@ public class RobotMenuController {
         view.getAddButton().setOnAction(e -> ajouterRobot());
         view.getDeleteButton().setOnAction(e -> supprimerRobot());
         view.getDisplayButtonComplete().setOnAction(e -> afficherEtatRobot());
-        view.getDisplayButtonGeneral().setOnAction(e-> afficherEtatRobotGeneral());
+        view.getDisplayButtonGeneral().setOnAction(e -> afficherEtatRobotGeneral());
         view.getExitMenuButton().setOnAction(e -> quitterMenu());
         view.getBackButton().setOnAction(e -> retournerMenu());
     }
@@ -97,7 +96,7 @@ public class RobotMenuController {
     }
 
     /**
-     * Affiche l'état general du robot sélectionné.
+     * Affiche l'état complet du robot sélectionné.
      */
     private void afficherEtatRobot() {
         String selected = view.getRobotListView().getSelectionModel().getSelectedItem();
@@ -108,20 +107,21 @@ public class RobotMenuController {
                 alert.setTitle("État du robot");
                 alert.setHeaderText("Détails du Robot:");
                 alert.setContentText("Numéro de série : " + robot.getNumeroSerie() + "\n" +
-                                     "Nom : " + robot.getNom() + "\n" +
-                                     "Type : " + robot.getType() + "\n" +
-                                     "Position : " + robot.getPosition() + "\n" +
-                                     "Vitesse : " + robot.getVitesse() + " m/s\n" +
-                                     "Niveau de batterie : " + robot.getNiveauBatterie() + " %\n" +
-                                     "Consommation CPU : " + robot.getConsommationCPU() + " %\n" +
-                                     "Consommation Mémoire : " + robot.getConsommationMemoire() + " MB\n" +
-                                     "Email de l'utilisateur : " + robot.getUtilisateurEmail());
+                        "Nom : " + robot.getNom() + "\n" +
+                        "Type : " + robot.getType() + "\n" +
+                        "Position : " + robot.getPosition() + "\n" +
+                        "Vitesse : " + robot.getVitesse() + " m/s\n" +
+                        "Niveau de batterie : " + robot.getNiveauBatterie() + " %\n" +
+                        "Consommation CPU : " + robot.getConsommationCPU() + " %\n" +
+                        "Consommation Mémoire : " + robot.getConsommationMemoire() + " MB\n" +
+                        "Email de l'utilisateur : " + robot.getUtilisateurEmail());
                 alert.show();
             }
         }
     }
+
     /**
-     * Affiche l'état general du robot sélectionné.
+     * Affiche l'état général du robot sélectionné.
      */
     private void afficherEtatRobotGeneral() {
         String selected = view.getRobotListView().getSelectionModel().getSelectedItem();
@@ -132,10 +132,9 @@ public class RobotMenuController {
                 alert.setTitle("État du robot");
                 alert.setHeaderText("Détails du Robot:");
                 alert.setContentText(
-                                     "Nom : " + robot.getNom() + "\n" +
-                                     "Type : " + robot.getType() + "\n" +
-                                     
-                                     "Niveau de batterie : " + robot.getNiveauBatterie() + " %\n");
+                        "Nom : " + robot.getNom() + "\n" +
+                                "Type : " + robot.getType() + "\n" +
+                                "Niveau de batterie : " + robot.getNiveauBatterie() + " %\n");
                 alert.show();
             }
         }

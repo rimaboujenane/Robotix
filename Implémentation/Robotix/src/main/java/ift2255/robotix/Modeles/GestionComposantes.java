@@ -8,17 +8,16 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Gestion des composantes pour les fournisseurs. Cette classe permet d'ajouter, de modifier,
- * de supprimer et de charger des composantes à partir d'un fichier CSV.
+ * Classe de gestion des composantes pour les fournisseurs. Elle permet d'ajouter, modifier,
+ * supprimer et charger des composantes depuis un fichier CSV.
  */
 public class GestionComposantes {
     private static final String CSV_FILE = "src/main/resources/data/composantes.csv";
     private Map<String, List<Composante>> composantesParFournisseur = new HashMap<>();
-    private int nextId = 1; // Initialisation à 1 ou à une autre valeur appropriée
+    private int nextId = 1; // Initialisation à 1
 
     /**
-     * Constructeur pour initialiser la gestion des composantes avec un fournisseur donné.
-     *
+     * Constructeur pour initialiser la gestion des composantes. Charge les composantes depuis le fichier CSV.
      */
     public GestionComposantes() {
         chargerToutesComposantes();
@@ -30,7 +29,6 @@ public class GestionComposantes {
      * @param composante La composante à ajouter.
      */
     public void ajouterComposante(Composante composante) {
-        // Générer un ID unique pour le nouveau composant
         int id = getNextId();
         composante.setId(id);
 
@@ -183,6 +181,12 @@ public class GestionComposantes {
         writeComposantesToCSV();
         composantesParFournisseur.put(fournisseurEmail, composantes);
     }
+
+    /**
+     * Retourne la carte des composantes par fournisseur.
+     *
+     * @return La carte des composantes par fournisseur.
+     */
     public Map<String, List<Composante>> getComposantesParFournisseur() {
         return composantesParFournisseur;
     }

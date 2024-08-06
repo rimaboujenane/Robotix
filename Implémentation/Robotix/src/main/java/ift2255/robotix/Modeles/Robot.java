@@ -30,11 +30,10 @@ public class Robot {
      * @param niveauBatterie Le niveau de batterie du robot en pourcentage
      * @param consommationCPU La consommation CPU du robot en pourcentage
      * @param consommationMemoire La consommation de mémoire du robot en MB
-     * @param utilisateurEmail L'email de l'utilisateur associé au robot
      */
     public Robot(int id, String numeroSerie, String nom, String type, String position, double vitesse, int niveauBatterie, double consommationCPU, double consommationMemoire) {
         this.id = id;
-        this.user= RegisterUtilisateur.getInstance().getUtilisateur();
+        this.user = RegisterUtilisateur.getInstance().getUtilisateur();
         this.numeroSerie = numeroSerie;
         this.nom = nom;
         this.type = type;
@@ -43,7 +42,7 @@ public class Robot {
         this.niveauBatterie = niveauBatterie;
         this.consommationCPU = consommationCPU;
         this.consommationMemoire = consommationMemoire;
-        this.utilisateurEmail = this.user.getEmail() ;
+        this.utilisateurEmail = this.user.getEmail();
     }
 
     // Getters de la classe

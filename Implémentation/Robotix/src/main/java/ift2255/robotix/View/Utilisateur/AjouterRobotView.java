@@ -1,6 +1,5 @@
 package ift2255.robotix.View.Utilisateur;
 
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -8,6 +7,8 @@ import javafx.scene.layout.VBox;
 
 /**
  * Vue pour ajouter un robot dans l'application.
+ * Cette classe étend {@link VBox} et fournit une interface utilisateur pour entrer les détails d'un nouveau robot
+ * et pour le soumettre ou revenir à la vue précédente.
  */
 public class AjouterRobotView extends VBox {
     private TextField numeroSerieField;
@@ -24,6 +25,7 @@ public class AjouterRobotView extends VBox {
 
     /**
      * Constructeur pour initialiser la vue d'ajout de robot.
+     * Configure les champs de texte, les étiquettes, les boutons et leur mise en page.
      */
     public AjouterRobotView() {
         setSpacing(10);
@@ -81,8 +83,6 @@ public class AjouterRobotView extends VBox {
         consommationMemoireField.setPromptText("00.00");
         consommationMemoireField.setMaxWidth(700);
 
-        
-
         ajouterButton = new Button("Ajouter");
         ajouterButton.setStyle("-fx-background-color: #0466C8; -fx-text-fill: white;");
 
@@ -107,43 +107,92 @@ public class AjouterRobotView extends VBox {
         setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
 
+    /**
+     * Retourne le champ de texte pour le numéro de série du robot.
+     *
+     * @return Le champ de texte pour le numéro de série.
+     */
     public TextField getNumeroSerieField() {
         return numeroSerieField;
     }
 
+    /**
+     * Retourne le champ de texte pour le nom du robot.
+     *
+     * @return Le champ de texte pour le nom du robot.
+     */
     public TextField getNomField() {
         return nomField;
     }
 
+    /**
+     * Retourne le champ de texte pour le type du robot.
+     *
+     * @return Le champ de texte pour le type du robot.
+     */
     public TextField getTypeField() {
         return typeField;
     }
 
+    /**
+     * Retourne le champ de texte pour la position du robot.
+     *
+     * @return Le champ de texte pour la position du robot.
+     */
     public TextField getPositionField() {
         return positionField;
     }
 
+    /**
+     * Retourne le champ de texte pour la vitesse du robot.
+     *
+     * @return Le champ de texte pour la vitesse du robot.
+     */
     public TextField getVitesseField() {
         return vitesseField;
     }
 
+    /**
+     * Retourne le champ de texte pour le niveau de batterie du robot.
+     *
+     * @return Le champ de texte pour le niveau de batterie.
+     */
     public TextField getNiveauBatterieField() {
         return niveauBatterieField;
     }
 
+    /**
+     * Retourne le champ de texte pour la consommation CPU du robot.
+     *
+     * @return Le champ de texte pour la consommation CPU.
+     */
     public TextField getConsommationCPUField() {
         return consommationCPUField;
     }
 
+    /**
+     * Retourne le champ de texte pour la consommation de mémoire du robot.
+     *
+     * @return Le champ de texte pour la consommation de mémoire.
+     */
     public TextField getConsommationMemoireField() {
         return consommationMemoireField;
     }
 
-    
+    /**
+     * Retourne le bouton pour ajouter un robot.
+     *
+     * @return Le bouton pour ajouter un robot.
+     */
     public Button getAjouterButton() {
         return ajouterButton;
     }
 
+    /**
+     * Retourne le bouton pour revenir à la vue précédente.
+     *
+     * @return Le bouton de retour.
+     */
     public Button getRetourButton() {
         return retourButton;
     }

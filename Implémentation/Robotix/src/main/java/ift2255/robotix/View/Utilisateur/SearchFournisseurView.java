@@ -17,6 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Vue pour rechercher les fournisseurs et afficher leurs composantes disponibles.
+ * Permet de filtrer les fournisseurs par type de composante et de visualiser les détails.
+ */
 public class SearchFournisseurView extends VBox {
     private Button backButton;
     private ComboBox<String> typeComboBox;
@@ -26,14 +30,29 @@ public class SearchFournisseurView extends VBox {
     private SearchFournisseurController controller;
     private ScrollPane scroll;
 
+    /**
+     * Constructeur par défaut qui initialise la vue en appelant la méthode {@link #afficherVue(HashMap)}.
+     */
     public SearchFournisseurView() {
         afficherVue(new HashMap<Fournisseur, List<Composante>>());
     }
 
+    /**
+     * Définit le contrôleur associé à cette vue.
+     *
+     * @param controller Le contrôleur à associer.
+     */
     public void setController(SearchFournisseurController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Affiche la vue avec les données fournies.
+     * Configure les éléments de l'interface utilisateur, y compris le bouton de retour, le champ de sélection du type de composante,
+     * et les fournisseurs.
+     *
+     * @param i Une map associant chaque fournisseur à une liste de composantes.
+     */
     public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
         this.getChildren().clear();
 
@@ -71,6 +90,12 @@ public class SearchFournisseurView extends VBox {
         this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
 
+    /**
+     * Construit et retourne la vue du catalogue de composantes pour les fournisseurs donnés.
+     *
+     * @param i Une map associant chaque fournisseur à une liste de composantes.
+     * @return Un {@link VBox} contenant la vue du catalogue des fournisseurs et leurs composantes.
+     */
     public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
         VBox cat = new VBox();
         for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
@@ -105,7 +130,31 @@ public class SearchFournisseurView extends VBox {
         }
         return cat;
     }
-    public Button getBackButton() { return backButton; }
-    public ComboBox<String> getTypeComboBox() { return typeComboBox; }
-    public String getType() { return typeComboBox.getValue(); }
+
+    /**
+     * Retourne le bouton de retour de la vue.
+     *
+     * @return Le bouton de retour.
+     */
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    /**
+     * Retourne la boîte de sélection pour les types de composantes.
+     *
+     * @return La boîte de sélection des types de composantes.
+     */
+    public ComboBox<String> getTypeComboBox() {
+        return typeComboBox;
+    }
+
+    /**
+     * Retourne le type de composante sélectionné dans la boîte de sélection.
+     *
+     * @return Le type de composante sélectionné.
+     */
+    public String getType() {
+        return typeComboBox.getValue();
+    }
 }

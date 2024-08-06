@@ -12,7 +12,6 @@ import javafx.scene.layout.VBox;
 
 /**
  * Vue du menu principal pour l'application Robotix.
- *
  * Cette classe étend `VBox` et fournit une interface utilisateur pour naviguer vers différentes sections de l'application.
  * Elle inclut des boutons pour accéder aux notifications, au profil utilisateur, aux robots, aux activités, ainsi que
  * pour se déconnecter ou quitter l'application.
@@ -77,10 +76,6 @@ public class MenuView extends VBox {
         ImageView searchFournImage = new ImageView("file:src/main/resources/images/rechercheFournisseur.png");
         searchFournImage.setFitHeight(75);
         searchFournImage.setFitWidth(75);
-
-        //ImageView buyCompImage = new ImageView("file:src/main/resources/images/acheter.png");
-        //buyCompImage.setFitHeight(75);
-        //buyCompImage.setFitWidth(75);
 
         // Création des boutons du menu avec les images associées
         notifMenuButton = new Button();
@@ -163,8 +158,6 @@ public class MenuView extends VBox {
         vbox7.setAlignment(Pos.CENTER);
         VBox vbox8 = new VBox(10, exitMenuButton, exitLabel);
         vbox8.setAlignment(Pos.CENTER);
-        //VBox vbox9 = new VBox(10, buyComposanteButton, buyCompLabel);
-        //vbox9.setAlignment(Pos.CENTER);
 
         // Organisation des sections en lignes
         HBox row1 = new HBox(100, vbox1, vbox2, vbox3);

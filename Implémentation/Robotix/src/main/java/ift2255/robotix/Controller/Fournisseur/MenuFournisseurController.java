@@ -20,7 +20,6 @@ public class MenuFournisseurController {
     private GestionComposantes gestionComposantes;
     private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
 
-
     /**
      * Constructeur pour initialiser le contrôleur du menu du fournisseur.
      *
@@ -48,13 +47,17 @@ public class MenuFournisseurController {
         stage.setScene(new Scene(profilFournisseurView, 900, 700));
     }
 
+    /**
+     * Navigue vers la vue de notifications du fournisseur.
+     */
     private void navigateToNotifFournisseur() {
-        NotifFournisseurView notifFournisseurView = new NotifFournisseurView(fournisseur.getEmail() );
+        NotifFournisseurView notifFournisseurView = new NotifFournisseurView(fournisseur.getEmail());
         NotifFournisseurController notifFournisseurController = new NotifFournisseurController(stage, notifFournisseurView);
         stage.setScene(new Scene(notifFournisseurView, 900, 700));
     }
+
     /**
-     * Navigue vers la vue de gestion des composantes.
+     * Navigue vers la vue de gestion des composants.
      */
     private void navigateToMesComposants() {
         MesComposantsView mesComposantsView = new MesComposantsView();
@@ -63,7 +66,7 @@ public class MenuFournisseurController {
     }
 
     /**
-     * Navigue vers la vue d'enregistrement des composantes.
+     * Navigue vers la vue d'enregistrement des composants.
      */
     private void navigateToEnregistrer() {
         EnregistrerComposantsView enregistrerComposantsView = new EnregistrerComposantsView();

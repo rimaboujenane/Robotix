@@ -7,12 +7,15 @@ import java.util.List;
 
 /**
  * Classe de service singleton responsable de la gestion des notifications.
+ * Cette classe permet d'envoyer des notifications générales et spécifiques aux fournisseurs,
+ * et de gérer une liste de notifications pour chaque type.
  */
 public class NotifService {
     // L'instance unique de NotifService
     private static NotifService instance = null;
-    // Liste pour stocker les notifications
+    // Liste pour stocker les notifications générales
     private List<Notification> notifications = new ArrayList<>();
+    // Liste pour stocker les notifications spécifiques aux fournisseurs
     private List<NotifFournisseur> notificationsFournisseur = new ArrayList<>();
 
     /**
@@ -68,22 +71,26 @@ public class NotifService {
         notificationsFournisseur.add(notifFournisseur);
     }
 
-
     /**
-     * Renvoie la liste des notifications actuelles.
+     * Renvoie la liste des notifications générales actuelles.
      *
-     * @return une liste de notifications
+     * @return une liste de notifications générales
      */
     public List<Notification> getNotifications() {
         return notifications;
     }
 
+    /**
+     * Renvoie la liste des notifications spécifiques aux fournisseurs.
+     *
+     * @return une liste de notifications pour les fournisseurs
+     */
     public List<NotifFournisseur> getNotifFournisseur() {
         return notificationsFournisseur;
     }
 
     /**
-     * Supprime une notification spécifique de la liste.
+     * Supprime une notification spécifique de la liste des notifications générales.
      *
      * @param notif la notification à supprimer
      */
@@ -91,6 +98,11 @@ public class NotifService {
         notifications.remove(notif);
     }
 
+    /**
+     * Supprime une notification spécifique de la liste des notifications pour les fournisseurs.
+     *
+     * @param notifFournisseur la notification à supprimer
+     */
     public void suppressNotifFournisseur(NotifFournisseur notifFournisseur) {
         notificationsFournisseur.remove(notifFournisseur);
     }

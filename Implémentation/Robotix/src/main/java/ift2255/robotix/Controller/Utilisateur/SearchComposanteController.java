@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Contrôleur pour la vue de recherche des composantes.
+ * Permet la gestion et la recherche des composantes disponibles en fonction des critères de filtrage.
+ */
 public class SearchComposanteController {
     private SearchComposanteView searchCompMenuView;
     private Stage stage;
@@ -20,6 +24,12 @@ public class SearchComposanteController {
     private GestionComposantes composantes;
     private Utilisateur utilisateur = RegisterUtilisateur.getInstance().getUtilisateur();
 
+    /**
+     * Constructeur pour initialiser le contrôleur de recherche de composantes.
+     *
+     * @param stage La scène principale de l'application.
+     * @param searchCompMenuView La vue de recherche de composantes.
+     */
     public SearchComposanteController(Stage stage, SearchComposanteView searchCompMenuView) {
         this.searchCompMenuView = searchCompMenuView;
         this.stage = stage;
@@ -32,6 +42,9 @@ public class SearchComposanteController {
         this.searchCompMenuView.setController(this);
     }
 
+    /**
+     * Initialise les actions des éléments de la vue de recherche des composantes.
+     */
     public void init() {
         this.searchCompMenuView.getBackButton().setOnAction(e -> goBackMenu());
         this.searchCompMenuView.getTypeComboBox().addEventHandler(ComboBox.ON_HIDDEN, event -> {
@@ -42,6 +55,9 @@ public class SearchComposanteController {
         });
     }
 
+    /**
+     * Rechargera les composantes pour chaque fournisseur et les affichera dans la vue.
+     */
     public void reloadComposantes() {
         HashMap<Fournisseur, List<Composante>> i = new HashMap<>();
         for (Fournisseur f : fournisseurs.getFournisseurMap().values()) {
@@ -51,6 +67,11 @@ public class SearchComposanteController {
         init();
     }
 
+    /**
+     * Rechargera les composantes en fonction du type donné et les affichera dans la vue.
+     *
+     * @param c Le type de composante pour le filtrage.
+     */
     public void reloadComposantes(String c) {
         HashMap<Fournisseur, List<Composante>> i = new HashMap<>();
         for (Fournisseur f : fournisseurs.getFournisseurMap().values()) {
@@ -66,6 +87,11 @@ public class SearchComposanteController {
         init();
     }
 
+    /**
+     * Rechargera les composantes pour le fournisseur donné et les affichera dans la vue.
+     *
+     * @param f Le fournisseur pour lequel afficher les composantes.
+     */
     public void reloadComposantes(Fournisseur f) {
         HashMap<Fournisseur, List<Composante>> i = new HashMap<>();
         i.put(f, composantes.chargerComposantes(f.getEmail()));
@@ -73,6 +99,12 @@ public class SearchComposanteController {
         init();
     }
 
+    /**
+     * Achete une composante et notifie le fournisseur.
+     *
+     * @param fournisseur Le fournisseur de la composante.
+     * @param composante La composante à acheter.
+     */
     public void acheterComposante(Fournisseur fournisseur, Composante composante) {
         // Supprimer la composante de l'inventaire
         composantes.supprimerComposante(composante.getId(), fournisseur.getEmail());
@@ -87,7 +119,9 @@ public class SearchComposanteController {
         reloadComposantes();
     }
 
-
+    /**
+     * Retourne au menu principal de l'utilisateur.
+     */
     private void goBackMenu() {
         MenuView menuView = new MenuView();
         MenuController menuController = new MenuController(stage, menuView);
