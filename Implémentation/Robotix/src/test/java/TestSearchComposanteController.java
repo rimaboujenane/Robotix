@@ -1,196 +1,155 @@
-package ift2255.robotix.View.Utilisateur;
-
-import ift2255.robotix.Controller.Utilisateur.SearchComposanteController;
-import ift2255.robotix.Modeles.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
-import javafx.geometry.NodeOrientation;
-import javafx.geometry.Pos;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.*;
+import ift2255.robotix.Modeles.Composante;
+import ift2255.robotix.Modeles.Fournisseur;
+import ift2255.robotrix.Modeles.GestionComposantes;
+import ift2255.robotix.Modeles.GestionFournisseurs;
+import ift2255.robotix.Modeles.Utilisateur;
+import ift2255.robotix.View.Utilisateur.SearchComposanteView;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Vue pour rechercher les composantes et afficher les détails disponibles chez les fournisseurs.
- * Permet de filtrer les composantes par type et par fournisseur.
- */
-public class SearchComposanteView extends VBox {
-    private Button backButton;
-    private ComboBox<String> typeComboBox;
-    private Label typeField;
-    private ComboBox<String> fournComboBox;
-    private Label fournField;
-    private GestionFournisseurs fournisseurs;
-    private GestionComposantes composantes;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class TestSearchComposante{
+    private SearchComposanteView searchCompMenuView;
+    private TestGestionFournisseurs fournisseurs;
+    private TestGestionComposantes composantes;
     private SearchComposanteController controller;
-    private ScrollPane scroll;
+    private Stage stage;
 
-    /**
-     * Constructeur par défaut qui initialise la vue en appelant la méthode {@link #afficherVue(HashMap)}.
-     */
-    public SearchComposanteView() {
-        afficherVue(new HashMap<Fournisseur, List<Composante>>());
+    // Classes de substitution
+    class TestGestionFournisseurs extends GestionFournisseurs {
+        private Map<String, Fournisseur> fournisseursMap = new HashMap<>();
+
+        @Override
+        public Map<String, Fournisseur> getFournisseurMap() {
+            return fournisseursMap;
+        }
+
+        @Override
+        public Fournisseur getFournisseurByName(String name) {
+            return fournisseursMap.values().stream()
+                    .filter(f -> f.getNom().equals(name))
+                    .findFirst().orElse(null);
+        }
+
+        public void addFournisseur(Fournisseur fournisseur) {
+            fournisseursMap.put(fournisseur.getEmail(), fournisseur);
+        }
     }
 
-    /**
-     * Définit le contrôleur associé à cette vue.
-     *
-     * @param controller Le contrôleur à associer.
-     */
-    public void setController(SearchComposanteController controller) {
-        this.controller = controller;
-    }
+    class TestGestionComposantes extends GestionComposantes {
+        private Map<String, List<Composante>> composantesMap = new HashMap<>();
 
-    /**
-     * Affiche la vue avec les données fournies.
-     * Configure les éléments de l'interface utilisateur, y compris le bouton de retour, les champs de sélection des types de composantes
-     * et des fournisseurs, et les composantes disponibles.
-     *
-     * @param i Une map associant chaque fournisseur à une liste de composantes.
-     */
-    public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
-        this.getChildren().clear();
+        @Override
+        public List<Composante> chargerComposantes(String fournisseurEmail) {
+            return composantesMap.getOrDefault(fournisseurEmail, new ArrayList<>());
+        }
 
-        setSpacing(10);
-        setPadding(new Insets(20));
-        setAlignment(Pos.CENTER);
-
-        fournisseurs = new GestionFournisseurs();
-        composantes = new GestionComposantes();
-
-        VBox dataLayout = buildCatalog(i);
-        scroll = new ScrollPane(dataLayout);
-        scroll.setFitToWidth(true);
-        scroll.setStyle("-fx-background-color: #0D1B2A;");
-
-        Label label = new Label("Recherche Composante");
-        label.setStyle("-fx-text-fill: white;");
-        backButton = new Button("Retour");
-        backButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
-
-        typeField = new Label("Rechercher par type de composante:");
-        fournField = new Label("Rechercher par fournisseur:");
-
-        ObservableList<String> types = FXCollections.observableArrayList("CPU", "Roues", "Bras", "Hélice", "Caméra", "Haut-parleur", "Micro", "Écran");
-        typeComboBox = new ComboBox<>(types);
-        typeComboBox.setPromptText("Type");
-        typeComboBox.setMaxWidth(400);
-
-        ObservableList<String> fourns = fournisseurs.getFournisseurs();
-        fournComboBox = new ComboBox<>(fourns);
-        fournComboBox.setPromptText("Fournisseur");
-        fournComboBox.setMaxWidth(400);
-
-        VBox formLayout = new VBox(10, typeField, typeComboBox, fournField, fournComboBox, scroll);
-        formLayout.setStyle("-fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
-        formLayout.setPadding(new Insets(10));
-        formLayout.setPrefWidth(420);
-        formLayout.setMaxWidth(420);
-        formLayout.setAlignment(Pos.CENTER);
-
-        this.getChildren().addAll(label, formLayout, backButton);
-        this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
-    }
-
-    /**
-     * Met à jour les données affichées dans la vue avec le texte fourni.
-     *
-     * @param data Le texte à afficher.
-     */
-    public void updateData(Text data) {
-        this.getChildren().remove(scroll);
-        VBox dataLayout = new VBox(10, data);
-        scroll = new ScrollPane(dataLayout);
-        scroll.setFitToWidth(true);
-        scroll.setStyle("-fx-background-color: #0D1B2A;");
-        this.getChildren().add(scroll);
-    }
-
-    /**
-     * Construit et retourne la vue du catalogue des composantes disponibles chez les fournisseurs donnés.
-     *
-     * @param i Une map associant chaque fournisseur à une liste de composantes.
-     * @return Un {@link VBox} contenant la vue du catalogue des composantes.
-     */
-    public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
-        VBox cat = new VBox();
-        for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
-            String n = entry.getKey().getPrenom() + " " + entry.getKey().getNom();
-            Text name = new Text(n);
-            cat.getChildren().add(name);
-            for (Composante c : entry.getValue()) {
-                HBox subCat = new HBox();
-                subCat.setPadding(new Insets(10));
-                subCat.setSpacing(10);
-                subCat.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                Text comp = new Text("Composante: " + c.getNom() + "\tType: " + c.getType());
-                Button b = new Button("Acheter");
-                b.setOnMouseClicked(e -> {
-                    if (controller != null) {
-                        controller.acheterComposante(entry.getKey(), c);
-                    }
-                    NotifService.getInstance().sendNotif(
-                            "La composante " + c.getNom() + ", vendue par " + n + " a été ajoutée à ton inventaire."
-                    );
-                    Alert success = new Alert(Alert.AlertType.CONFIRMATION, "Succès!", ButtonType.OK);
-                    success.showAndWait();
-                });
-                subCat.getChildren().addAll(comp, b);
-                cat.getChildren().add(subCat);
+        @Override
+        public void supprimerComposante(int id, String fournisseurEmail) {
+            List<Composante> composantes = composantesMap.get(fournisseurEmail);
+            if (composantes != null) {
+                composantes.removeIf(c -> c.getId() == id);
             }
         }
-        return cat;
+
+        public void addComposantes(String fournisseurEmail, List<Composante> composantes) {
+            composantesMap.put(fournisseurEmail, composantes);
+        }
     }
 
-    /**
-     * Retourne le bouton de retour de la vue.
-     *
-     * @return Le bouton de retour.
-     */
-    public Button getBackButton() {
-        return backButton;
+    @BeforeEach
+    public void setUp() {
+        searchCompMenuView = new SearchComposanteView() {
+            @Override
+            public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
+                // Override for testing purposes
+            }
+        };
+        fournisseurs = new TestGestionFournisseurs();
+        composantes = new TestGestionComposantes();
+        stage = new Stage();
+
+        controller = new SearchComposanteController(stage, searchCompMenuView);
+        controller.fournisseurs = fournisseurs;
+        controller.composantes = composantes;
     }
 
-    /**
-     * Retourne la boîte de sélection pour les types de composantes.
-     *
-     * @return La boîte de sélection des types de composantes.
-     */
-    public ComboBox<String> getTypeComboBox() {
-        return typeComboBox;
+    @Test
+    public void testReloadComposantes() {
+        Fournisseur fournisseur = new Fournisseur("Nom", "Prenom", "password", "email@example.com", "123456789","Notch");
+        List<Composante> composantesList = List.of(
+                new Composante(1, "Composante1", "type1", "compos", 10.1, "email@example.com"),
+                new Composante(2, "Composante2", "type2", "comps", 10.19, "email@example.com")
+        );
+
+        fournisseurs.addFournisseur(fournisseur);
+        composantes.addComposantes(fournisseur.getEmail(), composantesList);
+
+        controller.reloadComposantes();
+
+        // Vous devriez vérifier si la vue a été mise à jour avec les données appropriées
+        // Ici nous ne pouvons pas vérifier directement le résultat puisque afficherVue est override
+        // Mais vous pouvez ajouter des assertions pour les effets secondaires si nécessaire
     }
 
-    /**
-     * Retourne la boîte de sélection pour les fournisseurs.
-     *
-     * @return La boîte de sélection des fournisseurs.
-     */
-    public ComboBox<String> getFournComboBox() {
-        return fournComboBox;
+    @Test
+    public void testReloadComposantesByType() {
+        Fournisseur fournisseur = new Fournisseur("Nom", "Prenom", "password", "email@example.com", "123456789","Notch");
+        List<Composante> composantesList = List.of(
+            new Composante(1, "Composante1", "type1", "compos", 10.1, "email@example.com"),
+            new Composante(2, "Composante2", "type2", "comps", 10.19, "email@example.com"),
+            new Composante(3, "Composante3", "type3", "coms", 0.15, "email@example.com")
+        );
+
+        fournisseurs.addFournisseur(fournisseur);
+        composantes.addComposantes(fournisseur.getEmail(), composantesList);
+
+        controller.reloadComposantes("Type1");
+
+        // Vérifiez que seule les composantes du type "Type1" sont chargées
+        // Vous devrez adapter ceci en fonction des implémentations de vos méthodes et de vos assertions
     }
 
-    /**
-     * Retourne le type de composante sélectionné dans la boîte de sélection.
-     *
-     * @return Le type de composante sélectionné.
-     */
-    public String getType() {
-        return typeComboBox.getValue();
+    @Test
+    public void testReloadComposantesByFournisseur() {
+        Fournisseur fournisseur = new Fournisseur("Nom", "Prenom", "password", "email@example.com", "123456789","Notch");
+        List<Composante> composantesList = List.of(
+            new Composante(1, "Composante1", "type1", "compos", 10.1, "email@example.com"),
+            new Composante(2, "Composante2", "type2", "comps", 10.19, "email@example.com")
+        );
+
+        fournisseurs.addFournisseur(fournisseur);
+        composantes.addComposantes(fournisseur.getEmail(), composantesList);
+
+        controller.reloadComposantes(fournisseur);
+
+        // Vérifiez que les composantes du fournisseur spécifique sont chargées
     }
 
-    /**
-     * Retourne le fournisseur sélectionné dans la boîte de sélection.
-     *
-     * @return Le fournisseur sélectionné, ou null si aucun fournisseur n'est sélectionné.
-     */
-    public Fournisseur getFournisseur() {
-        return fournisseurs.getFournisseurByName(fournComboBox.getValue());
+    @Test
+    public void testAcheterComposante() {
+        Fournisseur fournisseur = new Fournisseur("Nom", "Prenom", "password", "email@example.com", "123456789","Notch");
+        Composante composante = new Composante(2, "Composante2", "type2", "comps", 10.19, "email@example.com");
+
+        fournisseurs.addFournisseur(fournisseur);
+        composantes.addComposantes(fournisseur.getEmail(), List.of(composante));
+
+        controller.acheterComposante(fournisseur, composante);
+
+        // Vérifiez que la composante a été supprimée de la liste
+        List<Composante> composantesRestantes = composantes.chargerComposantes(fournisseur.getEmail());
+        assertTrue(composantesRestantes.isEmpty(), "La composante doit être supprimée.");
     }
+
+   
+    
 }
