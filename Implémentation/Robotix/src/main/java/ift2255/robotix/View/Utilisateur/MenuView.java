@@ -155,13 +155,13 @@ public class MenuView extends VBox {
         vbox3.setAlignment(Pos.CENTER);
         VBox vbox4 = new VBox(10, activiteMenuButton, activiteLabel);
         vbox4.setAlignment(Pos.CENTER);
-        VBox vbox5 = new VBox(10, logoutMenuButton, logoutLabel);
+        VBox vbox5 = new VBox(10, searchComposanteButton, searchCompLabel);
         vbox5.setAlignment(Pos.CENTER);
-        VBox vbox6 = new VBox(10, exitMenuButton, exitLabel);
+        VBox vbox6 = new VBox(10, searchFournisseurButton, searchFournLabel);
         vbox6.setAlignment(Pos.CENTER);
-        VBox vbox7 = new VBox(10, searchComposanteButton, searchCompLabel);
+        VBox vbox7 = new VBox(10, logoutMenuButton, logoutLabel);
         vbox7.setAlignment(Pos.CENTER);
-        VBox vbox8 = new VBox(10, searchFournisseurButton, searchFournLabel);
+        VBox vbox8 = new VBox(10, exitMenuButton, exitLabel);
         vbox8.setAlignment(Pos.CENTER);
         //VBox vbox9 = new VBox(10, buyComposanteButton, buyCompLabel);
         //vbox9.setAlignment(Pos.CENTER);

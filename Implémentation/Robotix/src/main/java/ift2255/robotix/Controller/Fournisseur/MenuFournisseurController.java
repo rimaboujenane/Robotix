@@ -1,13 +1,13 @@
 package ift2255.robotix.Controller.Fournisseur;
 
 import ift2255.robotix.Controller.LoginController;
+import ift2255.robotix.Controller.Utilisateur.NotifMenuController;
 import ift2255.robotix.Modeles.Fournisseur;
 import ift2255.robotix.Modeles.GestionComposantes;
-import ift2255.robotix.View.Fournisseur.EnregistrerComposantsView;
-import ift2255.robotix.View.Fournisseur.MenuFournisseurView;
-import ift2255.robotix.View.Fournisseur.MesComposantsView;
-import ift2255.robotix.View.Fournisseur.ProfilFournisseurView;
+import ift2255.robotix.Modeles.RegisterFournisseur;
+import ift2255.robotix.View.Fournisseur.*;
 import ift2255.robotix.View.LoginView;
+import ift2255.robotix.View.Utilisateur.NotifMenuView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -18,7 +18,8 @@ public class MenuFournisseurController {
     private MenuFournisseurView view;
     private Stage stage;
     private GestionComposantes gestionComposantes;
-    private Fournisseur fournisseur;
+    private Fournisseur fournisseur = RegisterFournisseur.getInstance().getFournisseur();
+
 
     /**
      * Constructeur pour initialiser le contrôleur du menu du fournisseur.
@@ -31,6 +32,7 @@ public class MenuFournisseurController {
         this.stage = stage;
         this.gestionComposantes = new GestionComposantes();
         this.view.getProfilMenuButton().setOnAction(e -> navigateToProfil());
+        this.view.getNotifFournisseurButton().setOnAction(e -> navigateToNotifFournisseur());
         this.view.getMesComposantsMenuButton().setOnAction(e -> navigateToMesComposants());
         this.view.getEnregistrerComposantsMenuButton().setOnAction(e -> navigateToEnregistrer());
         this.view.getLogoutMenuButton().setOnAction(e -> returnToLoginMenu());
@@ -46,6 +48,11 @@ public class MenuFournisseurController {
         stage.setScene(new Scene(profilFournisseurView, 900, 700));
     }
 
+    private void navigateToNotifFournisseur() {
+        NotifFournisseurView notifFournisseurView = new NotifFournisseurView(fournisseur.getEmail() );
+        NotifFournisseurController notifFournisseurController = new NotifFournisseurController(stage, notifFournisseurView);
+        stage.setScene(new Scene(notifFournisseurView, 900, 700));
+    }
     /**
      * Navigue vers la vue de gestion des composantes.
      */

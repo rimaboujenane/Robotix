@@ -2,6 +2,7 @@ package ift2255.robotix.Controller.Fournisseur;
 
 import ift2255.robotix.Modeles.Fournisseur;
 import ift2255.robotix.Modeles.GestionFournisseurs;
+import ift2255.robotix.Modeles.NotifService;
 import ift2255.robotix.Modeles.RegisterFournisseur;
 import ift2255.robotix.View.Fournisseur.MenuFournisseurView;
 import ift2255.robotix.View.Fournisseur.ProfilFournisseurView;
@@ -80,6 +81,9 @@ public class ProfilFournisseurController {
 
         // Met à jour le singleton RegisterFournisseur
         RegisterFournisseur.getInstance().setFournisseur(fournisseur);
+
+        NotifService.getInstance().sendNotifFournisseur(email,"Vous avez modifié votre profil"); // envoyer une notification
+
 
         // Affiche une alerte de confirmation de la modification
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

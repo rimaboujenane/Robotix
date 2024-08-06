@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
  */
 public class MenuFournisseurView extends VBox {
     private Button profilMenuButton;
+    private Button notifFournisseurButton;
     private Button mesComposantsMenuButton;
     private Button enregistrerComposantsMenuButton;
     private Button logoutMenuButton;
@@ -34,6 +35,10 @@ public class MenuFournisseurView extends VBox {
         ImageView profilImage = new ImageView("file:src/main/resources/images/profil.png");
         profilImage.setFitHeight(75);
         profilImage.setFitWidth(75);
+
+        ImageView notifFournisseurImage = new ImageView("file:src/main/resources/images/notif1.png");
+        notifFournisseurImage.setFitHeight(75);
+        notifFournisseurImage.setFitWidth(75);
 
         ImageView mesComposantsImage = new ImageView("file:src/main/resources/images/mescomps.png");
         mesComposantsImage.setFitHeight(75);
@@ -54,6 +59,8 @@ public class MenuFournisseurView extends VBox {
         // Création des boutons du menu avec les images associées
         profilMenuButton = new Button();
         profilMenuButton.setGraphic(profilImage);
+        notifFournisseurButton = new Button();
+        notifFournisseurButton.setGraphic(notifFournisseurImage);
         mesComposantsMenuButton = new Button();
         mesComposantsMenuButton.setGraphic(mesComposantsImage);
         enregistrerComposantsMenuButton = new Button();
@@ -66,6 +73,7 @@ public class MenuFournisseurView extends VBox {
         // Style des boutons
         String buttonStyle = "-fx-background-color: #1B263B; -fx-padding: 10px; -fx-background-radius: 25;";
         profilMenuButton.setStyle(buttonStyle);
+        notifFournisseurButton.setStyle(buttonStyle);
         mesComposantsMenuButton.setStyle(buttonStyle);
         enregistrerComposantsMenuButton.setStyle(buttonStyle);
         logoutMenuButton.setStyle(buttonStyle);
@@ -73,6 +81,7 @@ public class MenuFournisseurView extends VBox {
 
         // Ajuster la taille des boutons pour qu'ils soient uniformes
         profilMenuButton.setPrefSize(75, 75);
+        notifFournisseurButton.setPrefSize(75, 75);
         mesComposantsMenuButton.setPrefSize(75, 75);
         enregistrerComposantsMenuButton.setPrefSize(75, 75);
         logoutMenuButton.setPrefSize(75, 75);
@@ -81,6 +90,8 @@ public class MenuFournisseurView extends VBox {
         // Création des étiquettes pour chaque bouton
         Label profilLabel = new Label("Profil");
         profilLabel.setStyle("-fx-text-fill: white; -fx-alignment: center");
+        Label notifFournisseurLabel = new Label("Mes Notifications");
+        notifFournisseurLabel.setStyle("-fx-text-fill: white; -fx-alignment: center");
         Label mesComposantsLabel = new Label("Mes Composants");
         mesComposantsLabel.setStyle("-fx-text-fill: white");
         Label enregistrerComposantsLabel = new Label("Enregistrer Composants");
@@ -93,19 +104,21 @@ public class MenuFournisseurView extends VBox {
         // Organisation des boutons et des étiquettes dans des VBox pour chaque section
         VBox vbox1 = new VBox(10, profilMenuButton, profilLabel);
         vbox1.setAlignment(Pos.CENTER);
-        VBox vbox2 = new VBox(10, mesComposantsMenuButton, mesComposantsLabel);
+        VBox vbox2 = new VBox(10, notifFournisseurButton, notifFournisseurLabel);
+        vbox1.setAlignment(Pos.CENTER);
+        VBox vbox3 = new VBox(10, mesComposantsMenuButton, mesComposantsLabel);
         vbox2.setAlignment(Pos.CENTER);
-        VBox vbox3 = new VBox(10, enregistrerComposantsMenuButton, enregistrerComposantsLabel);
+        VBox vbox4 = new VBox(10, enregistrerComposantsMenuButton, enregistrerComposantsLabel);
         vbox3.setAlignment(Pos.CENTER);
-        VBox vbox4 = new VBox(10, logoutMenuButton, logoutLabel);
+        VBox vbox5 = new VBox(10, logoutMenuButton, logoutLabel);
         vbox4.setAlignment(Pos.CENTER);
-        VBox vbox5 = new VBox(10, exitMenuButton, exitLabel);
+        VBox vbox6 = new VBox(10, exitMenuButton, exitLabel);
         vbox5.setAlignment(Pos.CENTER);
 
         // Organisation des sections en lignes
         HBox row1 = new HBox(100, vbox1, vbox2, vbox3);
         row1.setAlignment(Pos.CENTER);
-        HBox row2 = new HBox(100, vbox4, vbox5);
+        HBox row2 = new HBox(100, vbox4, vbox5, vbox6);
         row2.setAlignment(Pos.CENTER);
 
         // Organisation des lignes dans la vue principale
@@ -127,6 +140,11 @@ public class MenuFournisseurView extends VBox {
         return profilMenuButton;
     }
 
+    public Button getNotifFournisseurButton() {
+        return notifFournisseurButton;
+
+    }
+
     /**
      * Retourne le bouton de menu pour accéder à la section Mes Composants.
      *
@@ -135,6 +153,7 @@ public class MenuFournisseurView extends VBox {
     public Button getMesComposantsMenuButton() {
         return mesComposantsMenuButton;
     }
+
 
     /**
      * Retourne le bouton de menu pour accéder à la section Enregistrer Composants.

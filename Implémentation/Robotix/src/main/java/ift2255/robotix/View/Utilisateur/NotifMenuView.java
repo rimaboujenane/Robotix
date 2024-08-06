@@ -36,6 +36,8 @@ public class NotifMenuView extends VBox {
     public void afficher() {
         // Effacer tous les enfants actuels de la vue
         this.getChildren().clear();
+        this.setAlignment(Pos.TOP_CENTER); // Aligner tout le contenu au centre
+        this.setSpacing(10); // Espacement entre les éléments
 
         // Création du label du titre
         Label titleLabel = new Label("Mes Notifications");
