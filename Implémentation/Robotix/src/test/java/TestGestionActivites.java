@@ -43,7 +43,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testInscriptionSuccess() throws IOException {
-        setUp();
         Activite activite = new Activite(5, "Maintenance Préventive", LocalDate.of(2024, 8, 9), LocalDate.of(2024, 8, 10), List.of());
         gestionActivites.inscription(activite);
 
@@ -60,7 +59,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testDesinscriptionSuccess() throws IOException {
-        setUp();
         Activite activite = new Activite(4, "Assemblage de Composants", LocalDate.of(2024, 8, 7), LocalDate.of(2024, 8, 8), List.of("jdupont@example.com"));
         gestionActivites.desinscription(activite);
 
@@ -77,7 +75,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testInscriptionAlreadyRegistered() throws IOException {
-        setUp();
         Activite activite = new Activite(1, "Patrouille de Sécurité", LocalDate.of(2024, 8, 1), LocalDate.of(2024, 8, 2), List.of("jdupont@example.com", "admin"));
         gestionActivites.inscription(activite);
 
@@ -91,7 +88,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testDesinscriptionNotRegistered() throws IOException {
-        setUp();
         Activite activite = new Activite(7, "Livraison de Colis", LocalDate.of(2024, 8, 13), LocalDate.of(2024, 8, 14), List.of());
         gestionActivites.desinscription(activite);
 
@@ -108,7 +104,6 @@ public class TestGestionActivites {
      */
     @Test
     public void testChargementActivites() throws IOException {
-        setUp();
         List<Activite> activites = gestionActivites.getActivites();
 
         assertNotNull(activites);
