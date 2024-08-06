@@ -59,7 +59,7 @@ public class GestionRobots {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Erreur lors de l'ajout du robot dans le fichier CSV: " + e.getMessage());
-            NotifService.getInstance().sendNotif("Le robot "+ robot.getNom() +"n'a pas pu être ajouté. Veuillez reéssayer plus tard");
+            NotifService.getInstance().sendNotif("Le robot n'a pas pu être ajouté. Veuillez reéssayer plus tard");
         }
     }
 
