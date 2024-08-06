@@ -1,134 +1,196 @@
-import ift2255.robotix.Modeles.GestionComposantes;
-import ift2255.robotix.Modeles.GestionFournisseurs;
-import ift2255.robotix.Modeles.RegisterUtilisateur;
-import ift2255.robotix.Modeles.Utilisateur;
-import ift2255.robotix.Modeles.Composante;
-import ift2255.robotix.Modeles.Fournisseur;
-import ift2255.robotix.Modeles.NotifService;
-import ift2255.robotix.View.Utilisateur.SearchComposanteView;
+package ift2255.robotix.View.Utilisateur;
+
 import ift2255.robotix.Controller.Utilisateur.SearchComposanteController;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Button;
+import ift2255.robotix.Modeles.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Classe de test pour la gestion de la recherche de composantes dans le système.
- * Cette classe vérifie les fonctionnalités de recherche, de filtrage et d'achat des composantes dans les tests unitaires.
+ * Vue pour rechercher les composantes et afficher les détails disponibles chez les fournisseurs.
+ * Permet de filtrer les composantes par type et par fournisseur.
  */
-public class TestSearchComposanteController {
-
-    /** Instance de SearchComposanteView utilisée pour les tests. */
-    private SearchComposanteView searchCompMenuView;
-
-    /** Instance de Stage utilisée pour les tests. */
-    private Stage stage;
-
-    /** Instance de GestionFournisseurs utilisée pour les tests. */
+public class SearchComposanteView extends VBox {
+    private Button backButton;
+    private ComboBox<String> typeComboBox;
+    private Label typeField;
+    private ComboBox<String> fournComboBox;
+    private Label fournField;
     private GestionFournisseurs fournisseurs;
-
-    /** Instance de GestionComposantes utilisée pour les tests. */
     private GestionComposantes composantes;
-
-    /** Instance de RegisterUtilisateur utilisée pour les tests. */
-    private RegisterUtilisateur registerUtilisateur;
-
-    /** Instance de Utilisateur utilisée pour les tests. */
-    private Utilisateur utilisateur;
-
-    /** Instance de SearchComposanteController utilisée pour les tests. */
-    private SearchComposanteController searchComposanteController;
+    private SearchComposanteController controller;
+    private ScrollPane scroll;
 
     /**
-     * Méthode d'initialisation appelée avant chaque test.
-     * Initialise les instances nécessaires pour les tests.
+     * Constructeur par défaut qui initialise la vue en appelant la méthode {@link #afficherVue(HashMap)}.
      */
-    @BeforeEach
-    public void setUp() {
-        stage = new Stage();
-        searchCompMenuView = new SearchComposanteView();
+    public SearchComposanteView() {
+        afficherVue(new HashMap<Fournisseur, List<Composante>>());
+    }
+
+    /**
+     * Définit le contrôleur associé à cette vue.
+     *
+     * @param controller Le contrôleur à associer.
+     */
+    public void setController(SearchComposanteController controller) {
+        this.controller = controller;
+    }
+
+    /**
+     * Affiche la vue avec les données fournies.
+     * Configure les éléments de l'interface utilisateur, y compris le bouton de retour, les champs de sélection des types de composantes
+     * et des fournisseurs, et les composantes disponibles.
+     *
+     * @param i Une map associant chaque fournisseur à une liste de composantes.
+     */
+    public void afficherVue(HashMap<Fournisseur, List<Composante>> i) {
+        this.getChildren().clear();
+
+        setSpacing(10);
+        setPadding(new Insets(20));
+        setAlignment(Pos.CENTER);
+
         fournisseurs = new GestionFournisseurs();
         composantes = new GestionComposantes();
-        registerUtilisateur = RegisterUtilisateur.getInstance();
-        utilisateur = new Utilisateur("Dupont", "Jean", "dupont123", "jdupont@example.com", "1234567890");
-        registerUtilisateur.setUtilisateur(utilisateur);
 
-        searchComposanteController = new SearchComposanteController(stage, searchCompMenuView);
+        VBox dataLayout = buildCatalog(i);
+        scroll = new ScrollPane(dataLayout);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background-color: #0D1B2A;");
+
+        Label label = new Label("Recherche Composante");
+        label.setStyle("-fx-text-fill: white;");
+        backButton = new Button("Retour");
+        backButton.setStyle("-fx-background-color: #1B263B; -fx-text-fill: white;");
+
+        typeField = new Label("Rechercher par type de composante:");
+        fournField = new Label("Rechercher par fournisseur:");
+
+        ObservableList<String> types = FXCollections.observableArrayList("CPU", "Roues", "Bras", "Hélice", "Caméra", "Haut-parleur", "Micro", "Écran");
+        typeComboBox = new ComboBox<>(types);
+        typeComboBox.setPromptText("Type");
+        typeComboBox.setMaxWidth(400);
+
+        ObservableList<String> fourns = fournisseurs.getFournisseurs();
+        fournComboBox = new ComboBox<>(fourns);
+        fournComboBox.setPromptText("Fournisseur");
+        fournComboBox.setMaxWidth(400);
+
+        VBox formLayout = new VBox(10, typeField, typeComboBox, fournField, fournComboBox, scroll);
+        formLayout.setStyle("-fx-background-color: #1B263B; -fx-border-radius: 5; -fx-background-radius: 5;");
+        formLayout.setPadding(new Insets(10));
+        formLayout.setPrefWidth(420);
+        formLayout.setMaxWidth(420);
+        formLayout.setAlignment(Pos.CENTER);
+
+        this.getChildren().addAll(label, formLayout, backButton);
+        this.setStyle("-fx-background-color: #0D1B2A; -fx-text-fill: white;");
     }
 
     /**
-     * Test pour vérifier que le constructeur initialise bien la vue et la scène.
+     * Met à jour les données affichées dans la vue avec le texte fourni.
+     *
+     * @param data Le texte à afficher.
      */
-    @Test
-    public void testConstructorInitializesViewAndStage() {
-        assertNotNull(searchComposanteController);
+    public void updateData(Text data) {
+        this.getChildren().remove(scroll);
+        VBox dataLayout = new VBox(10, data);
+        scroll = new ScrollPane(dataLayout);
+        scroll.setFitToWidth(true);
+        scroll.setStyle("-fx-background-color: #0D1B2A;");
+        this.getChildren().add(scroll);
     }
 
     /**
-     * Test pour vérifier que les gestionnaires d'événements sont correctement configurés.
+     * Construit et retourne la vue du catalogue des composantes disponibles chez les fournisseurs donnés.
+     *
+     * @param i Une map associant chaque fournisseur à une liste de composantes.
+     * @return Un {@link VBox} contenant la vue du catalogue des composantes.
      */
-    @Test
-    public void testInitSetsUpEventHandlers() {
-        Button backButton = new Button();
-        ComboBox<String> typeComboBox = new ComboBox<>();
-        ComboBox<String> fournComboBox = new ComboBox<>();
-
-        searchCompMenuView.setBackButton(backButton);
-        searchCompMenuView.setTypeComboBox(typeComboBox);
-        searchCompMenuView.setFournComboBox(fournComboBox);
-
-        searchComposanteController.init();
-
-        assertNotNull(backButton.getOnAction());
-        assertNotNull(typeComboBox.getOnHidden());
-        assertNotNull(fournComboBox.getOnHidden());
+    public VBox buildCatalog(HashMap<Fournisseur, List<Composante>> i) {
+        VBox cat = new VBox();
+        for (Map.Entry<Fournisseur, List<Composante>> entry : i.entrySet()) {
+            String n = entry.getKey().getPrenom() + " " + entry.getKey().getNom();
+            Text name = new Text(n);
+            cat.getChildren().add(name);
+            for (Composante c : entry.getValue()) {
+                HBox subCat = new HBox();
+                subCat.setPadding(new Insets(10));
+                subCat.setSpacing(10);
+                subCat.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
+                Text comp = new Text("Composante: " + c.getNom() + "\tType: " + c.getType());
+                Button b = new Button("Acheter");
+                b.setOnMouseClicked(e -> {
+                    if (controller != null) {
+                        controller.acheterComposante(entry.getKey(), c);
+                    }
+                    NotifService.getInstance().sendNotif(
+                            "La composante " + c.getNom() + ", vendue par " + n + " a été ajoutée à ton inventaire."
+                    );
+                    Alert success = new Alert(Alert.AlertType.CONFIRMATION, "Succès!", ButtonType.OK);
+                    success.showAndWait();
+                });
+                subCat.getChildren().addAll(comp, b);
+                cat.getChildren().add(subCat);
+            }
+        }
+        return cat;
     }
 
     /**
-     * Test pour vérifier que les composantes sont affichées correctement lors du rechargement.
+     * Retourne le bouton de retour de la vue.
+     *
+     * @return Le bouton de retour.
      */
-    @Test
-    public void testReloadComposantesDisplaysComposantes() {
-        Fournisseur fournisseur = new Fournisseur("Jo", "Bla","123654","jbla@gmail.com","5145175145","Notchie");;
-        Composante composante = new Composante(2, "Composante 2", "Type 2", "Description 2", 10.01,"comp2@gmail.com");;
-        List<Composante> composantesList = Arrays.asList(composante);
-        fournisseurs.addFournisseur(fournisseur);
-        composantes.ajouterComposante(composante);
-
-        searchComposanteController.reloadComposantes();
-
-        // Ici, nous vérifions si la méthode afficherVue a été appelée avec les bons arguments.
-        // Pour ce faire, nous devons implémenter une méthode pour obtenir les données affichées dans SearchComposanteView.
-        // Supposons que SearchComposanteView a une méthode getAffichage qui retourne les données affichées.
-        HashMap<Fournisseur, List<Composante>> expected = new HashMap<>();
-        expected.put(fournisseur, composantesList);
-        assertEquals(expected, searchCompMenuView.getAffichage());
+    public Button getBackButton() {
+        return backButton;
     }
 
     /**
-     * Test pour vérifier qu'une composante est achetée correctement.
+     * Retourne la boîte de sélection pour les types de composantes.
+     *
+     * @return La boîte de sélection des types de composantes.
      */
-    @Test
-    public void testAcheterComposante() {
-        Fournisseur fournisseur = new Fournisseur("John", "Blain","1236","john@gmail.com","5145145145","Notch");
-        Composante composante = new Composante(1, "Composante 1", "Type 1", "Description 1", 10.0,"comp1@gmail.com");
-        fournisseurs.addFournisseur(fournisseur);
-        composantes.ajouterComposante(composante);
+    public ComboBox<String> getTypeComboBox() {
+        return typeComboBox;
+    }
 
-        searchComposanteController.acheterComposante(fournisseur, composante);
+    /**
+     * Retourne la boîte de sélection pour les fournisseurs.
+     *
+     * @return La boîte de sélection des fournisseurs.
+     */
+    public ComboBox<String> getFournComboBox() {
+        return fournComboBox;
+    }
 
-        // Vérifiez que la composante a été supprimée et une notification a été envoyée
-        assertNull(composantes.supprimerComposante(composante.getId(),fournisseur.getEmail()));
-        // Supposons que NotifService a une méthode pour vérifier les notifications envoyées
-        assertTrue(NotifService.getInstance().sendNotifFournisseur(
-                fournisseur.getEmail(),
-                "Une composante " + composante.getNom() + " a été achetée par l'utilisateur." + utilisateur.getEmail()
-        ));
+    /**
+     * Retourne le type de composante sélectionné dans la boîte de sélection.
+     *
+     * @return Le type de composante sélectionné.
+     */
+    public String getType() {
+        return typeComboBox.getValue();
+    }
+
+    /**
+     * Retourne le fournisseur sélectionné dans la boîte de sélection.
+     *
+     * @return Le fournisseur sélectionné, ou null si aucun fournisseur n'est sélectionné.
+     */
+    public Fournisseur getFournisseur() {
+        return fournisseurs.getFournisseurByName(fournComboBox.getValue());
     }
 }
