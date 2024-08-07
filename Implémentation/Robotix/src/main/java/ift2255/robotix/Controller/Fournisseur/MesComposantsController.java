@@ -195,20 +195,7 @@ public class MesComposantsController {
     private void chargerEtAfficherComposants(String fournisseurEmail) {
         List<Composante> composants = gestionComposantes.chargerComposantes(fournisseurEmail);
         afficherComposants(composants);
-        printComposantesList(composants);
     }
 
-    /**
-     * Imprime la liste des composants dans la console.
-     *
-     * @param composantes La liste des composants à imprimer.
-     */
-    private void printComposantesList(List<Composante> composantes) {
-        if (composantes.isEmpty()) {
-            System.out.println("Aucune composante trouvée pour le fournisseur : " + fournisseur.getEmail());
-        } else {
-            System.out.println("Liste des composants pour le fournisseur : " + fournisseur.getEmail());
-            composantes.forEach(System.out::println);
-        }
-    }
+
 }

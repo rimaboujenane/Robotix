@@ -75,8 +75,6 @@ public class GestionFournisseurs extends GestionUser {
 
             // Réécrire tous les fournisseurs dans le fichier CSV après la mise à jour
             writeToCSV("src/main/resources/data/fournisseur.csv");
-        } else {
-            System.err.println("Le fournisseur avec l'email " + email + " n'existe pas dans la liste.");
         }
     }
 
@@ -113,8 +111,6 @@ public class GestionFournisseurs extends GestionUser {
                     Fournisseur fournisseur = new Fournisseur(nom, prenom, password, email, phone, compagnie);
                     fournisseurMap.put(email, fournisseur); // Utilisation de l'email comme clé
 
-                } else {
-                    System.err.println("La ligne ne contient pas assez de champs : " + String.join(",", nextLine));
                 }
             }
         } catch (IOException | CsvValidationException e) {
@@ -146,7 +142,6 @@ public class GestionFournisseurs extends GestionUser {
         // Écrit les lignes dans le fichier CSV
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFileName))) {
             writer.writeAll(lines);
-            System.out.println("Ecriture dans le fichier CSV réussie : " + csvFileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

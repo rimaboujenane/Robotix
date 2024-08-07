@@ -68,9 +68,6 @@ public class GestionUtilisateurs extends GestionUser {
 
             // Réécrire tous les utilisateurs dans le fichier CSV après la mise à jour
             writeToCSV("src/main/resources/data/utilisateur.csv");
-        } else {
-            System.err.println("L'utilisateur avec l'email " + email + " n'existe pas dans la liste.");
-            // Vous pouvez gérer ce cas comme nécessaire, par exemple, lever une exception ou afficher un message d'erreur
         }
     }
 
@@ -106,8 +103,6 @@ public class GestionUtilisateurs extends GestionUser {
                     Utilisateur utilisateur = new Utilisateur(nom, prenom, password, email, phone);
                     utilisateursMap.put(email, utilisateur); // Utilisation de l'email comme clé
 
-                } else {
-                    System.err.println("La ligne ne contient pas assez de champs : " + String.join(",", nextLine));
                 }
             }
         } catch (IOException | CsvValidationException e) {
@@ -138,7 +133,6 @@ public class GestionUtilisateurs extends GestionUser {
         // Écrit les lignes dans le fichier CSV
         try (CSVWriter writer = new CSVWriter(new FileWriter(csvFileName))) {
             writer.writeAll(lines);
-            System.out.println("Ecriture dans le fichier CSV réussie : " + csvFileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

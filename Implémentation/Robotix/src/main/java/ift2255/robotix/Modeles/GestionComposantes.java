@@ -47,8 +47,7 @@ public class GestionComposantes {
                     .add(composante);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Erreur lors de l'écriture du composant dans le CSV: " + e.getMessage());
-        }
+                    }
     }
 
     /**
@@ -76,7 +75,6 @@ public class GestionComposantes {
      */
     public List<Composante> chargerComposantes(String fournisseurEmail) {
         List<Composante> composants = composantesParFournisseur.getOrDefault(fournisseurEmail, new ArrayList<>());
-        System.out.println("Composants chargés pour " + fournisseurEmail + ": " + composants);
         return composants;
     }
 
@@ -107,10 +105,8 @@ public class GestionComposantes {
                             nextId = id + 1;
                         }
                     } catch (NumberFormatException e) {
-                        System.err.println("Erreur de format dans les données : " + String.join(",", nextLine));
-                    }
-                } else {
-                    System.err.println("La ligne ne contient pas assez de champs : " + String.join(",", nextLine));
+                        e.printStackTrace();
+                                            }
                 }
             }
         } catch (IOException | CsvValidationException e) {
@@ -137,8 +133,6 @@ public class GestionComposantes {
 
         if (composanteUpdated) {
             writeComposantesToCSV();
-        } else {
-            System.err.println("Le composant avec l'ID " + composanteModifie.getId() + " n'existe pas dans la liste.");
         }
     }
 
@@ -162,8 +156,6 @@ public class GestionComposantes {
                     });
                 }
             }
-
-            System.out.println("Écriture dans le fichier CSV réussie : " + CSV_FILE);
         } catch (IOException e) {
             e.printStackTrace();
         }
