@@ -5,7 +5,7 @@ import ift2255.robotix.Modeles.GestionComposantes;
 import ift2255.robotix.Modeles.GestionFournisseurs;
 import ift2255.robotix.Modeles.RegisterUtilisateur;
 import ift2255.robotix.Modeles.Utilisateur;
-import ift2255.robotix.Services.NotifService;
+import ift2255.robotix.Modeles.NotifService;
 import ift2255.robotix.View.Utilisateur.SearchComposanteView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
