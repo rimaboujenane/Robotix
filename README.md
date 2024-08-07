@@ -74,7 +74,9 @@ Pour faciliter le stockage, des fichiers CSV sont fournis comme base de données
 
 ## Manuel d'utilisation
 Votre première fois sur Robotix? Inscrivez-vous! Sinon connectez-vous! 
-Vous trouverez 
+Pour faciliter la connexion, vous pouvez utiliser le compte admin avec les informations suivantes :
+- **Email** : admin
+- **Mot de passe** : password
 
 ### Création d’un compte Utilisateur
 Une fois que Robotix est lancé, en dessous de la section "Connexion", cliquez sur :
