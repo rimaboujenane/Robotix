@@ -95,9 +95,12 @@ public class GestionRobots {
                         int niveauBatterie = Integer.parseInt(nextLine[6]);
                         double consommationCPU = Double.parseDouble(nextLine[7]);
                         double consommationMemoire = Double.parseDouble(nextLine[8]);
-                        String utilisateurEmail = user.getEmail();
+                        String utilisateurEmail = nextLine[9];
 
                         Robot robot = new Robot(id, numeroDeSerie, nom, type, position, vitesse, niveauBatterie, consommationCPU, consommationMemoire);
+                        if (user.getEmail().equals(utilisateurEmail)) {
+
+                        }
                         flotteParUtilisateur
                                 .computeIfAbsent(utilisateurEmail, k -> new ArrayList<>())
                                 .add(robot);
