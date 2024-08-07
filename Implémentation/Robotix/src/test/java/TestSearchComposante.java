@@ -5,7 +5,7 @@ import ift2255.robotix.Modeles.GestionComposantes;
 import ift2255.robotix.Modeles.GestionFournisseurs;
 import ift2255.robotix.Modeles.RegisterUtilisateur;
 import ift2255.robotix.Modeles.Utilisateur;
-import ift2255.robotix.Services.NotifService;
+import ift2255.robotix.Modeles.NotifService;
 import ift2255.robotix.View.Utilisateur.SearchComposanteView;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -157,11 +157,11 @@ public class TestSearchComposante extends ApplicationTest {
         Composante composante = new Composante(1, "CPU", "Type1", "Description1", 150.0, "email@test.com");
 
         doNothing().when(gestionComposantesMock).supprimerComposante(composante.getId());
-        doNothing().when(notifServiceMock).sendNotification(anyString(), anyString(), anyString());
+        doNothing().when(notifServiceMock).sendNotif(anyString());
 
         controller.acheterComposante(fournisseur, composante);
 
         verify(gestionComposantesMock, times(1)).supprimerComposante(composante.getId());
-        verify(notifServiceMock, times(1)).sendNotification(anyString(), anyString(), anyString());
+        verify(notifServiceMock, times(1)).sendNotif(anyString());
     }
 }
