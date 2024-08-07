@@ -130,7 +130,7 @@ public class SearchComposanteView extends VBox {
                 subCat.setPadding(new Insets(10));
                 subCat.setSpacing(10);
                 subCat.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                Text comp = new Text(c.getNom() + "\tType: " + c.getType() + " Prix:" + Double.toString(c.getPrix()));
+                Text comp = new Text(c.getNom() + "\tType: " + c.getType() + " Prix: " + Double.toString(c.getPrix()) + "$");
                 Button b = new Button("Acheter");
                 b.setOnMouseClicked(e -> {
                     if (controller != null) {
