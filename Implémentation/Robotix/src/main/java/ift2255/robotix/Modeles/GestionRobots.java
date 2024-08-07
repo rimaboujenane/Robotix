@@ -152,7 +152,6 @@ public class GestionRobots {
      */
     public List<Robot> chargerRobots() {
         List<Robot> robots = flotteParUtilisateur.getOrDefault(user.getEmail(), new ArrayList<>());
-        System.out.println("Robots appartenant à " + user.getEmail() + ": " + robots);
         return robots;
     }
 
