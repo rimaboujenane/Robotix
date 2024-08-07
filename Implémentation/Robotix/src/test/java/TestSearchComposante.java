@@ -153,7 +153,7 @@ public class TestSearchComposante extends ApplicationTest {
      */
     @Test
     public void testAcheterComposante() {
-        Fournisseur fournisseur = new Fournisseurnew Fournisseur("nom", "prenom", " password", "email@test.com", "5145145145", "ift2255");
+        Fournisseur fournisseur = new Fournisseur("nom", "prenom", " password", "email@test.com", "5145145145", "ift2255");
         Composante composante = new Composante(1, "CPU", "Type1", "Description1", 150.0, "email@test.com");
 
         doNothing().when(gestionComposantesMock).supprimerComposante(composante.getId());
