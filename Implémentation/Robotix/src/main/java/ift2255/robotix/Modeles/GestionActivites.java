@@ -57,8 +57,6 @@ public class GestionActivites {
 
                     Activite activite = new Activite(ID, nom, dateDebut, dateFin, utilisateursInscrits);
                     activites.add(activite);
-                } else {
-                    System.err.println("La ligne ne contient pas assez de champs : " + String.join(",", nextLine));
                 }
             }
         } catch (IOException | CsvValidationException e) {
@@ -113,9 +111,6 @@ public class GestionActivites {
                 }
             }
             sauvegarderActivitesDansCSV("src/main/resources/data/activites.csv");
-            System.out.println("Inscription réussie pour l'utilisateur : " + utilisateur.getEmail());
-        } else {
-            System.out.println("L'utilisateur est déjà inscrit à cette activité.");
         }
     }
 
@@ -137,9 +132,6 @@ public class GestionActivites {
                 }
             }
             sauvegarderActivitesDansCSV("src/main/resources/data/activites.csv");
-            System.out.println("Désinscription réussie pour l'utilisateur : " + utilisateur.getEmail());
-        } else {
-            System.out.println("L'utilisateur n'est pas inscrit à cette activité.");
         }
     }
 

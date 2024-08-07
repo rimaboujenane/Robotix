@@ -56,8 +56,7 @@ public class GestionRobots {
                     .add(robot);
         } catch (IOException e) {
             e.printStackTrace();
-            System.err.println("Erreur lors de l'ajout du robot dans le fichier CSV: " + e.getMessage());
-        }
+                    }
     }
 
     /**
@@ -108,10 +107,8 @@ public class GestionRobots {
                             nextId = id + 1;
                         }
                     } catch (NumberFormatException e) {
-                        System.err.println("Erreur de format dans les données : " + String.join(",", nextLine));
+                        e.printStackTrace();
                     }
-                } else {
-                    System.err.println("La ligne ne contient pas assez de champs: " + String.join(",", nextLine));
                 }
             }
         } catch (IOException | CsvValidationException e) {
@@ -143,8 +140,6 @@ public class GestionRobots {
                     });
                 }
             }
-
-            System.out.println("Écriture dans le fichier CSV réussie : " + CSV_FILE);
         } catch (IOException e) {
             e.printStackTrace();
         }
