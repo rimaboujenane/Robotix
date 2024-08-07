@@ -107,7 +107,7 @@ public class SearchFournisseurView extends VBox {
                 subCat.setPadding(new Insets(10));
                 subCat.setSpacing(10);
                 subCat.setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
-                Text comp = new Text("Composante: " + c.getNom() + "\tType: " + c.getType());
+                Text comp = new Text(c.getNom() + "\tType: " + c.getType() + " Prix:" + Double.toString(c.getPrix()));
                 Button b = new Button("Acheter");
                 b.setOnMouseClicked(e -> {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirmer l'achat de la composante ?", ButtonType.YES, ButtonType.NO);
