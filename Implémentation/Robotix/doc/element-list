@@ -1,0 +1,9 @@
+module:ift2255.robotix
+ift2255.robotix
+ift2255.robotix.Controller
+ift2255.robotix.Controller.Fournisseur
+ift2255.robotix.Controller.Utilisateur
+ift2255.robotix.Modeles
+ift2255.robotix.View
+ift2255.robotix.View.Fournisseur
+ift2255.robotix.View.Utilisateur

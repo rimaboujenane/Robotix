@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport</title>
+</head>
+<style type="text/css">
+    table {
+        border: outset 2px black;
+        border-collapse: collapse;
+    }
+
+    th {
+        border-bottom: double 2px black;
+    }
+
+    td {
+        border-bottom: solid 1px black;
+    }
+
+    .first_col {
+        border-right: double 2px black;
+    }
+</style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">
+        IFT 2255 - Été 2024 - Devoir 3</h1>
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom de l'équipe: </span>Équipe Chomagique
+    </p>
+    <p>
+        <a href="https://github.com/rimaboujenane/Devoir-2255">Lien vers dépôt GitHub</a><br>
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>David Shorten
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20233475
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>david.shorten@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>h
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Rima Boujenane
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20235550
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>rima.boujenane@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>h
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Cedric Guevremont
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20266532
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>cedric.guevremont@gmail.com
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>h
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Dean Johan Bell
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>20087490
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>dean.johan.bell@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">Temps mis: </span>h
+    </p>
+    <h2>
+        Distribution des tâches</h2>
+    <p>
+        <span style="font-weight: bold;">Soumissionaire: </span> Cedric Guevremont
+    </p>
+    <table style="text-align: center;" cellpadding="7px">
+        <thead>
+            <tr>
+                <th class="first_col">
+                    Tâche
+                </th>
+                <th>
+                    David Shorten
+                </th>
+                <th>
+                    Rima Boujenane
+                </th>
+                <th>
+                    Cedric Guevremont
+                </th>
+                <th>
+                    Dean Bell
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="first_col">
+                    Conception (mise à jour)
+                </td>
+                <td>
+                    
+                </td>
+                <td>
+                      
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Implémentation en Java
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    Tests unitaires avec JUnit
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    JavaDoc
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    README
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="first_col">
+                    GitHub Actions
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+<h1><u>Exigences et Analyse:</u></h1>
+<h2><u>Glossaire</u></h2>
+<p> <b>Activité</b> : Ensemble de tâches organisées pour atteindre un objectif spécifique, souvent collaboratif.</p>
+<p> <b>Alerte</b> : Une notification qui se déclenche en cas d'erreur ou de problème détecté dans le fonctionnement
+    d'un robot.</p>
+<p> <b>Capacité</b> : La limite technique d'une composante d'un robot, telle que la charge maximale qu'il peut
+    supporter ou la distance maximale qu'il peut parcourir.</p>
+<p> <b>Capteurs</b> : Des dispositifs utilisés pour collecter des données sur l'état et la performance d'un robot,
+    comprenant des capteurs de température, de pression, de proximité, etc.</p>
+<p> <b>Composantes</b> : Les pièces individuelles utilisées pour assembler un robot, incluant des moteurs, des
+    capteurs, des batteries, etc.</p>
+<p> <b>Entité</b> : Dans le contexte de l'outil Robotix, une entité représente un robot individuel avec ses
+    caractéristiques et ses capacités uniques.</p>
+<p> <b>État</b> : La description de l'activité actuelle d'un robot à un moment donné, comme "en attente", "en
+    mouvement", "en charge", etc.</p>
+<p> <b>Flotte</b> : Un groupe de robots travaillant ensemble, souvent sous le contrôle d'un système centralisé.</p>
+<p> <b>Mécanisme d'inventorisation</b> : Un système qui permet de suivre et de gérer les robots dans une flotte,
+    souvent en utilisant des numéros de série uniques.</p>
+<p> <b>Métriques</b> : Des indicateurs quantitatifs ou qualitatifs utilisés pour évaluer la performance d'un robot,
+    incluant des mesures de précision, d'efficacité, de vitesse, etc.</p>
+<p> <b>Numéro de série</b> : Un identifiant unique attribué à chaque robot par le fabricant, utilisé pour le suivi
+    et la gestion des inventaires.</p>
+<p> <b>Opération</b> : Une séquence de tâches exécutées par un robot pour atteindre un objectif spécifique.</p>
+<p> <b>Robot</b> : Une machine programmée pour exécuter des tâches de manière autonome, souvent dans un
+    environnement industriel ou de recherche.</p>
+<p> <b>Tâches</b> : Des actions spécifiques assignées à un ou plusieurs robots, variant en complexité et en durée. </p>
+<p> <b>Unité</b> : Une mesure standard utilisée pour quantifier un type de données, telle que les secondes pour le
+    temps ou les mètres pour la distance.</p>
+
+    <h2><u>Analyse des besoins matériels:</u></h2>
+    <p>Pour mettre en opération le système Robotix, les opérations principales seront informatisées, incluant
+        l'inscription et l'authentification des utilisateurs et fournisseurs, la gestion des robots, des tâches, des
+        activités, des notifications, des métriques, des problèmes, et des intérêts. Les données seront stockées sur des
+        serveurs cloud sécurisés, utilisant des techniques de cryptage pour la protection. Le système interagit via des
+        API pour l'échange de données et l'interopérabilité avec d'autres systèmes. Des ordinateurs et appareils mobiles
+        pour les utilisateurs, serveurs pour les applications, et capteurs pour les robots sont nécessaires. Les
+        utilisateurs interagiront avec le système via une interface utilisateur web et mobile intuitive, facilitant la
+        gestion des robots et des activités.
+    </p>
+
+
+    <h2><u>Diagramme de cas d'utilisation UML </u></h2>
+    <p>Pour la deuxième tâche, nous avons convenu que le diagramme suivant était approprié pour le cas présent.</p>
+    <a href="../Devoir-2255/Exigences/diagrammeCU.svg" target="_blank">
+    <img src="../Devoir-2255/Exigences/diagrammeCU.svg" alt="Diagramme de cas d'utilisation" width="700" height="700"/> </a>
+
+    <h2><u>Diagramme d'activités UML</u></h2>
+    <a href="../Devoir-2255/Analyse/DA.svg" target="_blank">
+        <img src="../Devoir-2255/Analyse/DA.svg" alt="Diagramme d'activité" width="1300" height="900">
+    </a><br><br>
+
+
+    <h1><u>Conception révisée:</u></h1>
+    <h2><u>Diagramme de classes UML</u></h2>
+    <a href="../Devoir-2255/Conception/DC_devoir3.svg" target="_blank">
+        <img src="../Devoir-2255/Conception/DC_devoir3.svg" alt="Diagramme de classe" width="1300" height="900">
+    </a>
+
+    <h2><u>Diagrammes de séquence UML</u></h2>
+
+    <h3><u>Acheter une composante:</u></h3>
+    <a href="../Devoir-2255/Conception/dev3_DS_AcheterComposant.svg" target="_blank">
+        <img src="../Devoir-2255/Conception/dev3_DS_AcheterComposant.svg" alt="Diagramme de sequence" width="800" height="500">
+    </a>
+
+    <h3> <u>Enregistrer une composante:</u></h3>
+    <a href="../Devoir-2255/Conception/dev3_DS_EnregistrerComp.svg" target="_blank">
+        <img src="../Devoir-2255/Conception/dev3_DS_EnregistrerComp.svg" alt="Diagramme de sequence" width="800" height="500">
+    </a>
+
+    <h3><u>Ajouter un robot:</u></h3>
+    <a href="../Devoir-2255/Conception/dev3_DS_AjouterRobot.svg" target="_blank">
+        <img src="../Devoir-2255/Conception/dev3_DS_AjouterRobot.svg" alt="Diagramme de sequence" width="800" height="500">
+    </a>
+
+    <h3><u>Inscription à une activité:</u></h3>
+    <a href="../Devoir-2255/Conception/dev3_DS_InscriptionActivite.svg" target="_blank">
+        <img src="../Devoir-2255/Conception/dev3_DS_InscriptionActivite.svg" alt="Diagramme de sequence" width="800" height="500">
+    </a>
+
+    <h3><u>Modifier son profil:</u></h3>
+    <a href="../Devoir-2255/Conception/dev3_DS_ModifProfil.svg" target="_blank">
+        <img src="../Devoir-2255/Conception/dev3_DS_ModifProfil.svg" alt="Diagramme de sequence" width="800" height="500">
+    </a><br><br><br>
+
+
+
+    <h1><u>Application:</u></h1>
+    <h2>Lien vers l'application:</h2>
+    <p>[...]</p>
+    <h2>Lien vers la documentation:</h2>
+    <p>[...]</p><br><br>
+
+    <h1><u>Tests:</u></h1>
+    <h2>Bilan des tests::</h2>
+    <p>Ajouter une capture d'écran</p><br><br><br>
+
+
+    <h1><u>Contribution:</u></h1>
+    <p>Ajouter une capture d'écran</p>
+    
+
+</body>
+
+
+
+</html>
